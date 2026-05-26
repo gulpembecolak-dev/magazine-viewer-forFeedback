@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+    <div class="viewer"></div>
+    <footer class="viewer-footer"></footer>
+    <section class="page recto full-bleed no-header no-folio" data-page="1" aria-label="Cover">Page 1</section>
+    <section class="page verso no-header no-folio" data-page="2" aria-label="Inside cover">Page 2</section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded fired!');
+            const originalPages = document.querySelectorAll('body > .page');
+            console.log('originalPages.length:', originalPages.length);
+            console.log('originalPages:', originalPages);
+            console.log('document.body.children:', document.body.children);
+        });
+    </script>
+</body>
+</html>

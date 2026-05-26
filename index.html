@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Message Design — Slanted Publisher №41</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="cover-nav">
+  <strong>MESSAGE DESIGN — SLANTED №41</strong>
+  <button onclick="window.print()">Print → PDF</button>
+</div>
+
+<!-- ================================================================
+     FRONT MATTER (pp 1–8)
+     ================================================================ -->
+
+<!-- ───── PAGE 1 — COVER ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="1" aria-label="Cover">
+  <!--
+  COVER — MESSAGE DESIGN
+  Slanted Publisher Research Edition №41
+  Format: 210 × 240 mm (trim) + 3 mm bleed = 216 × 246 mm
+  
+  Concept: 'MESSAGE' as a constellation in transit. Letters scatter as the
+  signal climbs through the noisy channel; 'AGE' cluster reassembles at the
+  receiver. 'DESIGN' is the architecture that catches what arrives.
+  
+  → All text should be converted to outlines in Illustrator before
+    placing in InDesign, so font substitution doesn't break the layout.
+-->
+<svg class="cover-image" preserveAspectRatio="xMidYMid meet"
+  xmlns="http://www.w3.org/2000/svg"
+  width="216mm"
+  height="246mm"
+  viewBox="0 0 216 246"
+  font-family="'Helvetica Neue', 'Arial Black', Arial, sans-serif">
+
+  <defs>
+    <!-- subtle paper grain (kept very low, not noise-illustration but warmth) -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.025 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <!-- ========== BACKGROUND ========== -->
+  <rect width="216" height="246" fill="#0A0A0A"/>
+  <rect width="216" height="246" fill="#0A0A0A" filter="url(#grain)"/>
+
+  <!-- ========== BLEED SAFETY (cyan crop guides — for visual reference only, will not print) ========== -->
+  <!-- Trim line guide (remove before final export) -->
+  <!-- <rect x="3" y="3" width="210" height="240" fill="none" stroke="cyan" stroke-width="0.1" stroke-dasharray="0.5 0.5" opacity="0.4"/> -->
+
+  <!-- ========== RED SIGNATURE BAR (left edge) ========== -->
+  <rect x="3" y="3" width="1.4" height="240" fill="#CC1A0A"/>
+
+  <!-- ========== TOP HEADER ========== -->
+  <g font-family="'IBM Plex Mono', 'Courier New', monospace" fill="#FAF8F4">
+    <text x="10" y="11" font-size="2.1" letter-spacing="0.6" opacity="0.85">SLANTED PUBLISHER</text>
+    <text x="10" y="14.5" font-size="2.1" letter-spacing="0.6" opacity="0.45">RESEARCH SERIES №41 — MESSAGE DESIGN</text>
+    
+    <!-- right side issue marker -->
+    <text x="206" y="11" font-size="2.1" letter-spacing="0.6" opacity="0.45" text-anchor="end">EN — NL</text>
+  </g>
+
+  <!-- thin separator under header -->
+  <line x1="10" y1="18" x2="206" y2="18" stroke="#FAF8F4" stroke-width="0.1" opacity="0.15"/>
+
+  <!-- ========== CONSTELLATION : "MESSAGE" IN TRANSIT ========== -->
+  <g id="constellation">
+
+    <!-- Signal path (red lines connecting nodes — each starts/ends at a letter edge) -->
+    <g stroke="#CC1A0A" stroke-width="0.45" fill="none" stroke-linecap="round">
+      <!-- enters from left edge → M's bottom-left -->
+      <line x1="0" y1="116" x2="20" y2="106"/>
+      <!-- M's bottom-right → E's bottom-left -->
+      <line x1="52" y1="101" x2="55" y2="82"/>
+      <!-- E's bottom-right → S₁'s bottom-left -->
+      <line x1="79" y1="84" x2="88" y2="58"/>
+      <!-- S₁'s bottom-right → S₂'s bottom-left (the peak — nearly horizontal) -->
+      <line x1="113" y1="56" x2="125" y2="52"/>
+      <!-- S₂'s bottom-right → AGE's top-left (signal drops through NOISE) -->
+      <line x1="149" y1="55" x2="159" y2="75"/>
+      <!-- AGE's bottom-right → right edge / receiver -->
+      <line x1="210" y1="96" x2="216" y2="102"/>
+    </g>
+
+    <!-- LETTERS as solid nodes -->
+    <g
+      font-size="32"
+      font-weight="900"
+      fill="#FAF8F4"
+      letter-spacing="-1">
+      <text x="20" y="106" transform="rotate(-9 20 106)">M</text>
+      <text x="55" y="82" transform="rotate(4 55 82)">E</text>
+      <text x="88" y="58" transform="rotate(-5 88 58)">S</text>
+      <text x="125" y="52" transform="rotate(7 125 52)">S</text>
+    </g>
+
+    <!-- AGE cluster — the reassembled message, set tightly together -->
+    <g
+      font-size="32"
+      font-weight="900"
+      fill="#FAF8F4"
+      letter-spacing="-1.5">
+      <text x="158" y="98" transform="rotate(-2 158 98)">AGE</text>
+    </g>
+
+    <!-- A small annotation — channel + noise designation -->
+    <g font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.7" fill="#FAF8F4" opacity="0.35" letter-spacing="0.3">
+      <text x="113" y="32">↑ MAX SIGNAL</text>
+      <text x="8" y="123">SOURCE →</text>
+      <text x="208" y="115" text-anchor="end">→ RECEIVER</text>
+    </g>
+
+    <!-- decay marker — between S₂ and AGE — the moment noise nearly broke it -->
+    <g stroke="#CC1A0A" stroke-width="0.45" fill="none">
+      <path d="M150 60 L152 56 L153 64 L154 54 L155 66 L156 56 L158 60" stroke-linejoin="round"/>
+    </g>
+    <text x="153" y="50" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.6" fill="#CC1A0A" text-anchor="middle" opacity="0.9">NOISE</text>
+  </g>
+
+  <!-- ========== DESIGN BLOCK ========== -->
+  <!-- This anchors the bottom. Heavy, monumental, perfectly aligned. The order that catches the noise. -->
+  <g>
+    <text x="10" y="195" font-size="48" font-weight="900" fill="#FAF8F4" letter-spacing="-2.5">DESIGN</text>
+  </g>
+
+  <!-- thin red rule under DESIGN -->
+  <line x1="10" y1="201" x2="92" y2="201" stroke="#CC1A0A" stroke-width="0.55"/>
+
+  <!-- ========== TECHNICAL FOOTER ========== -->
+  <g font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.8" fill="#FAF8F4" opacity="0.32" letter-spacing="0.5">
+    <text x="10" y="237">STUDENT EDITION · 2GDM</text>
+    <text x="10" y="240">210 × 240 MM · OFFSET · MAY 2026</text>
+  </g>
+
+  <!-- ========== HUGE GHOST №41 (lower right) ========== -->
+  <text x="208" y="234" font-size="44" font-weight="900" fill="#FAF8F4" opacity="0.08" text-anchor="end" letter-spacing="-2">№41</text>
+
+  <!-- ========== SMALL SLANTED MARK (lower right corner) ========== -->
+  <g transform="translate(206 240)">
+    <rect x="-12" y="-2.5" width="12" height="2.5" fill="#CC1A0A"/>
+    <text x="-6" y="-0.5" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.6" fill="#FAF8F4" text-anchor="middle" letter-spacing="0.5">SLANTED</text>
+  </g>
+
+</svg>
+
+</section>
+
+<!-- ───── PAGE 2 — INSIDE COVER (BLANK) ───── -->
+<section class="page verso no-header no-folio" data-page="2" aria-label="Inside cover">
+</section>
+
+<!-- ───── PAGE 3 — COLOPHON ───── -->
+<section class="page recto" data-page="3" aria-label="Colophon">
+  <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
+  <div class="colophon-stack">
+    <div class="colophon-title">Message Design</div>
+    <p>Rune Pettersson</p>
+    <p>Slanted Publisher Research Series, №41</p>
+    <p class="spacer">&nbsp;</p>
+    <p>First edition published May 2026</p>
+    <p>by Slanted Publishers UG</p>
+    <p>Karlsruhe, Germany</p>
+    <p>www.slanted.de</p>
+    <p class="spacer">&nbsp;</p>
+    <p>Editorial design and visualisation</p>
+    <p>by Gulpembe Colak — 2GDM</p>
+    <p>Artesis Plantijn Hogeschool, Antwerpen</p>
+    <p>Visual Communication, 2025–26</p>
+    <p class="spacer">&nbsp;</p>
+    <p>Original text © Rune Pettersson</p>
+    <p>This edition © Slanted Publishers</p>
+    <p>Set in Inter, IBM Plex Mono and EB Garamond</p>
+    <p>Printed on uncoated 120 gsm paper</p>
+    <p>Student edition · 2GDM Visual Communication · Artesis Plantijn Hogeschool, Antwerpen — no commercial ISBN</p>
+  </div>
+  <div class="page-folio">3</div>
+</section>
+
+<!-- ───── PAGES 4–5 — INTRO SPREAD: HERO QUESTION ───── -->
+<section class="page verso" data-page="4" aria-label="Prologue verso — Pettersson quote part 1">
+  <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
+  <div class="intro-spread">
+    <div class="intro-prologue-tag">
+      <span class="slash-row">PROLOGUE</span>
+      <span class="red-rule" style="margin-top: 4pt; display: block; width: 30mm; height: 0.55pt; background: var(--red);"></span>
+    </div>
+    <!-- Quote: h1.medium spec — Inter Black 48/50pt -->
+    <div class="intro-question" style="top: 70mm; left: 0; width: 100%; font-size: 48pt; line-height: 50pt;">
+      We can be sure<br />
+      that people do not derive<br />
+      the same information<br />
+      from things they read,<br />
+      hear, or see<span style="color: var(--red);">.</span>
+    </div>
+  </div>
+  <div class="page-folio">4</div>
+</section>
+
+<section class="page recto" data-page="5" aria-label="Prologue recto — Pettersson quote part 2">
+  <div class="page-header"><span class="ch-num">00</span>MESSAGE DESIGN — №41</div>
+  <div class="intro-spread">
+    <!-- Quote: h1.medium spec — Inter Black 48/50pt -->
+    <div class="intro-question" style="top: 26mm; left: 0; width: 100%; font-size: 48pt; line-height: 50pt;">
+      The meaning of any<br />
+      language — verbal or<br />
+      visual — is to a large<br />
+      degree resident not in<br />
+      words, colours, lines,<br />
+      and shapes
+    </div>
+    <!-- Italic kapanış cümlesi — pull-quote-giant 56/60pt, tracking -10, tinted ink -->
+    <div style="position: absolute; top: 165mm; left: 0; width: 100%; font-family: var(--font-italic); font-style: italic; font-weight: 400; font-size: 56pt; line-height: 60pt; letter-spacing: -0.01em; color: rgba(10, 10, 10, 0.7);">
+      but also in us.
+    </div>
+    <div class="caption" style="position: absolute; bottom: 4mm; left: 0;">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015</div>
+  </div>
+  <div class="page-folio">5</div>
+</section>
+
+<!-- ───── PAGES 6–7 — TABLE OF CONTENTS (PUBLICATION MAP) ───── -->
+<section class="page verso" data-page="6" aria-label="Contents — publication map">
+  <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
+
+  <span class="slash-row" style="display: block; margin-top: 4mm; margin-bottom: 1mm; letter-spacing: 0.2em;">PUBLICATION MAP · TOTAL 56 PP</span>
+  <h2 class="toc-title" style="margin-top: 4mm; margin-bottom: 12mm;">Contents</h2>
+
+  <div style="position: relative;">
+    <div class="pub-map-signal" style="left: 36mm;"></div>
+
+    <div class="pub-map-block size-10">
+      <span class="num">01</span>
+      <div>
+        <div class="name">SIGNAL</div>
+      </div>
+      <span class="pages">PP. 9—18<br /><span style="opacity:0.5;">10 PP.</span></span>
+    </div>
+
+    <div class="pub-map-block size-8">
+      <span class="num">02</span>
+      <div>
+        <div class="name">NOISE</div>
+      </div>
+      <span class="pages">PP. 19—26<br /><span style="opacity:0.5;">8 PP.</span></span>
+    </div>
+
+    <div class="pub-map-block size-10">
+      <span class="num">03</span>
+      <div>
+        <div class="name">FRAME</div>
+      </div>
+      <span class="pages">PP. 27—36<br /><span style="opacity:0.5;">10 PP.</span></span>
+    </div>
+
+    <div class="pub-map-block size-8">
+      <span class="num">04</span>
+      <div>
+        <div class="name">TOOLS</div>
+      </div>
+      <span class="pages">PP. 37—44<br /><span style="opacity:0.5;">8 PP.</span></span>
+    </div>
+
+    <div class="pub-map-block size-7">
+      <span class="num">05</span>
+      <div>
+        <div class="name">MEANING</div>
+      </div>
+      <span class="pages">PP. 45—50<br /><span style="opacity:0.5;">6 PP.</span></span>
+    </div>
+  </div>
+
+  <div class="page-folio">6</div>
+</section>
+
+<section class="page recto" data-page="7" aria-label="Contents — the arc">
+  <div class="page-header" style="z-index: 2;"><span class="ch-num">00</span>MESSAGE DESIGN — №41</div>
+
+  <!-- BACKGROUND IMAGE: tüm sayfayı kaplar, yazıların arkasında -->
+  <img src="assets/p7_trajectory.png" alt="Hand-drawn trajectory across five chapters with noise event at chapter 02" style="position: absolute; top: -10mm; left: -10mm; width: calc(100% + 20mm); height: calc(100% + 20mm); object-fit: cover; z-index: 0; pointer-events: none;" />
+
+  <!-- TOP TEXT: image'in üstünde -->
+  <div style="position: relative; z-index: 1;">
+    <span class="slash-row" style="display: block; margin-top: 4mm;">/ THE ARC /</span>
+    <h2 class="toc-title" style="margin-top: 6mm; margin-bottom: 8mm;">A trajectory</h2>
+  </div>
+
+  <!-- BOTTOM APHORISM — single line over the trajectory image (caps, mono 10pt) -->
+  <div style="position: absolute; bottom: 18mm; left: 18mm; right: 30mm; z-index: 1; font-family: var(--font-mono); font-size: 10pt; letter-spacing: 0.08em; line-height: 16pt; color: var(--ink); text-transform: uppercase;">
+    Signal departs · Noise enters · Frame catches · Tools carry · Reader completes.
+  </div>
+
+  <!-- BACK-MATTER NAVIGATION — horizontal strip along the bottom edge -->
+  <div style="position: absolute; bottom: 8mm; left: 18mm; right: 18mm; z-index: 1; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--ink);">
+    MULTILINGUAL · P.51—52&nbsp;&nbsp;/&nbsp;&nbsp;BIBLIOGRAPHY · P.53&nbsp;&nbsp;/&nbsp;&nbsp;INDEX · P.54&nbsp;&nbsp;/&nbsp;&nbsp;COLOPHON · P.55&nbsp;&nbsp;/&nbsp;&nbsp;BACK COVER · P.56
+  </div>
+
+  <div class="page-folio" style="z-index: 2;">7</div>
+</section>
+
+<!-- ───── PAGE 8 — PETTERSSON QUOTE (threshold spread, faces SIGNAL opener) ───── -->
+<section class="page verso no-header no-folio" data-page="8" aria-label="Prologue epigraph" style="position: relative;">
+
+  <!-- PROLOGUE EPIGRAPH — cascade: each line own size + position, full Ink, no tint.
+       Designed silence before the black SIGNAL opener on p.9. -->
+  <div style="position: absolute; left: 20mm; top: 60mm;
+              font-family: var(--font-italic); font-weight: 400;
+              font-size: 120pt; line-height: 110pt;
+              color: var(--ink); letter-spacing: -0.01em;">Perception</div>
+
+  <div style="position: absolute; left: 60mm; top: 110mm;
+              font-family: var(--font-italic); font-weight: 400;
+              font-size: 90pt; line-height: 88pt;
+              color: var(--ink); letter-spacing: -0.01em;">is different</div>
+
+  <div style="position: absolute; left: 110mm; top: 150mm;
+              font-family: var(--font-italic); font-weight: 400;
+              font-size: 70pt; line-height: 70pt;
+              color: var(--ink); letter-spacing: -0.01em;">and never</div>
+
+  <div style="position: absolute; right: 14mm; top: 180mm;
+              font-family: var(--font-italic); font-weight: 400;
+              font-size: 100pt; line-height: 95pt;
+              color: var(--ink); letter-spacing: -0.01em;
+              text-align: right;">the same twice.</div>
+
+  <div style="position: absolute; right: 14mm; bottom: 18mm;
+              font-family: var(--font-mono); font-size: 7pt;
+              letter-spacing: 0.18em; color: var(--gray);">— Pettersson, 2015, p.11</div>
+
+</section>
+
+
+<!-- ================================================================
+     CHAPTER 01 — SIGNAL (pp 9–18)
+     ================================================================ -->
+
+<!-- ───── PAGE 9 — SIGNAL OPENER · TYPOGRAPHIC EXPLOSION ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="9" aria-label="Chapter 01 opener">
+  <div class="opener-explosion">
+
+    <!-- Full-bleed illustration (transparent PNG) sits on the ink ground; texts overlay on top -->
+    <img src="assets/p9_signal.png" alt="Chapter 01 — SIGNAL opener" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;" />
+
+    <span class="meta" style="top: 14mm; left: 14mm;">01 //// CHAPTER ONE</span>
+    <span class="meta" style="top: 14mm; right: 14mm; opacity: 0.45;">EN — NL ····</span>
+
+    <!-- Annotations -->
+    <!-- diagram annotations removed — they were positioned for the old typographic constellation, not the new signal.png -->
+
+    <div class="subtitle">
+      A message is never a single object. It is a chain — and the chain is only as strong as the weakest link.
+    </div>
+
+    <span class="meta" style="bottom: 14mm; right: 14mm; font-size: 6pt; opacity: 0.5;">FIG. CH 01 · CONSTELLATION OF S-I-G-N-A-L</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 10–11 — DATAVIZ #1: THE BROKEN CHANNEL ───── -->
+<section class="page verso no-folio" data-page="10" aria-label="Dataviz Broken Channel verso">
+  <div class="dataviz-tag">— DATA · CH 01 · THE BROKEN CHANNEL</div>
+
+  <div style="position: absolute; top: 28mm; left: 14mm; right: 14mm;">
+    <span class="fig-tape">FIG. 01</span>
+    <h3 class="h2" style="margin-top: 0; margin-bottom: 12mm; max-width: 130mm;">The chain Shannon and Weaver drew at Bell Labs in 1949 — and the moment the channel begins to fail.</h3>
+
+    <svg viewBox="0 0 380 110" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto;">
+      <!-- Slightly wobbled main line (hand feel) -->
+      <path d="M 10 50 Q 60 49.4 100 50.3 T 190 49.6 T 280 50.4 T 370 49.7" stroke="#0A0A0A" stroke-width="0.45" fill="none" />
+
+      <g font-family="'IBM Plex Mono', monospace" font-size="5" fill="#0A0A0A">
+        <circle cx="20" cy="50" r="6" fill="#EDEAE3" stroke="#0A0A0A" stroke-width="0.6" />
+        <text x="20" y="51.5" text-anchor="middle" font-weight="700" font-size="4">01</text>
+        <text x="20" y="68" text-anchor="middle" letter-spacing="0.2">SOURCE</text>
+        <text x="20" y="74" text-anchor="middle" letter-spacing="0.2" fill="#8A8580" font-size="3">selects</text>
+
+        <circle cx="100" cy="50" r="6" fill="#EDEAE3" stroke="#0A0A0A" stroke-width="0.6" />
+        <text x="100" y="51.5" text-anchor="middle" font-weight="700" font-size="4">02</text>
+        <text x="100" y="68" text-anchor="middle" letter-spacing="0.2">ENCODER</text>
+        <text x="100" y="74" text-anchor="middle" letter-spacing="0.2" fill="#8A8580" font-size="3">translates</text>
+
+        <circle cx="190" cy="50" r="6" fill="#EDEAE3" stroke="#0A0A0A" stroke-width="0.6" />
+        <text x="190" y="51.5" text-anchor="middle" font-weight="700" font-size="4">03</text>
+        <text x="190" y="68" text-anchor="middle" letter-spacing="0.2" fill="#CC1A0A">CHANNEL</text>
+        <text x="190" y="74" text-anchor="middle" letter-spacing="0.2" fill="#CC1A0A" font-size="3">eats</text>
+
+        <circle cx="280" cy="50" r="6" fill="#EDEAE3" stroke="#0A0A0A" stroke-width="0.6" />
+        <text x="280" y="51.5" text-anchor="middle" font-weight="700" font-size="4">04</text>
+        <text x="280" y="68" text-anchor="middle" letter-spacing="0.2">DECODER</text>
+        <text x="280" y="74" text-anchor="middle" letter-spacing="0.2" fill="#8A8580" font-size="3">guesses</text>
+
+        <circle cx="360" cy="50" r="6" fill="#EDEAE3" stroke="#0A0A0A" stroke-width="0.6" />
+        <text x="360" y="51.5" text-anchor="middle" font-weight="700" font-size="4">05</text>
+        <text x="360" y="68" text-anchor="middle" letter-spacing="0.2">RECEIVER</text>
+        <text x="360" y="74" text-anchor="middle" letter-spacing="0.2" fill="#8A8580" font-size="3">rebuilds</text>
+      </g>
+
+      <!-- Hand-drawn-feel red noise zigzag — pushed to be more irregular -->
+      <g stroke="#CC1A0A" fill="none" stroke-width="0.7" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 184 46 L 186.4 28 L 188.6 56 L 190.8 24 L 193.1 60 L 195.4 30 L 197.6 50 L 199.8 36 L 202 44" />
+      </g>
+      <text x="190" y="20" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="4" fill="#CC1A0A" letter-spacing="0.3" font-weight="500">↑ NOISE</text>
+
+      <!-- Feedback loop — slightly wobbled dashed arc -->
+      <path d="M 360 60 Q 270 100 190 96 Q 110 92 20 60" fill="none" stroke="#0A0A0A" stroke-width="0.3" stroke-dasharray="2,1" opacity="0.45" />
+      <text x="190" y="105" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="3.5" fill="#8A8580" letter-spacing="0.3">FEEDBACK · SLOW · ALWAYS PARTIAL</text>
+
+      <!-- Side annotations with tiny arrows -->
+      <text x="2" y="50" font-family="'IBM Plex Mono', monospace" font-size="3" fill="#CC1A0A" letter-spacing="0.2">·</text>
+      <text x="378" y="50" font-family="'IBM Plex Mono', monospace" font-size="3" fill="#CC1A0A" letter-spacing="0.2">·</text>
+    </svg>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 8mm;">
+      <div class="caption" style="max-width: 100%;">AFTER SHANNON · WEAVER · 1949 //// THE MATHEMATICAL THEORY OF COMMUNICATION //// ALSO SCHRAMM 1954 · PETTERSSON 1983</div>
+      <div class="dataviz-spec-block">
+        NODES 5 · NOISE PULSE @ NODE 03<br />
+        SEE ALSO P. 16—17 · THE FOUR PLACES
+      </div>
+    </div>
+  </div>
+
+  <div class="page-folio">10</div>
+</section>
+
+<section class="page recto no-folio" data-page="11" aria-label="Dataviz Broken Channel recto">
+  <div style="margin-top: 28mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 6mm;">READING THE DIAGRAM ABOVE:</span>
+    <div class="pull-quote" style="max-width: 130mm; margin-bottom: 16mm;">
+      What arrives is never exactly what was sent — the designer's first job is to know which noise is operating.
+    </div>
+
+    <h3 class="h3" style="margin-top: 0; margin-bottom: 8mm;">FOUR NOISES — A WORKING SET</h3>
+
+    <div class="broken-channel-noise-types">
+      <div class="nt">
+        <span class="label">→ Physical</span>
+        <p>The medium itself degrades the signal. Misregistered ink, low-resolution images, screen glare, broken speakers — a property of production and distribution.</p>
+      </div>
+      <div class="nt">
+        <span class="label">→ Semantic</span>
+        <p>The language fails to carry. Jargon, idiom, missing context, the metaphor that does not travel. A property of vocabulary and translation.</p>
+      </div>
+      <div class="nt">
+        <span class="label">→ Psychological</span>
+        <p>The receiver is elsewhere. Fatigue, distraction, motivated reading, prior belief. A property of attention and state.</p>
+      </div>
+      <div class="nt">
+        <span class="label">→ Channel</span>
+        <p>The medium imposes constraints the message did not anticipate. Format, length, sequence, conventions. A property of grammar.</p>
+      </div>
+    </div>
+
+    <p class="caption" style="margin-top: 12mm; max-width: 110mm; line-height: 11pt;">EACH NOISE IS REDUCED BY A DIFFERENT INTERVENTION. PHYSICAL BY PRODUCTION. SEMANTIC BY EDITING. PSYCHOLOGICAL BY SEQUENCE AND PACING. CHANNEL BY KNOWING, IN ADVANCE, WHICH CHANNEL YOU ARE USING.</p>
+
+    <div class="dataviz-spec-block" style="margin-top: 14mm;">
+      DEEP DIVE → P. 16—17 · THE FOUR PLACES<br />
+      SEE ALSO P. 14—15 · DECAY DEMONSTRATION
+    </div>
+  </div>
+</section>
+
+<!-- ───── PAGES 12–13 — BODY SPREAD ───── -->
+<section class="page verso" data-page="12" aria-label="Body spread verso 3-col">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+
+  <!-- Vertical marginal note running down the left edge -->
+  <div class="body-vertical-edge left">→ THE CHAIN, AS A DIAGRAM, AT P. 10 · 11</div>
+
+  <div class="three-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">A model<br />worth breaking</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap">A message is never a single object. It is a chain, and like every chain it is only as strong as the weakest link. Pettersson opens <em>Message Design</em> with this observation, and the rest of the book unfolds from it. To communicate, he writes, is to set up an interplay between two or more persons — an interplay that depends on signals being produced, transmitted, received and deciphered. Each verb is a different kind of work. Each can fail.</p>
+      <p>The dominant model for that chain is still the one Claude Shannon and Warren Weaver published in 1949. A <em>source</em> selects a message. A <em>transmitter</em> encodes it as a signal. The signal travels through a <em>channel</em>. A <em>receiver</em> decodes it. A <em>destination</em> — a reader, a viewer, a listener — receives what arrives.</p>
+    </div>
+    <div>
+      <p>Five stages, one straight line, drawn at a Bell Labs desk to describe transmitted data, not human conversation. Pettersson is careful to mark this provenance: the model was about telephony, not telephones; about quantitative measurement of transmitted bits, not about meaning. It had nothing to do with us.</p>
+      <p>And yet it has shaped seventy years of thinking about communication, and almost as long for design. Wilbur Schramm adapted the diagram in 1954 by adding overlap: for any signal to register, he argued, the experience of the sender and the experience of the receiver must share some territory. Without that overlap, encoding fails. The message is sent but never decoded.</p>
+      <p>In 1983 Pettersson himself revised the picture, naming the variables that interfere with reception — cultural and social status, mood, memory, experience, the cognitive processes a person brings to the moment.</p>
+    </div>
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">Signals are<br />choices</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first">What stays useful from Shannon and Weaver is the discipline of naming the stages. A designer who can point to where a message is failing — at the encoding, in the channel, at the decoding — has already done half the work.</p>
+      <p>What does not survive translation is the assumption that any of these stages is neutral. None of them is. Every stage carries decisions, and every decision carries consequence. A typeface is a signal. A line break is a signal. A red rule above a pull quote is a signal. None of them are content. All of them shape what content becomes.</p>
+    </div>
+  </div>
+  <div class="page-folio">12</div>
+</section>
+
+<section class="page recto" data-page="13" aria-label="Body spread recto asymmetric">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div style="display: grid; grid-template-columns: 1fr 64mm; gap: 6mm; height: 100%; padding-top: 8mm;">
+    <div>
+      <span class="slash-row" style="display: block; margin-bottom: 4mm; font-size: 6pt; letter-spacing: 0.2em;">//// PULL QUOTE //// MEANING ////</span>
+      <div class="pull-quote">
+        Each person looking at the final design will create an individual interpretation of the message.
+      </div>
+      <p class="caption" style="margin-top: 4mm; color: var(--gray);">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015 · P. 14</p>
+      <div style="margin-top: 50mm;" class="body">
+        <p class="body-first">Pettersson's expansion of the model is small but consequential. Where Shannon and Weaver describe a signal as a measurable disturbance, Pettersson treats it as a deliberate act. <em>Signals are choices.</em> The designer is not a transparent conduit between source and receiver. The designer is the encoder, and the encoding has already happened by the time the reader opens the page.</p>
+        <p>What the rest of this book argues is that every design decision — typeface, hierarchy, pace, ground colour, the silence between words — is a signal that shapes how the message will be reconstructed at the other end. None of these are neutral. All of them can be used well or badly.</p>
+      </div>
+    </div>
+    <div class="sidenote" style="margin-top: 60mm; border-left: 0.5pt solid var(--red); padding-left: 4mm;">
+      <span class="slash-row" style="display: block; margin-bottom: 4pt; font-size: 6pt; letter-spacing: 0.16em;">/ NOTE</span>
+      <p style="margin-bottom: 8pt;">Pettersson's 1983 model is unusual for naming what most communication diagrams hide: time, social status, sensory channel, prior memory, current mood.</p>
+      <p style="margin-bottom: 8pt;">Each is a variable. Each shifts the interpretation of the same signal sent twice.</p>
+      <p>The diagram is busier than Shannon's because the work of receiving is busier than the work of transmitting.</p>
+    </div>
+  </div>
+  <div class="page-folio">13</div>
+</section>
+
+<!-- ───── PAGES 14–15 — DECAY QUOTE SPREAD · PHYSICAL LETTERFORM BREAKAGE ───── -->
+<section class="page verso" data-page="14" aria-label="Quote spread original">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div style="margin-top: 18mm; max-width: 150mm;">
+    <span class="slash-row" style="color: var(--gray); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">ORIGINAL · SENT · UNDAMAGED</span>
+    <p style="font-family: var(--font-italic); font-style: italic; font-size: 22pt; line-height: 32pt; color: var(--ink);">
+      Communication is successful when a receiver comprehends the message a sender has wished to convey to him or her.
+    </p>
+    <p class="caption" style="margin-top: 14mm; color: var(--gray);">RUNE PETTERSSON · MESSAGE DESIGN · 2015 · P. 35</p>
+  </div>
+
+  <!-- Tiny mono "→" pointing across the fold -->
+  <div style="position: absolute; right: -2mm; top: 50%; font-family: var(--font-mono); font-size: 12pt; color: var(--red); letter-spacing: 0.4em;">→</div>
+
+  <div class="page-folio">14</div>
+</section>
+
+<section class="page recto" data-page="15" aria-label="Quote spread decayed">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div style="margin-top: 18mm; max-width: 150mm;">
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">AFTER THE CHANNEL · ARRIVED · DAMAGED</span>
+
+    <p class="decay-broken">
+      <span class="word tilt-l">Communication</span>
+      <span class="word fade-1">is</span>
+      <span class="word cut-bottom">successful</span>
+      <span class="word struck">when</span>
+      <span class="word fade-1 tilt-r">a</span>
+      <span class="word struck">receiver</span>
+      <span class="word fade-1">comprehends</span>
+      <span class="word fade-1">the</span>
+      <span class="word cut-bottom">message</span>
+      <span class="word fade-1 tilt-l">a</span>
+      <span class="word cut-right">sender</span>
+      <span class="word fade-2">has</span>
+      <span class="word struck">wished</span>
+      <span class="word fade-2 tilt-r">to</span>
+      <span class="word cut-top">convey</span>
+      <span class="word fade-2">to</span>
+      <span class="word scattered">him</span>
+      <span class="word gone">or</span>
+      <span class="word fade-3 scattered">her.</span>
+    </p>
+
+    <p class="caption" style="margin-top: 18mm; color: var(--gray); max-width: 130mm; line-height: 11pt;">SAME PASSAGE · STRUCK · CROPPED · FADED · SCATTERED · BURNED. WHAT ARRIVES BY THE END IS NOT WHAT WAS SENT AT THE START.</p>
+  </div>
+  <div class="page-folio">15</div>
+</section>
+
+<!-- ───── PAGES 16–17 — BODY + NOISE TAXONOMY SIDEBAR ───── -->
+<section class="page verso" data-page="16" aria-label="Body verso 2-col">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div class="two-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">What the channel keeps,<br />what it loses</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap">Shannon's 1949 paper is precise about one thing in particular. Between the transmitter and the receiver lies the channel — wire, paper, screen, air — and into the channel come perturbations. He calls them <em>noise</em>. In an electrical sense the term is exact: stray currents, atmospheric static, signal degradation across distance.</p>
+      <p>The transmitter sends a clean wave; the receiver measures something messier; the difference is loss. Shannon's contribution was to model this loss mathematically and to describe how, in principle, a careful encoding could recover the original signal even after the channel had eaten part of it.</p>
+      <p>The metaphor migrates. In design and editorial practice, the channel is no longer a wire. It is the printed page, the crowded feed, the grey afternoon train, the reader's tired eye. Each of these channels has its own losses.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">A WIDER DEFINITION</h3>
+      <p>Pettersson and the writers who follow him argue, gently, that Shannon's category is too narrow for human communication. Noise is not only what the wire does to the wave. It is also what the receiver does to the message before perceiving it: the assumptions brought to a sentence, the cultural references missed, the formatting that signals <em>important</em> in one country and <em>clearance sale</em> in another.</p>
+      <p>Noise is what you wrote in an industry vocabulary that the reader does not own. Noise is the third paragraph after a difficult morning. Noise is everything that reduces the alignment between intention and reception, regardless of where the reduction happens.</p>
+    </div>
+  </div>
+  <div class="page-folio">16</div>
+</section>
+
+<section class="page recto" data-page="17" aria-label="Body recto with sidebar">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div style="display: grid; grid-template-columns: 1fr 56mm; gap: 8mm; height: 100%;">
+    <div class="body" style="text-align: justify; hyphens: auto;">
+      <h3 class="h3" style="margin-top: 0;">FOUR PLACES IT ENTERS</h3>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first">For the purposes of design it is useful to sort noise by where it occurs in the chain. <em>Physical noise</em> is a property of the medium itself: the misregistered ink, the pixelation of an undersampled image, the glare on a phone screen at noon.</p>
+      <p><em>Semantic noise</em> is a property of the language: the jargon, the ambiguous referent, the false cognate, the metaphor that does not travel. <em>Psychological noise</em> belongs to the receiver: divided attention, fatigue, prior beliefs that filter what arrives, the motivated reading that hears what it expects.</p>
+      <p><em>Channel noise</em> — the trickiest category — belongs to the medium's grammar: every channel has a logic that the message must accept, and every refusal of that logic is a friction the reader pays for.</p>
+      <p>These four are not exhaustive. They are a working set. Pettersson is not interested in taxonomy for its own sake; he is interested in the designer's leverage over loss. The taxonomy exists because each kind of noise is reduced by a different intervention. Physical noise is reduced by production. Semantic noise by editing. Psychological noise by sequence and pacing. Channel noise by knowing, in advance, which channel you are using and what it will not carry.</p>
+      <p>The real argument of <em>Message Design</em> enters here. The point is not that noise can be eliminated — it cannot — but that the designer's first job is to know which noise is operating. Most failures of communication are not failures of effort. They are failures of address: the designer reduces the wrong noise, and the message fails for reasons the designer was never tracking.</p>
+    </div>
+
+    <!-- Noise taxonomy sidebar removed — the four types are already defined as body prose above (p.16–17) and as teaser cards on p.11 -->
+  </div>
+  <div class="page-folio">17</div>
+</section>
+
+<!-- ───── PAGE 18 — SECTION BREAK · SLANTED REDESIGN ───── -->
+<section class="page verso" data-page="18" aria-label="Section break end of chapter 01">
+  <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
+  <div class="section-break-slanted">
+    <div class="ghost-quote">A message is never a single object. It is a chain.</div>
+    <div class="big-slash">/</div>
+    <div class="recap">CHAPTER 01 · SIGNAL · PP. 9—18 · SHANNON-WEAVER · NOISE · ENCODING · SIGNALS ARE CHOICES</div>
+    <div class="next">↓ NEXT · CH 02 · NOISE</div>
+  </div>
+  <div class="page-folio">18</div>
+</section>
+
+
+<!-- ================================================================
+     CHAPTER 02 — NOISE (pp 19–26)
+     ================================================================ -->
+
+<!-- ───── PAGE 19 — NOISE OPENER · DIAGONAL BAND ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="19" aria-label="Chapter 02 opener">
+  <div class="opener-band">
+
+    <span class="meta">02 //// CHAPTER TWO</span>
+    <span class="meta-right">RUIS [NL] = NOISE [EN]</span>
+
+    <!-- The thick diagonal band that IS the noise -->
+    <div class="band"></div>
+
+    <!-- Title stack — letters get clipped where the band crosses -->
+    <div class="title-stack">
+      <span class="ruis">RUIS</span>
+      <span class="title">NOISE</span>
+    </div>
+
+    <div class="subtitle">What the channel keeps. <em>What it loses.</em></div>
+
+    <span style="position: absolute; bottom: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45; z-index: 3;">FIG. CH 02 · INTERFERENCE BAND · 28°</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 20–21 — DATAVIZ #2: PYRAMID OF KNOWING ───── -->
+<section class="page verso no-folio" data-page="20" aria-label="Pyramid of Knowing verso">
+  <div class="dataviz-tag">— DATA · CH 02 · PYRAMID OF KNOWING (INVERTED)</div>
+
+  <div style="position: absolute; top: 28mm; left: 14mm; right: 14mm;">
+    <span class="fig-tape">FIG. 02</span>
+    <h3 class="h2" style="margin-top: 0; margin-bottom: 12mm; max-width: 130mm;">From data to wisdom — but the volume runs the wrong way.</h3>
+
+    <div style="position: relative;">
+      <!-- vertical annotations on the side -->
+      <div class="marginal-vertical-r" style="position: absolute; left: -8mm; top: 6mm; height: 90mm;">↓ DECREASING VOLUME</div>
+      <div class="marginal-vertical" style="position: absolute; right: -8mm; top: 6mm; height: 90mm;">↑ INCREASING VALUE</div>
+
+      <div class="pyramid">
+        <div class="layer l1" style="transform: rotate(-0.2deg);">
+          <span class="label">DATA</span>
+        </div>
+        <div class="layer l2" style="transform: rotate(0.15deg);">
+          <span class="label">INFORMATION</span>
+        </div>
+        <div class="layer l3" style="transform: rotate(-0.1deg);">
+          <span class="label">KNOWLEDGE</span>
+        </div>
+        <div class="layer l4" style="transform: rotate(0.2deg);">
+          <span class="label">WISDOM</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 10mm;">
+      <div class="caption">DATA → 100% / INFO → 25% / KNOW → 6% / WIS → 1%</div>
+      <div class="dataviz-spec-block">
+        AFTER ACKOFF 1989 //// ROWLEY 2007<br />
+        PETTERSSON ADDS THE INVERSION<br />
+        WISDOM USES RED PER STRICT RULE
+      </div>
+    </div>
+  </div>
+
+  <div class="page-folio">20</div>
+</section>
+
+<section class="page recto no-folio" data-page="21" aria-label="Pyramid recto with illustration zones">
+  <div style="margin-top: 28mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 6mm;">FOUR LAYERS · FOUR EMBODIMENTS</span>
+    <h3 class="h3" style="margin-bottom: 14mm;">EACH LAYER NEEDS A FACE</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm;">
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">DATA</span>
+        <!-- TODO: insert illustration — DATA — filename: ??? -->
+      </div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">INFORMATION</span>
+        <!-- TODO: insert illustration — INFORMATION — filename: ??? -->
+      </div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">KNOWLEDGE</span>
+        <!-- TODO: insert illustration — KNOWLEDGE — filename: ??? -->
+      </div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">WISDOM</span>
+        <!-- TODO: insert illustration — WISDOM — filename: ??? -->
+      </div>
+    </div>
+
+    <p class="caption" style="margin-top: 10mm; max-width: 110mm; line-height: 11pt;">SEE ALSO P. 24 · INFORMATION OVERLOAD</p>
+  </div>
+  <div class="page-folio">21</div>
+</section>
+
+<!-- ───── PAGES 22–23 — BODY + REDUNDANCY · OVERSIZED INITIAL CAP ───── -->
+<section class="page verso" data-page="22" aria-label="Body verso redundancy with bleed initial">
+  <div class="page-header"><span class="ch-num">02</span>NOISE</div>
+  <div class="two-col-body" style="position: relative;">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">The honest<br />doubling</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap-bleed">Shannon's mathematical insight, the one designers care about, is not that noise exists. It is that noise is predictable — and that a sender who anticipates loss can build redundancy into the signal so that what arrives, even partial, still carries the message.</p>
+      <p>In information theory the term has a precise meaning: redundancy is the portion of the signal that exceeds what is strictly required to specify the content. In English the redundancy is famously high. You can delete most of the vowels in this sentence and still recover it. You can also lose every fifth word and still get the gist. The language has built-in slack, and the slack is the safety margin against the channel.</p>
+      <p>For designers, redundancy is the structural answer to the problem of noise. The page is a noisy channel; the reader is a noisy decoder; therefore the design must oversend.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">WHAT REDUNDANCY ACTUALLY LOOKS LIKE</h3>
+      <p>On a well-designed page, redundancy is not repetition. It is the same information delivered through more than one channel. A heading announces the topic; the first sentence restates it; the page number locates it; the running header reminds you which chapter you are in; a marginal note clarifies a term; the typography itself encodes hierarchy without needing to label it.</p>
+      <p>None of this is decoration. Each element is a redundancy — a second path for the message to arrive — and each is sized to a kind of noise. The running header defends against the reader who flips to the page directly. The marginal note defends against the reader who skipped the introduction. The hierarchy defends against the eye that scans before it reads.</p>
+    </div>
+  </div>
+
+  <!-- Vertical marginal note running down right edge -->
+  <div class="body-vertical-edge right">→ INFORMATION × 27 OVERLEAF · P. 24</div>
+
+  <div class="page-folio">22</div>
+</section>
+
+<section class="page recto" data-page="23" aria-label="Body recto with inline diagram">
+  <div class="page-header"><span class="ch-num">02</span>NOISE</div>
+
+  <div style="height: 100%; display: flex; flex-direction: column;">
+    <div class="body" style="columns: 2; column-gap: 6mm; max-width: 100%; margin-bottom: 10mm;">
+      <h3 class="h3" style="margin-top: 0;">THE REPETITION DEVICES</h3>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first">Editorial design has a small, well-known set of redundancy devices. The pull quote restates the page's argument in a different size and weight, so a reader who skims lands on the claim. The caption beneath an image restates what the image is showing, so the reader who looks but does not read the body still leaves with the point.</p>
+      <p>The folio repeats the page number from the running header, so the reader navigating from the table of contents has two ways to find the place. Every cross-reference, every <em>see page 27</em>, every chapter number on a recto and a verso — these are redundancy. They cost almost nothing in space; they buy a lot of resilience against a distracted reader.</p>
+    </div>
+
+    <!-- INFORMATION × 3 intensities — sharper inline diagram -->
+    <div style="display: flex; gap: 6mm; align-items: baseline; padding: 8mm 0; border-top: 0.6pt solid var(--ink); border-bottom: 0.6pt solid var(--ink); margin: 6mm 0; position: relative;">
+      <span style="font-family: var(--font-mono); font-weight: 500; font-size: 16pt; color: rgba(10,10,10,0.30);">INFORMATION</span>
+      <span style="font-family: var(--font-mono); font-weight: 500; font-size: 16pt; color: rgba(10,10,10,0.62);">INFORMATION</span>
+      <span style="font-family: var(--font-mono); font-weight: 500; font-size: 16pt; color: rgba(10,10,10,1);">INFORMATION</span>
+      <span class="dataviz-annotation" style="position: absolute; right: 0; top: 4pt;">FIG. 02·b</span>
+      <span class="dataviz-annotation" style="position: absolute; left: 0; bottom: 0; color: var(--gray);">30% · 60% · 100%</span>
+    </div>
+
+    <div class="body" style="columns: 2; column-gap: 6mm;">
+      <p class="body-first">The diagram above makes the idea visible. The same word printed at three intensities fades from emphatic to almost lost. If the channel is clean, any of the three suffices. If the channel is noisy, only the strongest reaches the reader.</p>
+      <p>A design that ships only the 30% version is a design that has trusted the channel; a design that ships all three has not. There is a limit to this argument. Redundancy past a point becomes its own noise — the page shouts so much that no signal stands out. The discipline of design is knowing which sentences earn the second voice and which do not.</p>
+    </div>
+  </div>
+  <div class="page-folio">23</div>
+</section>
+
+<!-- ───── PAGE 24 — INFORMATION × 27 (OVERLOAD EXTREME) ───── -->
+<section class="page verso full-bleed no-header no-folio" data-page="24" aria-label="Information overload extreme">
+  <div class="overload-extreme">
+
+    <!-- Mix of sizes, rotations, crops — the reader cannot land anywhere. Nothing sits at 0°. -->
+    <span class="w" style="top: -2mm; left: -8mm; font-size: 220pt; transform: rotate(6deg);">INFORMATION</span>
+    <span class="w r" style="top: 16%; left: 4%; font-size: 11pt; transform: rotate(-1deg);">INFORMATION</span>
+    <span class="w" style="top: 18%; left: 18%; font-size: 24pt; transform: rotate(2deg);">INFORMATION</span>
+    <span class="w thin" style="top: 22%; left: 50%; font-size: 14pt; transform: rotate(-8deg);">INFORMATION</span>
+    <span class="w" style="top: 24%; left: 70%; font-size: 9pt; transform: rotate(11deg);">INFORMATION</span>
+    <span class="w r" style="top: 27%; left: 84%; font-size: 18pt; transform: rotate(-3deg);">INFORMATION</span>
+
+    <span class="w" style="top: 30%; left: 4%; font-size: 90pt; transform: rotate(-2deg);">INFORMATION</span>
+    <span class="w thin" style="top: 32%; left: 56%; font-size: 14pt; transform: rotate(-4deg);">INFORMATION</span>
+    <span class="w" style="top: 35%; left: 76%; font-size: 8pt; transform: rotate(14deg);">INFORMATION</span>
+    <span class="w r flip" style="top: 38%; left: 26%; font-size: 22pt;">INFORMATION</span>
+    <span class="w" style="top: 41%; left: 60%; font-size: 12pt; transform: rotate(-10deg);">INFORMATION</span>
+
+    <span class="w" style="top: 44%; left: 4%; font-size: 14pt; transform: rotate(1deg);">INFORMATION</span>
+    <span class="w" style="top: 46%; left: 28%; font-size: 32pt; transform: rotate(-1deg);">INFORMATION</span>
+    <span class="w r" style="top: 49%; left: 70%; font-size: 56pt; transform: rotate(7deg);">INFORMATION</span>
+
+    <span class="w" style="top: 56%; left: 6%; font-size: 9pt; transform: rotate(-13deg);">INFORMATION</span>
+    <span class="w thin" style="top: 58%; left: 22%; font-size: 14pt; transform: rotate(2deg);">INFORMATION</span>
+    <span class="w" style="top: 60%; left: 44%; font-size: 36pt; transform: rotate(-1deg);">INFORMATION</span>
+    <span class="w r flip" style="top: 62%; left: 78%; font-size: 11pt;">INFORMATION</span>
+
+    <span class="w rot90" style="top: 24%; left: 1%; font-size: 28pt;">INFORMATION</span>
+    <span class="w rot270" style="top: 70%; right: 1%; font-size: 18pt;">INFORMATION</span>
+
+    <span class="w" style="top: 70%; left: 14%; font-size: 14pt; transform: rotate(5deg);">INFORMATION</span>
+    <span class="w" style="top: 73%; left: 38%; font-size: 22pt; transform: rotate(2deg);">INFORMATION</span>
+    <span class="w" style="top: 76%; left: 64%; font-size: 9pt; transform: rotate(-9deg);">INFORMATION</span>
+    <span class="w" style="top: 78%; left: 84%; font-size: 14pt; transform: rotate(6deg);">INFORMATION</span>
+
+    <span class="w" style="top: 82%; left: 0%; font-size: 110pt; transform: rotate(-1deg);">INFORMATION</span>
+    <span class="w r" style="top: 84%; left: 70%; font-size: 30pt; transform: rotate(2deg);">INFORMATION</span>
+    <span class="w thin" style="top: 88%; left: 50%; font-size: 14pt; transform: rotate(-8deg);">INFORMATION</span>
+    <span class="w" style="top: 91%; left: 32%; font-size: 9pt; transform: rotate(11deg);">INFORMATION</span>
+    <span class="w r" style="top: 94%; left: 6%; font-size: 18pt; transform: rotate(-4deg);">INFORMATION</span>
+    <span class="w" style="top: 95%; left: 76%; font-size: 11pt; transform: rotate(-2deg);">INFORMATION</span>
+
+    <!-- ===== BLEED LAYER — smaller, entering from all four edges (no single dominant word) ===== -->
+    <span class="w" style="top: 4%; left: -8mm; font-size: 140pt; opacity: 0.9; transform: rotate(-7deg);">INFORMATION</span>
+    <span class="w" style="top: 44%; right: -12mm; font-size: 130pt; transform: rotate(12deg);">INFORMATION</span>
+    <span class="w r" style="bottom: -4mm; left: 22%; font-size: 120pt; transform: rotate(-9deg);">INFORMATION</span>
+    <span class="w" style="top: 22%; left: -10mm; font-size: 110pt; transform: rotate(8deg); opacity: 0.8;">INFORMATION</span>
+    <span class="w r" style="top: 72%; left: -6mm; font-size: 90pt; transform: rotate(-14deg);">INFORMATION</span>
+    <span class="w" style="top: 30%; right: -8mm; font-size: 100pt; transform: rotate(-5deg); opacity: 0.7;">INFORMATION</span>
+
+    <!-- GHOST LAYER — half-visible background texture -->
+    <span class="w" style="top: 12%; left: 38%; font-size: 70pt; opacity: 0.25; transform: rotate(15deg);">INFORMATION</span>
+    <span class="w" style="top: 52%; left: 14%; font-size: 50pt; opacity: 0.3; transform: rotate(-12deg);">INFORMATION</span>
+    <span class="w" style="top: 80%; left: 48%; font-size: 60pt; opacity: 0.2; transform: rotate(8deg);">INFORMATION</span>
+
+    <!-- AGGRESSIVE ROTATION LAYER — wide angle spread -->
+    <span class="w" style="top: 8%; left: 64%; font-size: 16pt; transform: rotate(45deg);">INFORMATION</span>
+    <span class="w" style="top: 34%; left: 38%; font-size: 14pt; transform: rotate(-35deg);">INFORMATION</span>
+    <span class="w" style="top: 52%; left: 88%; font-size: 18pt; transform: rotate(75deg);">INFORMATION</span>
+    <span class="w r" style="top: 66%; left: 42%; font-size: 14pt; transform: rotate(-60deg);">INFORMATION</span>
+    <span class="w" style="top: 86%; left: 24%; font-size: 11pt; transform: rotate(28deg);">INFORMATION</span>
+
+    <!-- OVERLAP LAYER — landing on top of existing words, forcing collisions -->
+    <span class="w r" style="top: 30%; left: 6%; font-size: 60pt; opacity: 0.7; transform: rotate(8deg);">INFORMATION</span>
+    <span class="w" style="top: 48%; left: 70%; font-size: 44pt; transform: rotate(-4deg);">INFORMATION</span>
+    <span class="w thin" style="top: 76%; left: 8%; font-size: 28pt; transform: rotate(6deg);">INFORMATION</span>
+
+    <!-- BROKEN / FRAGMENTED — some INFORMATIONs are not whole -->
+    <span class="w" style="top: 20%; left: 90%; font-size: 22pt; overflow: hidden; max-width: 6mm; transform: rotate(-2deg);">INFORMATION</span>
+    <span class="w" style="top: 64%; left: -2mm; font-size: 36pt; clip-path: inset(0 0 0 30%); transform: rotate(14deg);">INFORMATION</span>
+
+    <!-- SMALL DENSITY — tiny lines filling the white gaps, all tilted -->
+    <span class="w" style="top: 5%; left: 32%; font-size: 7pt; transform: rotate(-10deg);">INFORMATION</span>
+    <span class="w" style="top: 14%; left: 76%; font-size: 8pt; transform: rotate(7deg);">INFORMATION</span>
+    <span class="w" style="top: 38%; left: 8%; font-size: 7pt; transform: rotate(-13deg);">INFORMATION</span>
+    <span class="w" style="top: 55%; left: 38%; font-size: 8pt; transform: rotate(5deg);">INFORMATION</span>
+    <span class="w" style="top: 72%; left: 92%; font-size: 7pt; transform: rotate(-9deg);">INFORMATION</span>
+
+    <!-- ===== MIDDLE-BREAKER OVERLAP — destroys the parallel rows in the centre; reds scattered to four zones; one upside-down ===== -->
+    <span class="w" style="top: 38%; left: 22%; font-size: 75pt; transform: rotate(-18deg); opacity: 0.85;">INFORMATION</span>
+    <span class="w r" style="top: 42%; left: 48%; font-size: 50pt; transform: rotate(22deg);">INFORMATION</span>
+    <span class="w" style="top: 48%; left: 12%; font-size: 40pt; transform: rotate(13deg); opacity: 0.7;">INFORMATION</span>
+    <span class="w" style="top: 50%; left: 62%; font-size: 65pt; transform: rotate(-26deg);">INFORMATION</span>
+    <span class="w r" style="top: 55%; left: 30%; font-size: 38pt; transform: rotate(-15deg);">INFORMATION</span>
+    <span class="w" style="top: 58%; left: 80%; font-size: 28pt; transform: rotate(180deg);">INFORMATION</span>
+    <span class="w" style="top: 64%; left: 4%; font-size: 32pt; transform: rotate(8deg); opacity: 0.6;">INFORMATION</span>
+    <span class="w" style="top: 66%; left: 50%; font-size: 45pt; transform: rotate(-32deg);">INFORMATION</span>
+    <span class="w r" style="top: 88%; left: 90%; font-size: 24pt; transform: rotate(45deg);">INFORMATION</span>
+    <span class="w r" style="top: 12%; left: 88%; font-size: 22pt; transform: rotate(-40deg);">INFORMATION</span>
+  </div>
+</section>
+
+<!-- ───── PAGE 25 — BODY WITH MARGINAL ANNOTATIONS ───── -->
+<section class="page recto" data-page="25" aria-label="Body with marginal annotations">
+  <div class="page-header"><span class="ch-num">02</span>NOISE</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 60mm; gap: 8mm; height: 100%;">
+    <div class="body">
+      <h2 class="h2" style="margin-top: 0; margin-bottom: 4pt;">After the flood</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8mm;">/</span>
+      <p class="body-first drop-cap">The page opposite is what Pettersson's contemporaries call <em>information overload</em> — though the term predates the digital era by decades. Bertram Gross used it in 1964 to describe the condition of a manager who receives more reports than can be read. Alvin Toffler popularised it in 1970, before the personal computer existed.<sup style="color: var(--red);">¹</sup></p>
+      <p>The condition is not new and it is not specific to screens. It is what happens when the redundancy that defends against noise has tipped into noise of its own kind. A reader presented with too many simultaneous signals does not slow down and read carefully — the reader stops reading and starts filtering.<sup style="color: var(--red);">²</sup> Filtering uses different cognitive equipment from reading. It is faster, shallower, and biased toward whatever the reader already expected to find.</p>
+      <p>The first casualty is nuance. The second is the part of the message the reader did not already agree with. The design failure that produces overload is not usually deliberate. It tends to come from a familiar mistake: the designer treats every element as equally important, and so every element is given the same visual weight.<sup style="color: var(--red);">³</sup></p>
+      <p>The remedy is hierarchy, but hierarchy is the difficult kind of restraint. It requires choosing what does not get the largest type, the brightest colour, the top of the page. Most overloaded pages are evidence not of bad design but of unresolved arguments about importance.</p>
+      <p>Pettersson's term for the antidote is <em>relevance</em>. Show only what serves the message; everything else is noise that the page itself is generating.<sup style="color: var(--red);">⁴</sup> The question is not what could go on the page. The question is what the reader, two minutes from now, needs to remember.</p>
+    </div>
+
+    <div class="sidenote" style="position: relative; border-left: 0.5pt solid var(--red); padding-left: 5mm;">
+      <span class="slash-row" style="display: block; margin-bottom: 4mm; font-size: 6pt; letter-spacing: 0.16em;">/ NOTE</span>
+
+      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">1</sup> Gross's <em>The Managing of Organizations</em> (1964) describes overload not as a digital condition but as an organisational one — when an institution sends more signals than its decision-makers can process, the institution fails before the technology does.</p>
+
+      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">2</sup> Kahneman (2011) describes how, under cognitive load, the reader trusts heuristics over evidence.</p>
+
+      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">3</sup> Toffler's <em>Future Shock</em> (1970): overload is not a failure of intelligence but a failure of priority. Fifty equally weighted facts become background.</p>
+
+      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">4</sup> Relevance is the eleventh of Pettersson's sixteen design principles (see Ch. 03, p. 28).</p>
+
+      <!-- Marginal pull-quote (was footnote 4 — too aphoristic for a footnote) -->
+      <div style="margin-top: 10mm; max-width: 50mm; border-top: 1pt solid var(--red); padding-top: 4pt; font-family: var(--font-italic); font-style: italic; font-size: 11pt; line-height: 14pt; color: var(--ink);">
+        Diagnostic question for any layout: if the reader had three seconds, what would they leave with? If the answer is "I don't know," the page has not yet been designed.
+      </div>
+
+      <div class="illustration-zone tiny" style="margin-top: 8mm; height: 30mm;">
+        <span class="label">MARGIN ARROW</span>
+        <!-- TODO: insert illustration — MARGIN ARROW — filename: ??? -->
+      </div>
+    </div>
+  </div>
+  <div class="page-folio">25</div>
+</section>
+
+<!-- ───── PAGE 26 — SECTION BREAK ───── -->
+<section class="page verso" data-page="26" aria-label="Section break end of chapter 02">
+  <div class="page-header"><span class="ch-num">02</span>NOISE</div>
+  <div class="section-break-slanted">
+    <div class="ghost-quote">What the channel keeps. What it loses.</div>
+    <div class="big-slash">/</div>
+    <div class="recap">CHAPTER 02 · NOISE · PP. 19—26 · REDUNDANCY · OVERLOAD · RELEVANCE · SAY IT TWICE WHEN NOISE WILL EAT ONCE</div>
+    <div class="next">↓ NEXT · CH 03 · FRAME</div>
+  </div>
+  <div class="page-folio">26</div>
+</section>
+
+
+<!-- ================================================================
+     CHAPTER 03 — FRAME (pp 27–36)
+     ================================================================ -->
+
+<!-- ───── PAGE 27 — FRAME OPENER · AGGRESSIVELY CROPPED ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="27" aria-label="Chapter 03 opener">
+  <div class="opener-bleed-frame">
+    <div class="frame-line"></div>
+
+    <span class="meta">03 //// CHAPTER THREE</span>
+    <span class="meta-right">SIXTEEN PRINCIPLES<br />ONE VOCABULARY</span>
+
+    <!-- The word FRAME at 380pt — bleeds off all four edges, only inner sections visible -->
+    <div class="word-bleed">FRAME</div>
+
+    <div class="subtitle">A vocabulary, not a recipe — and the page itself is the demonstration.</div>
+
+    <span style="position: absolute; bottom: 22mm; right: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray); z-index: 2;">FIG. CH 03 · LETTERS BLEEDING THROUGH</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 28–29 — DATAVIZ #3: 16 PRINCIPLES GRID ───── -->
+<section class="page verso no-folio" data-page="28" aria-label="16 Principles grid verso">
+  <div class="dataviz-tag">— DATA · CH 03 · 16 PRINCIPLES (EN/NL CELL ROTATION)</div>
+  <div style="position: absolute; top: 22mm; left: 14mm; right: 14mm; bottom: 14mm;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
+      <span class="fig-tape">FIG. 03</span>
+      <span class="dataviz-annotation">EN · NL · ALTERNATING</span>
+    </div>
+    <div class="principles-grid" style="height: calc(100% - 14mm);">
+
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">01</span>
+        <span class="name">Simplicity</span>
+        <span class="def">Eliminate the unnecessary so the necessary may speak.</span>
+      </div>
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">02</span>
+        <span class="name">Eenheid</span>
+        <span class="def">Elk element behoort tot één geheel.</span>
+      </div>
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">03</span>
+        <span class="name">Emphasis</span>
+        <span class="def">Where the eye lands first, the mind agrees.</span>
+      </div>
+      <div class="cell red"><span class="lang">NL</span>
+        <span class="num">04</span>
+        <span class="name">Helderheid</span>
+        <span class="def">Begrepen worden is de eerste hoffelijkheid.</span>
+      </div>
+
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">05</span>
+        <span class="name">Contrast</span>
+        <span class="def">Verschil schept richting.</span>
+      </div>
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">06</span>
+        <span class="name">Proportion</span>
+        <span class="def">Size carries weight before words do.</span>
+      </div>
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">07</span>
+        <span class="name">Alignment</span>
+        <span class="def">Order is the silent argument.</span>
+      </div>
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">08</span>
+        <span class="name">Ritme</span>
+        <span class="def">Herhaling is hoe een pagina ademt.</span>
+      </div>
+
+    </div>
+  </div>
+  <div class="page-folio">28</div>
+</section>
+
+<section class="page recto no-folio" data-page="29" aria-label="16 Principles grid recto">
+  <div style="position: absolute; top: 22mm; left: 14mm; right: 14mm; bottom: 14mm;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
+      <span class="dataviz-annotation">·· CONTINUED ··</span>
+      <span class="dataviz-annotation">SEE ALSO P. 32 · 33 · DETAIL</span>
+    </div>
+    <div class="principles-grid" style="height: calc(100% - 14mm);">
+
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">09</span>
+        <span class="name">Structure</span>
+        <span class="def">The grid is the law that lets the wild exist.</span>
+      </div>
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">10</span>
+        <span class="name">Hiërarchie</span>
+        <span class="def">Eerst, tweede, derde — lezers verlangen volgorde.</span>
+      </div>
+      <div class="cell red"><span class="lang">EN</span>
+        <span class="num">11</span>
+        <span class="name">Relevance</span>
+        <span class="def">Show only what serves the message.</span>
+      </div>
+      <div class="cell"><span class="lang">NL</span>
+        <span class="num">12</span>
+        <span class="name">Consistentie</span>
+        <span class="def">Voorspelbaarheid is een vriendelijkheid.</span>
+      </div>
+
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">13</span>
+        <span class="name">Economie</span>
+        <span class="def">Minder inkt, meer betekenis.</span>
+      </div>
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">14</span>
+        <span class="name">Legibility</span>
+        <span class="def">If it cannot be read, it does not exist.</span>
+      </div>
+      <div class="cell"><span class="lang">EN</span>
+        <span class="num">15</span>
+        <span class="name">Proximity</span>
+        <span class="def">Closeness implies connection.</span>
+      </div>
+      <div class="cell dark"><span class="lang">NL</span>
+        <span class="num">16</span>
+        <span class="name">Redundantie</span>
+        <span class="def">Zeg het tweemaal als ruis er één opeet.</span>
+      </div>
+
+    </div>
+  </div>
+  <div class="page-folio">29</div>
+</section>
+
+<!-- ───── PAGES 30–31 — BODY: PRINCIPLES INTRO · ROTATED QUOTE RULE-BREAK ───── -->
+<section class="page verso" data-page="30" aria-label="Principles intro verso">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+  <div class="two-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">A vocabulary,<br />not a recipe</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap">The sixteen principles are not a checklist. They are a vocabulary — a set of words a designer can use to describe what a page is doing, and to notice what it is failing to do. Pettersson borrowed them from a longer history of design pedagogy, condensed them, and named them with the smallest possible verbs. Each is one principle. None is a rule.</p>
+      <p>The temptation, when reading a list like this, is to apply every principle to every page. That is not the argument. The argument is the opposite: a page applies the principles its content needs and ignores the rest. A page that applies all sixteen evenly has applied none of them. The principles are tools, not commandments.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">HOW THEY FAIL</h3>
+      <p>Each principle has a failure mode that looks, at a glance, like its opposite. Simplicity, applied dogmatically, becomes austerity — a page so stripped that the reader cannot find the entrance. Hierarchy, applied dogmatically, becomes melodrama — a page so loudly tiered that the reader cannot trust the headline. Contrast, applied dogmatically, becomes noise.</p>
+      <p>The discipline is to know when to stop. A principle is well-applied when the reader does not notice it. A principle is poorly applied when the principle becomes the message.</p>
+      <p>What follows is a closer look at two of the sixteen — Simplicity and Emphasis — chosen because they are the two most often cited and the two most often misread.</p>
+    </div>
+  </div>
+  <div class="page-folio">30</div>
+</section>
+
+<section class="page recto" data-page="31" aria-label="Principles intro recto with rotated quote">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+
+  <!-- 90° ROTATED PULL QUOTE — runs vertically along the right edge -->
+  <div style="position: absolute; right: 14mm; top: 28mm; bottom: 28mm; width: 60mm; display: flex; flex-direction: column; align-items: flex-start;">
+    <span class="dataviz-annotation" style="margin-bottom: 4mm;">→ ROTATED · 90°</span>
+    <div style="writing-mode: vertical-rl; font-family: var(--font-italic); font-style: italic; font-weight: 400; font-size: 26pt; line-height: 32pt; color: var(--ink); border-right: 2pt solid var(--red); padding-right: 6mm; height: 100%;">
+      The grid is not a cage. The grid is the floor a dancer needs in order to <em style="color: var(--red);">leap and land</em>.
+    </div>
+  </div>
+
+  <!-- Body text fits to the LEFT of the rotated quote -->
+  <div style="margin-top: 28mm; max-width: 100mm;">
+    <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+    <div class="body" style="columns: 1; max-width: 100mm;">
+      <p class="body-first">Pettersson treats the sixteen as a working vocabulary. He returns to them throughout the book, naming which principle is in operation and which is being violated. The grammar is descriptive, not prescriptive. To say a page lacks <em>proximity</em> is not to condemn it; it is to point at where the failure of communication is taking place.</p>
+      <p>The same diagnostic mode applies whether the page is a magazine spread, a poster, a wayfinding sign, or a screen interface.</p>
+      <p>The thing the principles share is that they are answers to the same underlying question — <em>how do you make the message arrive?</em> — and they answer it from different angles. Some are structural (alignment, structure, proximity). Some are perceptual (contrast, emphasis, hierarchy). Some are economic (simplicity, economy, relevance). Each is an account of what gets in the reader's way when it is missing.</p>
+    </div>
+  </div>
+  <div class="page-folio">31</div>
+</section>
+
+<!-- ───── PAGE 32 — SIMPLICITY DETAIL ───── -->
+<section class="page verso" data-page="32" aria-label="Simplicity detail">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+
+  <div style="margin-top: 14mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRINCIPLE 01</span>
+    <h1 class="h1 medium" style="margin-top: 0; margin-bottom: 4mm;">Simplicity</h1>
+    <span class="slash-mark" style="display: block; font-size: 12pt; margin-bottom: 14mm;">/</span>
+
+    <p class="pull-quote" style="margin-bottom: 20mm; max-width: 140mm;">Eliminate the unnecessary so the necessary may speak.</p>
+
+    <div class="body" style="columns: 2; column-gap: 6mm; max-width: 100%;">
+      <p class="body-first">Simplicity is the principle most often confused with minimalism. They are different things. Minimalism is a style — an outcome that looks bare. Simplicity is a procedure — the discipline of removing what is not load-bearing. A page that has been simplified can look dense, even crowded, if every element is doing work. A page that has been minimised can look bare and yet still be cluttered, because the few elements left are not the right ones.</p>
+      <p>Müller-Brockmann's grid covers and Beck's diagram of the London Underground are the two examples Pettersson cites most. Each is dense — every line and label is necessary — and yet each reads as simple. They were arrived at by elimination, not by reduction. The difference is what the designer kept.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 14mm;">
+      <div class="illustration-zone" style="aspect-ratio: 1.4;">
+        <span class="label">MÜLLER-BROCKMANN</span>
+        <!-- TODO: insert illustration — MÜLLER-BROCKMANN — filename: ??? -->
+      </div>
+      <div class="illustration-zone" style="aspect-ratio: 1.4;">
+        <span class="label">BECK · TUBE MAP</span>
+        <!-- TODO: insert illustration — BECK · TUBE MAP — filename: ??? -->
+      </div>
+    </div>
+  </div>
+  <div class="page-folio">32</div>
+</section>
+
+<!-- ───── PAGE 33 — EMPHASIS DETAIL ───── -->
+<section class="page recto" data-page="33" aria-label="Emphasis detail">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+
+  <div style="margin-top: 14mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRINCIPLE 03 · EMPHASIS</span>
+    <h1 class="h1 medium" style="margin-top: 0; margin-bottom: 4mm;">Emphasis</h1>
+    <span class="slash-mark" style="display: block; font-size: 12pt; margin-bottom: 14mm;">/</span>
+
+    <p class="pull-quote" style="margin-bottom: 20mm; max-width: 140mm;">Where the eye lands first, the mind agrees.</p>
+
+    <div class="body" style="columns: 2; column-gap: 6mm; max-width: 100%;">
+      <p class="body-first">Emphasis is the principle that decides where the reader looks. It is harder to use than it seems, because emphasis is a relation, not an attribute. A bold sentence is not emphatic; a bold sentence among regular sentences is. Emphasis is created by difference, and the difference must be strong enough to be perceived without being so strong that it breaks the page.</p>
+      <p>Lubalin's typographic emphasis — letters at scale, words as image — is the canonical reference. Each Lubalin headline is a study in what difference can do. The body text recedes; the headline does the work of orienting the reader.</p>
+      <p>Used badly, emphasis becomes melodrama: every paragraph in bold, every other word in italics, the whole page screaming. Used well, it is invisible — the reader's eye travels in the order the designer intended.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 14mm;">
+      <div class="illustration-zone" style="aspect-ratio: 1.4;">
+        <span class="label">LUBALIN HEADLINE</span>
+        <!-- TODO: insert illustration — LUBALIN HEADLINE — filename: ??? -->
+      </div>
+      <div class="illustration-zone" style="aspect-ratio: 1.4;">
+        <span class="label">CONTEMPORARY EDITORIAL</span>
+        <!-- TODO: insert illustration — CONTEMPORARY EDITORIAL — filename: ??? -->
+      </div>
+    </div>
+  </div>
+  <div class="page-folio">33</div>
+</section>
+
+<!-- ───── PAGES 34–35 — COMPARISON SPREAD ───── -->
+<section class="page verso" data-page="34" aria-label="Without the frame">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">WITHOUT THE FRAME</span>
+  <h2 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 130mm;">Same content, no principles applied. The reader is on their own.</h2>
+
+  <div class="illustration-zone" style="height: 140mm;">
+    <span class="label">VISUAL CHAOS</span>
+    <!-- TODO: insert illustration — VISUAL CHAOS — filename: ??? -->
+  </div>
+
+  <p class="caption" style="margin-top: 8mm; color: var(--gray);">EVERY DECISION TAKEN AT RANDOM · NO ARGUMENT VISIBLE · THE READER MUST DO ALL THE WORK</p>
+  <div class="page-folio">34</div>
+</section>
+
+<section class="page recto" data-page="35" aria-label="With the frame">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">WITH THE FRAME</span>
+  <h2 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 130mm;">Same content, all sixteen principles in service of the message.</h2>
+
+  <div style="height: 140mm; padding: 10mm; border: 0.5pt solid var(--ink); position: relative;">
+    <span class="dataviz-annotation" style="position: absolute; top: 4mm; right: 4mm; color: var(--gray);">FIG. 03·b</span>
+    <div class="body" style="height: 100%; max-width: 110mm;">
+      <p class="body-first"><strong>Emphasis</strong> is the principle that decides where the reader looks. It is harder to use than it seems, because emphasis is a relation, not an attribute. A bold sentence is not emphatic; a bold sentence among regular sentences is.</p>
+      <p>Used badly, emphasis becomes melodrama. Used well, it is invisible — the reader's eye travels in the order the designer intended.</p>
+    </div>
+  </div>
+  <p class="caption" style="margin-top: 8mm; color: var(--gray);">SAME WORDS · SIXTEEN PRINCIPLES IN OPERATION · THE READER IS NOT ALONE</p>
+  <div class="page-folio">35</div>
+</section>
+
+<!-- ───── PAGE 36 — SECTION BREAK ───── -->
+<section class="page verso" data-page="36" aria-label="Section break end of chapter 03">
+  <div class="page-header"><span class="ch-num">03</span>FRAME</div>
+  <div class="section-break-slanted">
+    <div class="ghost-quote">The grid is the law that lets the wild exist.</div>
+    <div class="big-slash">/</div>
+    <div class="recap">CHAPTER 03 · FRAME · PP. 27—36 · SIXTEEN PRINCIPLES · A VOCABULARY · NOT A RECIPE</div>
+    <div class="next">↓ NEXT · CH 04 · TOOLS</div>
+  </div>
+  <div class="page-folio">36</div>
+</section>
+
+
+<!-- ================================================================
+     CHAPTER 04 — TOOLS (pp 37–44)
+     ================================================================ -->
+
+<!-- ───── PAGE 37 — TOOLS OPENER · NEGATIVE SPACE ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="37" aria-label="Chapter 04 opener">
+  <div class="opener-empty">
+
+    <span class="meta">04 //// CHAPTER FOUR</span>
+
+    <!-- Tiny center mark — a single typographic gesture in vast empty space -->
+    <div class="center-mark">
+      <div class="illustration-zone tiny" style="width: 48mm; height: 48mm;">
+        <span class="label">FIVE TOOLS</span>
+        <!-- TODO: insert illustration — five tools scattered (pen · brush · ruler · microphone · film) — filename: ??? -->
+      </div>
+    </div>
+
+    <!-- Lowercase "tools" in light weight at the bottom — almost a whisper -->
+    <span class="word-quiet">tools<sub>05</sub></span>
+
+    <span class="legend">
+      TEXT · IMAGE · GRAPHIC<br />
+      AUDIO · VIDEO
+    </span>
+
+    <span style="position: absolute; top: 22mm; left: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 04 · NEGATIVE SPACE · THE DISCIPLINE OF CHOOSING IS THE DISCIPLINE OF LEAVING OUT</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 38–39 — DATAVIZ #4: TOOLS MATRIX ───── -->
+<section class="page verso no-folio" data-page="38" aria-label="Tools matrix verso">
+  <div class="dataviz-tag">— DATA · CH 04 · TOOLS MATRIX</div>
+
+  <div style="position: absolute; top: 24mm; left: 14mm; right: 14mm;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
+      <span class="fig-tape">FIG. 04</span>
+      <span class="dataviz-annotation">5 × 4 · 20 CELLS</span>
+    </div>
+    <h3 class="h2" style="margin-top: 0; margin-bottom: 6mm;">Five mediums, four attributes — a relative reading.</h3>
+    <p style="font-family: var(--font-body); font-size: 9pt; line-height: 13pt; max-width: 130mm; margin-bottom: 8mm; text-align: justify; hyphens: auto;">Pettersson treats the choice of medium as a design decision in its own right, not a container the message is poured into. Each medium carries some kinds of meaning easily and resists others. The matrix below is a relative reading rather than a score — it sets the five mediums against four attributes so the trade-offs are visible before a channel is chosen.</p>
+    <p class="caption" style="margin-bottom: 14mm; max-width: 130mm;">THIS PUBLICATION · AFTER PETTERSSON'S MEDIUM TYPOLOGY · DOT COUNT EXPRESSES RELATIVE STRENGTH, NOT QUANTITATIVE SCORE</p>
+
+    <table class="tools-matrix">
+      <thead>
+        <tr>
+          <th style="width: 12mm;"></th>
+          <th style="width: 36mm;">Medium</th>
+          <th>Clarity</th>
+          <th>Emotion</th>
+          <th>Noise risk</th>
+          <th>Retention</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="illustration-zone tiny" style="width: 14mm; height: 14mm;"><span class="label" style="font-size: 5pt;">PEN</span></div></td>
+          <td class="tool-name">Text</td>
+          <td><span class="dot-scale">●●●●●</span></td>
+          <td><span class="dot-scale">●●○○○</span></td>
+          <td><span class="dot-scale">●●○○○</span></td>
+          <td><span class="dot-scale">●●●●○</span></td>
+        </tr>
+        <tr>
+          <td><div class="illustration-zone tiny" style="width: 14mm; height: 14mm;"><span class="label" style="font-size: 5pt;">EYE</span></div></td>
+          <td class="tool-name">Image</td>
+          <td><span class="dot-scale">●●●○○</span></td>
+          <td><span class="dot-scale">●●●●●</span></td>
+          <td><span class="dot-scale">●●●○○</span></td>
+          <td><span class="dot-scale">●●●●○</span></td>
+        </tr>
+        <tr>
+          <td><div class="illustration-zone tiny" style="width: 14mm; height: 14mm;"><span class="label" style="font-size: 5pt;">RULER</span></div></td>
+          <td class="tool-name">Graphic</td>
+          <td><span class="dot-scale">●●●●○</span></td>
+          <td><span class="dot-scale">●●○○○</span></td>
+          <td><span class="dot-scale">●●○○○</span></td>
+          <td><span class="dot-scale">●●●○○</span></td>
+        </tr>
+        <tr>
+          <td><div class="illustration-zone tiny" style="width: 14mm; height: 14mm;"><span class="label" style="font-size: 5pt;">MIC</span></div></td>
+          <td class="tool-name">Audio</td>
+          <td><span class="dot-scale">●●○○○</span></td>
+          <td><span class="dot-scale">●●●●○</span></td>
+          <td><span class="dot-scale">●●●●○</span></td>
+          <td><span class="dot-scale">●●○○○</span></td>
+        </tr>
+        <tr>
+          <td><div class="illustration-zone tiny" style="width: 14mm; height: 14mm;"><span class="label" style="font-size: 5pt;">FILM</span></div></td>
+          <td class="tool-name">Video</td>
+          <td><span class="dot-scale">●●●●○</span></td>
+          <td><span class="dot-scale">●●●●●</span></td>
+          <td><span class="dot-scale">●●●●●</span></td>
+          <td><span class="dot-scale">●●●○○</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-folio">38</div>
+</section>
+
+<section class="page recto no-folio" data-page="39" aria-label="Tools matrix recto pull quote box">
+  <div style="margin-top: 28mm; max-width: 150mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 8mm; color: var(--red);">PULL QUOTE · BOX</span>
+
+    <!-- Pull quote with the box-stroke variant -->
+    <div class="pull-quote-box">
+      No medium is innocent. Every channel imposes its own grammar on the message — and the designer's job is to know which grammar is in operation before deciding what to say.
+    </div>
+
+    <div class="body" style="columns: 2; column-gap: 6mm; margin-top: 30mm;">
+      <p class="body-first">The matrix opposite is comparative. Each medium has a profile, not a score. Text is unmatched for clarity and retention but weak for emotion. Image is the inverse: emotionally rich, but reliant on caption for clarity. Audio carries more emotion than text and less than image; it retains poorly because the listener cannot scan back. Video is the loudest channel — high emotion, high retention, but also the highest noise risk because every channel decision (cut, sound mix, framing) is a place the message can fail.</p>
+      <p>The argument is not that one medium is better. The argument is that each medium has a grammar the message must accept. A statistical claim sent through emotion will be doubted. A grief sent through a chart will feel cold. The discipline is matching message to medium, not asserting one over the other.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───── PAGE 40 — TEXT IS NEVER JUST TEXT ───── -->
+<section class="page verso ink-ground full-bleed no-header no-folio" data-page="40" aria-label="Text is never just text">
+  <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0; position: relative; overflow: hidden;">
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 1;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.7;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.5;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.3;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.18;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.08;">TEXT IS NEVER JUST TEXT</div>
+    <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.03; transform: translateX(-12mm);">TEXT IS NEVER JUST</div>
+
+    <span style="position: absolute; top: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45;">SIGNAL DECAY · 7 STEPS</span>
+    <span style="position: absolute; bottom: 14mm; right: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45;">FIG. 04·b</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 41–42 — BODY ───── -->
+<section class="page recto" data-page="41" aria-label="Body recto chapter 4">
+  <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
+
+  <!-- Vertical marginal note running along right edge -->
+  <div class="body-vertical-edge right">→ EVERY CHANNEL HAS A LOGIC THE MESSAGE MUST ACCEPT</div>
+
+  <div class="two-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">Each medium<br />has a grammar</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap">A medium is not a passive vessel. It is an active grammar — a set of decisions it has already made about what it can carry and what it cannot. Choosing a medium is choosing those decisions. To send a message through video is to accept that the viewer will not scan back, that the cut between shots is itself a sentence, that the soundtrack is part of the meaning whether you wanted it to be or not.</p>
+      <p>To send the same message through a printed page is to accept the opposite: the reader can return, the reader controls the pace, but the reader will not hear inflection. What was urgent in the speaker's voice flattens into prose. The text will need to rebuild what the voice carried for free.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">CHOOSING IS PRIORITY-SETTING</h3>
+      <p>Pettersson's argument is not that designers should master every medium. It is that designers should know what each medium is for. Text retains best — it is the channel of last resort when the message must survive. Image emotes best — it is the channel of first encounter when the message must land. Graphic clarifies best — it is the channel for relations the prose cannot draw.</p>
+      <p>Audio and video, the two with the highest noise risk, are also the two with the highest reach. The trade is real. The designer who chooses video gains emotion and immediacy, and pays in clarity and retention. The designer who chooses text gains clarity and retention, and pays in emotion and reach.</p>
+    </div>
+  </div>
+  <div class="page-folio">41</div>
+</section>
+
+<section class="page verso" data-page="42" aria-label="Body verso chapter 4 part 2">
+  <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
+  <div class="two-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">Multimodal,<br />not maximal</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first">Most contemporary messages combine media. A magazine spread carries text and image. A documentary carries video, audio, and on-screen text. A presentation carries spoken word, projected image, and live presence. The designer is no longer choosing one medium; the designer is orchestrating several.</p>
+      <p>The risk in multimodal design is the assumption that more channels equals more impact. It does not. Adding a channel without a job for it just adds noise. A documentary with on-screen text that repeats the narration is louder, not clearer. A spread with a caption that paraphrases the image is wasting the caption's job.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">EACH CHANNEL DOES SOMETHING THE OTHERS CANNOT</h3>
+      <p>The discipline of multimodal design is to assign each channel a job that only that channel can do. The narration carries the argument. The image carries the emotion. The on-screen text carries the technical detail the narration cannot pause to give. Each layer is necessary. Each layer is unique.</p>
+      <p>A design that achieves this feels effortless. The reader, the viewer, the listener arrives at the message and does not notice the construction. The construction has done its job — which is to disappear.</p>
+      <p>This is harder than it sounds. Most multimodal failures come from designers using extra channels for confidence rather than for content. The cure is the diagnostic question one more time: <em>what does this layer do that the others cannot?</em> If the answer is "make sure they got it," the layer is noise.</p>
+    </div>
+  </div>
+  <div class="page-folio">42</div>
+</section>
+
+<!-- ───── PAGE 43 — VISUAL EXAMPLES SPREAD ───── -->
+<section class="page recto" data-page="43" aria-label="Visual examples spread">
+  <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">SIX EXAMPLES · ONE PER MEDIUM · PLUS COMBINED</span>
+  <h3 class="h3" style="margin-top: 0; margin-bottom: 14mm;">CASE STUDIES</h3>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; margin-bottom: 8mm;">
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 01 — TEXT</span>
+        <!-- TODO: insert illustration — EX 01 — TEXT — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">A printed page reads at the reader's pace.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 02 — IMAGE</span>
+        <!-- TODO: insert illustration — EX 02 — IMAGE — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">An image lands before the words explain.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 03 — GRAPHIC</span>
+        <!-- TODO: insert illustration — EX 03 — GRAPHIC — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">A diagram makes a relation visible.</p>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm;">
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 04 — AUDIO</span>
+        <!-- TODO: insert illustration — EX 04 — AUDIO — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">Sound carries inflection prose cannot keep.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 05 — VIDEO</span>
+        <!-- TODO: insert illustration — EX 05 — VIDEO — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">Video is the loudest, most expensive channel.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1;">
+        <span class="label">EX 06 — COMBINED</span>
+        <!-- TODO: insert illustration — EX 06 — COMBINED — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt;">Each channel does what only it can.</p>
+    </div>
+  </div>
+
+  <div class="page-folio">43</div>
+</section>
+
+<!-- ───── PAGE 44 — SECTION BREAK ───── -->
+<section class="page verso" data-page="44" aria-label="Section break end of chapter 04">
+  <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
+  <div class="section-break-slanted">
+    <div class="ghost-quote">No medium is innocent.</div>
+    <div class="big-slash">/</div>
+    <div class="recap">CHAPTER 04 · TOOLS · PP. 37—44 · FIVE MEDIUMS · FOUR ATTRIBUTES · EACH CHANNEL DOES SOMETHING THE OTHERS CANNOT</div>
+    <div class="next">↓ NEXT · CH 05 · MEANING</div>
+  </div>
+  <div class="page-folio">44</div>
+</section>
+
+
+<!-- ================================================================
+     CHAPTER 05 — MEANING (pp 45–50)
+     ================================================================ -->
+
+<!-- ───── PAGE 45 — MEANING OPENER · MIRRORED ───── -->
+<section class="page recto full-bleed no-header no-folio" data-page="45" aria-label="Chapter 05 opener">
+  <div class="opener-mirror">
+
+    <span class="meta">05 //// CHAPTER FIVE</span>
+    <span style="position: absolute; top: 22mm; right: 22mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--gray);">REBUILT BY THE READER</span>
+
+    <!-- MEANING — left half normal ink, right half mirrored in red.
+         The two halves don't quite meet — the meaning is incomplete on its own. -->
+    <div class="word-half">
+      <span class="left-half">MEANING</span>
+      <span class="right-half-flipped">MEANING</span>
+    </div>
+
+    <div class="subtitle">The message is not delivered. It is rebuilt — by the reader, in the reader's mind, with materials the designer has chosen.</div>
+
+    <span style="position: absolute; bottom: 22mm; right: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 05 · MIRROR · HALF AND HALF · NEITHER ALONE</span>
+  </div>
+</section>
+
+<!-- ───── PAGES 46–47 — SAME IMAGE, FOUR READINGS ───── -->
+<section class="page verso" data-page="46" aria-label="Same image four readings verso">
+  <div class="page-header"><span class="ch-num">05</span>MEANING</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">FOUR READINGS · ONE IMAGE</span>
+  <h2 class="h2" style="margin-top: 0; margin-bottom: 4pt;">One image, four readings.</h2>
+  <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8mm;">/</span>
+  <p class="caption" style="margin-bottom: 14mm; max-width: 130mm;">THE IMAGE IS THE SAME IN ALL FOUR · THE LABEL CHANGES · WATCH WHAT HAPPENS TO THE MEANING</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm;">
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1.1;">
+        <span class="label">AMBIGUOUS FIGURE</span>
+        <!-- TODO: insert illustration — AMBIGUOUS FIGURE — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt; color: var(--red);">[01] —— A CONSTELLATION</p>
+      <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as celestial: nodes are stars, the lines are imagined connections that astronomers agreed on.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1.1;">
+        <span class="label">SAME SHAPE</span>
+        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt; color: var(--red);">[02] —— A MOLECULE</p>
+      <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as chemical: nodes are atoms, the lines are bonds, the geometry encodes valence and structure.</p>
+    </div>
+  </div>
+  <div class="page-folio">46</div>
+</section>
+
+<section class="page recto" data-page="47" aria-label="Same image four readings recto with redacted quote">
+  <div class="page-header"><span class="ch-num">05</span>MEANING</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 14mm;">
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1.1;">
+        <span class="label">SAME SHAPE</span>
+        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt; color: var(--red);">[03] —— A NETWORK</p>
+      <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as social: nodes are people, lines are relations, the cluster shape encodes community structure.</p>
+    </div>
+    <div>
+      <div class="illustration-zone" style="aspect-ratio: 1.1;">
+        <span class="label">SAME SHAPE</span>
+        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+      </div>
+      <p class="caption" style="margin-top: 4pt; color: var(--red);">[04] —— A DECISION TREE</p>
+      <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as procedural: nodes are choices, lines are paths, the geometry maps a process from root to leaf.</p>
+    </div>
+  </div>
+
+  <!-- Redacted pull quote — parts of letters blocked with red rectangles -->
+  <span class="slash-row" style="display: block; margin-top: 18mm; margin-bottom: 4mm;">PULL QUOTE · REDACTED</span>
+  <div class="pull-quote-redacted" style="max-width: 150mm;">
+    Receivers are apparently capable of <span class="redact">sensing</span> far more information than is explicitly <span class="redact">displayed</span> in a given picture or text.
+  </div>
+
+  <div class="page-folio">47</div>
+</section>
+
+<!-- ───── PAGES 48–49 — BODY + FULL-PAGE CLOSING QUOTE ───── -->
+<section class="page verso" data-page="48" aria-label="Body verso closing argument">
+  <div class="page-header"><span class="ch-num">05</span>MEANING</div>
+  <div class="two-col-body">
+    <div>
+      <h2 class="col-h2" style="margin-bottom: 4pt;">The reader<br />closes the loop</h2>
+      <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+      <p class="body-first drop-cap">Pettersson's last argument, and the one this book has been moving toward, is that meaning is not delivered. It is rebuilt, by the reader, with materials the designer has chosen. The Shannon-Weaver chain stops at the receiver. Pettersson's chain continues — into the receiver's culture, mood, prior experience, expectations. The work of design ends when the page is printed; the work of meaning begins when the page is opened.</p>
+      <p>This is not a romantic claim. It is a practical one. If the reader's culture is part of the construction, then the designer's failure to anticipate that culture is a failure of design — not a failure of the reader. A page that works in one country and fails in another has not "failed to translate". It has failed to design for the reader the second country contains.</p>
+    </div>
+    <div>
+      <h3 class="col-h3">RECEPTION IS NOT PASSIVE</h3>
+      <p>To read is to construct. The reader who scans your headline is making a hypothesis about your subject. The reader who returns to your pull quote is testing that hypothesis. The reader who skips your sidebar is deciding the sidebar was not for them. Each of these acts is interpretation, and each happens before the body text begins.</p>
+      <p>The designer's leverage is not to control interpretation — that is impossible — but to weight it. To design is to choose which hypotheses are easy to form and which are hard. To design well is to weight the easy ones toward the message and the hard ones toward distraction.</p>
+      <p>The reader will still close the loop. The reader will always close the loop. The only question is what materials the reader had to work with.</p>
+    </div>
+  </div>
+  <div class="page-folio">48</div>
+</section>
+
+<!-- ───── PAGE 49 — FULL-PAGE CLOSING QUOTE (RULE-BREAKING FOR CH 05) ───── -->
+<section class="page recto" data-page="49" aria-label="Full-page closing pull quote">
+  <div class="page-header"><span class="ch-num">05</span>MEANING</div>
+  <div class="full-page-quote">
+    <span class="marker-top">CLOSING ARGUMENT · CH 05</span>
+    <p class="pull-quote-giant" style="font-size: 84pt; line-height: 80pt;">
+      Good graphic design is simple, <em>bold</em>, and direct.
+    </p>
+    <span class="marker-bottom">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015 · FULL-PAGE PULL QUOTE · THE GRID BENDS WHERE THE ARGUMENT DEMANDS</span>
+  </div>
+  <div class="page-folio">49</div>
+</section>
+
+<!-- ───── PAGE 50 — CLOSING STATEMENT ───── -->
+<section class="page verso" data-page="50" aria-label="Closing statement">
+  <div class="page-header"><span class="ch-num">05</span>MEANING</div>
+
+  <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 24mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 0;">END · MAIN BODY</span>
+
+    <div class="illustration-zone tiny" style="width: 50mm; height: 30mm; margin-top: 0;">
+      <span class="label">CLOSING</span>
+      <!-- TODO: insert illustration — CLOSING — filename: ??? -->
+    </div>
+
+    <p class="caption" style="color: var(--gray); letter-spacing: 0.18em;">END →</p>
+  </div>
+
+  <div class="page-folio">50</div>
+</section>
+
+
+<!-- ================================================================
+     BACK MATTER (pp 51–56)
+     Each page gets a unique header that identifies itself.
+     ================================================================ -->
+
+<!-- ───── PAGES 51–52 — MULTILINGUAL PREVIEW ───── -->
+<section class="page recto" data-page="51" aria-label="Multilingual preview">
+  <div class="page-header"><span class="ch-num">06</span>MULTILINGUAL · A PREVIEW · EN — NL</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">THREE TECHNIQUES · ONE PRINCIPLE</span>
+  <h2 class="h3" style="margin-top: 0; margin-bottom: 4mm;">MULTILINGUAL — A PREVIEW</h2>
+  <h1 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 140mm;">One principle — Hierarchy — set in three multilingual techniques.</h1>
+
+  <!-- Technique A: Weight-layering -->
+  <div style="margin-bottom: 16mm;">
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">A · WEIGHT-LAYERING (BODY TEXT)</span>
+    <div style="margin-top: 6mm; max-width: 140mm;">
+      <p style="font-family: var(--font-body); font-weight: 700; font-size: 11pt; line-height: 14pt;">First, second, third — readers crave a sequence.</p>
+      <p style="font-family: var(--font-body); font-weight: 400; font-size: 12pt; line-height: 14pt; color: var(--gray);">Eerst, tweede, derde — lezers verlangen een volgorde.</p>
+    </div>
+    <p class="caption" style="margin-top: 4mm; color: var(--gray); max-width: 140mm;">EN AT FULL WEIGHT · NL ONE WEIGHT LIGHTER AND ONE POINT LARGER TO KEEP OPTICAL MASS EVEN · READER PICKS LANGUAGE BY VISUAL WEIGHT</p>
+  </div>
+
+  <!-- Technique B: Overprint -->
+  <div style="margin-bottom: 16mm;">
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">B · OVERPRINT (CHAPTER TITLES)</span>
+    <div style="margin-top: 6mm; max-width: 140mm; position: relative; height: 36mm;">
+      <span style="position: absolute; top: 4mm; left: 4mm; font-family: var(--font-display); font-weight: 900; font-size: 36pt; line-height: 1; color: var(--ink); opacity: 0.22;">HIËRARCHIE</span>
+      <span style="position: relative; font-family: var(--font-display); font-weight: 900; font-size: 36pt; line-height: 1; color: var(--ink);">HIERARCHY</span>
+    </div>
+    <p class="caption" style="margin-top: 6mm; color: var(--gray); max-width: 140mm;">EN AT 100% · NL AT 22% WITH 4MM OFFSET · REAL CMYK OVERPRINT ON PRESS · THE RESIDUE OF A PREVIOUS READING</p>
+  </div>
+
+  <div class="page-folio">51</div>
+</section>
+
+<section class="page verso" data-page="52" aria-label="Multilingual preview cell rotation">
+  <div class="page-header"><span class="ch-num">06</span>MULTILINGUAL · A PREVIEW · EN — NL</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; color: var(--red); margin-bottom: 4mm;">C · CELL ROTATION (PRINCIPLES GRID)</span>
+  <p class="caption" style="margin-top: 4mm; max-width: 140mm; color: var(--gray);">CELLS ALTERNATE WHICH LANGUAGE IS PRIMARY · READER SEES BOTH WITH EQUAL WEIGHT ACROSS THE GRID</p>
+
+  <div class="principles-grid" style="height: 80mm; margin-top: 8mm;">
+    <div class="cell"><span class="lang">EN</span>
+      <span class="num">10</span>
+      <span class="name">Hierarchy</span>
+      <span class="def">First, second, third.</span>
+    </div>
+    <div class="cell dark"><span class="lang">NL</span>
+      <span class="num">10</span>
+      <span class="name">Hiërarchie</span>
+      <span class="def">Eerst, tweede, derde.</span>
+    </div>
+    <div class="cell red"><span class="lang">EN</span>
+      <span class="num">10</span>
+      <span class="name">Hierarchy</span>
+      <span class="def">Readers crave sequence.</span>
+    </div>
+    <div class="cell"><span class="lang">NL</span>
+      <span class="num">10</span>
+      <span class="name">Hiërarchie</span>
+      <span class="def">Lezers verlangen volgorde.</span>
+    </div>
+  </div>
+
+  <div style="margin-top: 16mm; max-width: 130mm;">
+    <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">RECOMMENDATION</h3>
+    <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8pt;">/</span>
+    <div class="body" style="margin-top: 4mm;">
+      <p>Use weight-layering for body text where the reader picks a language and reads through. Use overprint for chapter titles where the dual reading is the point. Use cell rotation for modular content where each cell is self-contained. The full twelve-page proposal develops each technique in full.</p>
+    </div>
+  </div>
+
+  <div class="page-folio">52</div>
+</section>
+
+<!-- ───── PAGE 53 — BIBLIOGRAPHY · GROUPED ───── -->
+<section class="page recto" data-page="53" aria-label="Bibliography grouped">
+  <div class="page-header bib"><span class="ch-num">06</span>BIBLIOGRAPHY · 25 ENTRIES</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">FOUR GROUPS · GROUPED BY DOMAIN</span>
+  <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">BIBLIOGRAPHY</h3>
+  <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
+
+  <div style="columns: 2; column-gap: 8mm;">
+
+    <div class="bib-group">
+      <div class="group-head">·· PRIMARY ··</div>
+      <p>Pettersson, R. (2015). <em>Message Design.</em> Institute for Infology, Tullinge. ISBN 978-91-85334-26-1</p>
+      <p>Shannon, C. &amp; Weaver, W. (1949). <em>The Mathematical Theory of Communication.</em> University of Illinois Press.</p>
+    </div>
+
+    <div class="bib-group">
+      <div class="group-head">·· DESIGN ··</div>
+      <p>Müller-Brockmann, J. (1981). <em>Grid Systems in Graphic Design.</em> Niggli.</p>
+      <p>Lupton, E. (2010). <em>Thinking with Type.</em> Princeton Architectural Press.</p>
+      <p>Tufte, E. (1990). <em>Envisioning Information.</em> Graphics Press.</p>
+      <p>Bringhurst, R. (1992). <em>The Elements of Typographic Style.</em> Hartley &amp; Marks.</p>
+      <p>Hochuli, J. (2008). <em>Detail in Typography.</em> Hyphen Press.</p>
+      <p>Kinross, R. (2004). <em>Modern Typography: An Essay in Critical History.</em> Hyphen Press.</p>
+      <p>Frutiger, A. (1998). <em>Signs and Symbols: Their Design and Meaning.</em> Watson-Guptill.</p>
+      <p>Carter, R., Day, B. &amp; Meggs, P. (2018). <em>Typographic Design: Form and Communication.</em> Wiley.</p>
+      <p>Heller, S. (Ed.) (2002). <em>The Education of a Graphic Designer.</em> Allworth.</p>
+    </div>
+
+    <div class="bib-group">
+      <div class="group-head">·· COMMUNICATION THEORY ··</div>
+      <p>Schramm, W. (1954). How communication works. In Schramm (Ed.), <em>The Process and Effects of Mass Communication.</em></p>
+      <p>McLuhan, M. (1964). <em>Understanding Media.</em> McGraw-Hill.</p>
+      <p>Eco, U. (1976). <em>A Theory of Semiotics.</em> Indiana University Press.</p>
+      <p>Lasswell, H. (1948). The structure and function of communication in society. In Bryson (Ed.), <em>The Communication of Ideas.</em></p>
+      <p>Berger, J. (1972). <em>Ways of Seeing.</em> BBC / Penguin.</p>
+      <p>Norman, D. (2013). <em>The Design of Everyday Things.</em> Basic Books.</p>
+      <p>Krug, S. (2014). <em>Don't Make Me Think.</em> New Riders.</p>
+      <p>Crow, D. (2010). <em>Visible Signs: An Introduction to Semiotics.</em> AVA.</p>
+      <p>Drucker, J. (2014). <em>Graphesis: Visual Forms of Knowledge Production.</em> Harvard University Press.</p>
+      <p>Toffler, A. (1970). <em>Future Shock.</em> Random House.</p>
+      <p>Gross, B. (1964). <em>The Managing of Organizations.</em> Free Press.</p>
+      <p>Kahneman, D. (2011). <em>Thinking, Fast and Slow.</em> Farrar, Straus and Giroux.</p>
+    </div>
+
+    <div class="bib-group">
+      <div class="group-head">·· INFORMATION SCIENCE ··</div>
+      <p>Ackoff, R. L. (1989). From data to wisdom. <em>Journal of Applied Systems Analysis,</em> 16, 3–9.</p>
+      <p>Rowley, J. (2007). The wisdom hierarchy. <em>Journal of Information Science,</em> 33(2).</p>
+    </div>
+
+  </div>
+
+  <div class="page-folio" style="font-style: italic; color: var(--red);">53 ····</div>
+</section>
+
+<!-- ───── PAGE 54 — INDEX · STRUCTURED BY LETTER ───── -->
+<section class="page verso" data-page="54" aria-label="Index structured">
+  <div class="page-header bib"><span class="ch-num">06</span>INDEX · A — W</div>
+
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">INDEX · A — W · 59 ENTRIES</span>
+  <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">INDEX</h3>
+  <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
+
+  <div style="columns: 3; column-gap: 6mm;">
+
+    <div class="index-letter">
+      <div class="letter-head">A</div>
+      <p><strong>Ackoff, R. L.</strong> 20</p>
+      <p><strong>alignment</strong> 28, 30</p>
+      <p><strong>audio</strong> 38, 39, 41, 43</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">B</div>
+      <p><strong>baseline grid</strong> 8, 12</p>
+      <p><strong>Beck, H.</strong> 32</p>
+      <p><strong>Bell Labs</strong> 10, 12</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">C</div>
+      <p><strong>caption</strong> 8, 22</p>
+      <p><strong>channel</strong> 10–11, 16–17</p>
+      <p><strong>channel noise</strong> 11, 17</p>
+      <p><strong>communication</strong> 12, 16, 41</p>
+      <p><strong>contrast</strong> 28, 30</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">D</div>
+      <p><strong>data</strong> 20, 21</p>
+      <p><strong>decoder</strong> 10, 13</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">E</div>
+      <p><strong>economy</strong> 28, 31</p>
+      <p><strong>emphasis</strong> 28, 33</p>
+      <p><strong>encoder</strong> 10, 13</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">F</div>
+      <p><strong>feedback loop</strong> 10</p>
+      <p><strong>folio</strong> 8, 22</p>
+      <p><strong>frame</strong> 27, 30, 31, 34, 35</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">G</div>
+      <p><strong>grid</strong> 8, 28, 31</p>
+      <p><strong>Gross, B.</strong> 25</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">H</div>
+      <p><strong>hierarchy</strong> 25, 28, 30</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">I</div>
+      <p><strong>image</strong> 38, 39, 41, 43</p>
+      <p><strong>information</strong> 20, 21, 22, 24, 25</p>
+      <p><strong>information overload</strong> 24, 25</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">K</div>
+      <p><strong>knowledge</strong> 20, 21</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">L</div>
+      <p><strong>Lubalin, H.</strong> 33</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">M</div>
+      <p><strong>medium</strong> 16, 38, 41</p>
+      <p><strong>Müller-Brockmann, J.</strong> 32</p>
+      <p><strong>multilingual</strong> 28, 51, 52</p>
+      <p><strong>multimodal</strong> 42</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">N</div>
+      <p><strong>noise</strong> 10, 11, 16, 17</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">O</div>
+      <p><strong>overprint</strong> 51, 52</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">P</div>
+      <p><strong>page number</strong> 8, 22</p>
+      <p><strong>Pettersson, R.</strong> 12, 13, 16, 17, 22, 31</p>
+      <p><strong>physical noise</strong> 11, 17</p>
+      <p><strong>principle, design</strong> 28, 30—33</p>
+      <p><strong>proportion</strong> 28, 31</p>
+      <p><strong>proximity</strong> 28, 31</p>
+      <p><strong>psychological noise</strong> 11, 17</p>
+      <p><strong>pull quote</strong> 11, 13, 22</p>
+      <p><strong>pyramid (DIKW)</strong> 20, 21</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">R</div>
+      <p><strong>receiver</strong> 10, 13, 48</p>
+      <p><strong>redundancy</strong> 22, 23</p>
+      <p><strong>relevance</strong> 25, 28</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">S</div>
+      <p><strong>Schramm, W.</strong> 12</p>
+      <p><strong>semantic noise</strong> 11, 17</p>
+      <p><strong>Shannon, C.</strong> 10, 12, 16, 22</p>
+      <p><strong>signal</strong> 9—13, 16</p>
+      <p><strong>simplicity</strong> 28, 32</p>
+      <p><strong>source</strong> 10, 13</p>
+      <p><strong>structure</strong> 28, 31</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">T</div>
+      <p><strong>text</strong> 38, 40, 41</p>
+      <p><strong>Toffler, A.</strong> 25</p>
+      <p><strong>Tufte, E.</strong> 43</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">V</div>
+      <p><strong>video</strong> 38, 41, 43</p>
+    </div>
+
+    <div class="index-letter">
+      <div class="letter-head">W</div>
+      <p><strong>Weaver, W.</strong> 10, 12</p>
+      <p><strong>weight-layering</strong> 51, 52</p>
+      <p><strong>wisdom</strong> 20, 21</p>
+    </div>
+
+  </div>
+
+  <div class="page-folio" style="font-style: italic; color: var(--red);">···· 54</div>
+</section>
+
+<!-- ───── PAGE 55 — COLOPHON SPREAD ───── -->
+<section class="page recto" data-page="55" aria-label="Extended colophon">
+  <div class="page-header bib"><span class="ch-num">06</span>COLOPHON · MAY 2026</div>
+
+  <div style="margin-top: 14mm; max-width: 130mm;">
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRODUCTION NOTES</span>
+    <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">COLOPHON</h3>
+    <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
+
+    <div style="font-family: var(--font-mono); font-size: 8pt; line-height: 12pt;">
+      <p style="margin-bottom: 12pt;"><strong>Edition</strong><br />First, May 2026<br />Slanted Publisher Research Series, №41</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Editorial design</strong><br />Gulpembe Colak<br />2GDM, Visual Communication<br />Artesis Plantijn Hogeschool, Antwerpen<br />Academic year 2025–26</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Source text</strong><br />Rune Pettersson, <em>Message Design</em> (2015)<br />Institute for Infology, Tullinge<br />Excerpts and adaptations used with permission</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Typography</strong><br />Display: Inter, by Rasmus Andersson<br />Body: Inter Regular<br />Mono: IBM Plex Mono, by Mike Abbink &amp; Bold Monday<br />Pull quotes: EB Garamond, by Georg Duffner</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Production</strong><br />Trim 210 × 240 mm · 56 pp<br />Bleed 3 mm · saddle-stitched<br />Uncoated 120 gsm paper · offset, four-colour process<br />Spot Pantone 1797 C for the red accent</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Software</strong><br />Adobe InDesign 2026 (typesetting and pagination)<br />Adobe Illustrator (cover and dataviz vector work)<br />Adobe Photoshop (image preparation)</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Acknowledgements</strong><br />The course staff at Artesis Plantijn Hogeschool, with whose feedback this edition was shaped.<br />Slanted Publisher, for the visual identity grammar that this research issue extends.</p>
+
+      <p style="margin-bottom: 12pt;"><strong>Copyright</strong><br />Original text © Rune Pettersson<br />This editorial design © Slanted Publishers, 2026<br />All rights reserved</p>
+
+      <p><strong>No commercial ISBN</strong><br />Student edition · 2GDM Visual Communication · Artesis Plantijn Hogeschool, Antwerpen</p>
+    </div>
+  </div>
+
+  <div class="page-folio" style="font-style: italic; color: var(--red);">55 ····</div>
+</section>
+
+<!-- ───── PAGE 56 — BACK COVER ───── -->
+<section class="page verso full-bleed no-header no-folio ink-ground" data-page="56" aria-label="Back cover">
+  <div style="position: relative; height: 100%; padding: 0;">
+    <!-- Red signature bar mirrored -->
+    <div style="position: absolute; right: 3mm; top: 3mm; width: 1.4mm; height: 240mm; background: var(--red);"></div>
+
+    <!-- Top header mirror -->
+    <div style="position: absolute; top: 11mm; left: 14mm; right: 14mm; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.85;">
+      <span>SLANTED PUBLISHER</span>
+      <span style="opacity: 0.5;">EN — NL</span>
+    </div>
+    <div style="position: absolute; top: 14.5mm; left: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.45;">RESEARCH SERIES №41 — MESSAGE DESIGN</div>
+
+    <!-- Single tagline at center -->
+    <div style="position: absolute; top: 50%; left: 14mm; right: 14mm; transform: translateY(-50%); text-align: left;">
+      <p style="font-family: var(--font-italic); font-style: italic; font-size: 28pt; line-height: 36pt; color: var(--paper); max-width: 160mm;">
+        Every design decision is a message about <em style="color: var(--red);">what you think the reader deserves.</em>
+      </p>
+      <!-- self-attribution removed — the tagline stands as an anonymous closing manifesto -->
+    </div>
+
+    <!-- Edition note (replaces fictional ISBN barcode) -->
+    <div style="position: absolute; bottom: 14mm; right: 14mm; text-align: right;">
+      <p style="font-family: var(--font-mono); font-size: 8pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.55;">STUDENT EDITION · 2025—26 · MAY 2026</p>
+    </div>
+
+    <!-- Slanted mark bottom-left -->
+    <div style="position: absolute; bottom: 14mm; left: 14mm;">
+      <div style="display: inline-block;">
+        <div style="background: var(--red); padding: 2mm 4mm;">
+          <span style="font-family: var(--font-mono); font-size: 9pt; letter-spacing: 0.1em; color: var(--paper);">SLANTED</span>
+        </div>
+        <p style="margin-top: 4mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.55;">№41 · MAY 2026</p>
+        <p style="margin-top: 2mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.55;">SLANTED.DE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

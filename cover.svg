@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  COVER — MESSAGE DESIGN
+  Slanted Publisher Research Edition №41
+  Format: 210 × 240 mm (trim) + 3 mm bleed = 216 × 246 mm
+  
+  Concept: 'MESSAGE' as a constellation in transit. Letters scatter as the
+  signal climbs through the noisy channel; 'AGE' cluster reassembles at the
+  receiver. 'DESIGN' is the architecture that catches what arrives.
+  
+  → All text should be converted to outlines in Illustrator before
+    placing in InDesign, so font substitution doesn't break the layout.
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="216mm"
+  height="246mm"
+  viewBox="0 0 216 246"
+  font-family="'Helvetica Neue', 'Arial Black', Arial, sans-serif">
+
+  <defs>
+    <!-- subtle paper grain (kept very low, not noise-illustration but warmth) -->
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.025 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <!-- ========== BACKGROUND ========== -->
+  <rect width="216" height="246" fill="#0A0A0A"/>
+  <rect width="216" height="246" fill="#0A0A0A" filter="url(#grain)"/>
+
+  <!-- ========== BLEED SAFETY (cyan crop guides — for visual reference only, will not print) ========== -->
+  <!-- Trim line guide (remove before final export) -->
+  <!-- <rect x="3" y="3" width="210" height="240" fill="none" stroke="cyan" stroke-width="0.1" stroke-dasharray="0.5 0.5" opacity="0.4"/> -->
+
+  <!-- ========== RED SIGNATURE BAR (left edge) ========== -->
+  <rect x="3" y="3" width="1.4" height="240" fill="#CC1A0A"/>
+
+  <!-- ========== TOP HEADER ========== -->
+  <g font-family="'IBM Plex Mono', 'Courier New', monospace" fill="#FAF8F4">
+    <text x="10" y="11" font-size="2.1" letter-spacing="0.6" opacity="0.85">SLANTED PUBLISHER</text>
+    <text x="10" y="14.5" font-size="2.1" letter-spacing="0.6" opacity="0.45">RESEARCH SERIES №41 — MESSAGE DESIGN</text>
+    
+    <!-- right side issue marker -->
+    <text x="206" y="11" font-size="2.1" letter-spacing="0.6" opacity="0.45" text-anchor="end">EN — NL</text>
+  </g>
+
+  <!-- thin separator under header -->
+  <line x1="10" y1="18" x2="206" y2="18" stroke="#FAF8F4" stroke-width="0.1" opacity="0.15"/>
+
+  <!-- ========== CONSTELLATION : "MESSAGE" IN TRANSIT ========== -->
+  <g id="constellation">
+
+    <!-- Signal path (red lines connecting nodes — each starts/ends at a letter edge) -->
+    <g stroke="#CC1A0A" stroke-width="0.45" fill="none" stroke-linecap="round">
+      <!-- enters from left edge → M's bottom-left -->
+      <line x1="0" y1="116" x2="20" y2="106"/>
+      <!-- M's bottom-right → E's bottom-left -->
+      <line x1="52" y1="101" x2="55" y2="82"/>
+      <!-- E's bottom-right → S₁'s bottom-left -->
+      <line x1="79" y1="84" x2="88" y2="58"/>
+      <!-- S₁'s bottom-right → S₂'s bottom-left (the peak — nearly horizontal) -->
+      <line x1="113" y1="56" x2="125" y2="52"/>
+      <!-- S₂'s bottom-right → AGE's top-left (signal drops through NOISE) -->
+      <line x1="149" y1="55" x2="159" y2="75"/>
+      <!-- AGE's bottom-right → right edge / receiver -->
+      <line x1="210" y1="96" x2="216" y2="102"/>
+    </g>
+
+    <!-- LETTERS as solid nodes -->
+    <g
+      font-size="32"
+      font-weight="900"
+      fill="#FAF8F4"
+      letter-spacing="-1">
+      <text x="20" y="106" transform="rotate(-9 20 106)">M</text>
+      <text x="55" y="82" transform="rotate(4 55 82)">E</text>
+      <text x="88" y="58" transform="rotate(-5 88 58)">S</text>
+      <text x="125" y="52" transform="rotate(7 125 52)">S</text>
+    </g>
+
+    <!-- AGE cluster — the reassembled message, set tightly together -->
+    <g
+      font-size="32"
+      font-weight="900"
+      fill="#FAF8F4"
+      letter-spacing="-1.5">
+      <text x="158" y="98" transform="rotate(-2 158 98)">AGE</text>
+    </g>
+
+    <!-- A small annotation — channel + noise designation -->
+    <g font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.7" fill="#FAF8F4" opacity="0.35" letter-spacing="0.3">
+      <text x="113" y="32">↑ MAX SIGNAL</text>
+      <text x="8" y="123">SOURCE →</text>
+      <text x="208" y="115" text-anchor="end">→ RECEIVER</text>
+    </g>
+
+    <!-- decay marker — between S₂ and AGE — the moment noise nearly broke it -->
+    <g stroke="#CC1A0A" stroke-width="0.45" fill="none">
+      <path d="M150 60 L152 56 L153 64 L154 54 L155 66 L156 56 L158 60" stroke-linejoin="round"/>
+    </g>
+    <text x="153" y="50" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.6" fill="#CC1A0A" text-anchor="middle" opacity="0.9">NOISE</text>
+  </g>
+
+  <!-- ========== DESIGN BLOCK ========== -->
+  <!-- This anchors the bottom. Heavy, monumental, perfectly aligned. The order that catches the noise. -->
+  <g>
+    <text x="10" y="195" font-size="48" font-weight="900" fill="#FAF8F4" letter-spacing="-2.5">DESIGN</text>
+  </g>
+
+  <!-- thin red rule under DESIGN -->
+  <line x1="10" y1="201" x2="92" y2="201" stroke="#CC1A0A" stroke-width="0.55"/>
+
+  <!-- ========== TECHNICAL FOOTER ========== -->
+  <g font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.8" fill="#FAF8F4" opacity="0.32" letter-spacing="0.5">
+    <text x="10" y="237">STUDENT EDITION · 2GDM</text>
+    <text x="10" y="240">210 × 240 MM · OFFSET · MAY 2026</text>
+  </g>
+
+  <!-- ========== HUGE GHOST №41 (lower right) ========== -->
+  <text x="208" y="234" font-size="44" font-weight="900" fill="#FAF8F4" opacity="0.08" text-anchor="end" letter-spacing="-2">№41</text>
+
+  <!-- ========== SMALL SLANTED MARK (lower right corner) ========== -->
+  <g transform="translate(206 240)">
+    <rect x="-12" y="-2.5" width="12" height="2.5" fill="#CC1A0A"/>
+    <text x="-6" y="-0.5" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.6" fill="#FAF8F4" text-anchor="middle" letter-spacing="0.5">SLANTED</text>
+  </g>
+
+</svg>

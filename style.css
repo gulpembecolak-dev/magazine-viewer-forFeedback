@@ -1,0 +1,1728 @@
+/* ==========================================================================
+   MESSAGE DESIGN — Slanted Publisher №41
+   Print stylesheet for 56-page editorial publication
+   210 × 240 mm, 3 mm bleed, 12-col grid, 13pt baseline
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@1,400;1,500&display=swap');
+
+/* === PAGED MEDIA === */
+@page {
+  size: 210mm 240mm;
+  margin: 0;
+  bleed: 3mm;
+  marks: crop;
+}
+
+/* === DESIGN TOKENS === */
+:root {
+  --ink: #0A0A0A;
+  --paper: #EDEAE3;
+  --red: #CC1A0A;
+  --gray: #8A8580;
+  --gray-soft: #B8B5AC;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
+  --font-italic: 'EB Garamond', Georgia, serif;
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #555; }
+
+@media print {
+  html, body { background: var(--paper); }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01" on, "kern" on, "liga" on;
+}
+
+/* === PAGE CONTAINER === */
+.page {
+  width: 210mm;
+  height: 240mm;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+  padding: 16mm 14mm 20mm 18mm; /* recto default: top right bottom left */
+  margin: 12mm auto; /* on-screen breathing room; ignored when printing */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18); /* on-screen only */
+}
+
+@media print {
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+.page.verso { padding: 16mm 18mm 20mm 14mm; } /* mirrored */
+.page.full-bleed { padding: 0; }
+.page.ink-ground { background: var(--ink); color: var(--paper); }
+
+/* === RUNNING HEADER === */
+.page-header {
+  position: absolute;
+  top: 10mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.page.verso .page-header { left: 14mm; }
+.page.recto .page-header { right: 14mm; text-align: right; }
+.page.ink-ground .page-header { color: var(--paper); }
+
+.page-header .ch-num {
+  color: var(--red);
+  margin-right: 0.5em;
+  letter-spacing: 0.12em;
+}
+
+/* === FOLIO === */
+.page-folio {
+  position: absolute;
+  bottom: 14mm;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+}
+.page.verso .page-folio { left: 14mm; }
+.page.recto .page-folio { right: 14mm; }
+.page.ink-ground .page-folio { color: var(--paper); }
+.page.no-folio .page-folio { display: none; }
+.page.no-header .page-header { display: none; }
+
+/* === RED SIGNATURE BAR (cover only) === */
+.signature-bar {
+  position: absolute;
+  left: 3mm;
+  top: 3mm;
+  width: 1.4mm;
+  height: 240mm;
+  background: var(--red);
+}
+
+/* === PARAGRAPH STYLES === */
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 90pt;
+  line-height: 86pt;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.h1.massive {
+  font-size: 200pt;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+.h1.medium {
+  font-size: 48pt;
+  line-height: 50pt;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16pt;
+  line-height: 20pt;
+  letter-spacing: -0.005em;
+  margin-top: 13pt;
+  margin-bottom: 6pt;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11pt;
+  line-height: 13pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 13pt;
+  margin-bottom: 4pt;
+}
+
+.body, .body p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.body p + p { text-indent: 4mm; }
+.body p.first, .body p.body-first { text-indent: 0; }
+
+.chapter-number {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  line-height: 13pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.pull-quote {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14pt;
+  line-height: 20pt;
+  padding-top: 4mm;
+  border-top: 1pt solid var(--red);
+}
+
+.sidenote {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  color: var(--gray);
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 10pt;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+/* === LAYOUT HELPERS === */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 4mm;
+  height: 100%;
+}
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; }
+.col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; }
+.col-span-8 { grid-column: span 8; }
+.col-span-9 { grid-column: span 9; }
+.col-span-12 { grid-column: span 12; }
+
+/* === PAGE-SPECIFIC: COVER (page 1) === */
+.cover-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* === PAGE-SPECIFIC: COLOPHON (page 3) === */
+.colophon-stack {
+  position: absolute;
+  bottom: 30mm;
+  left: 18mm;
+  width: 100mm;
+}
+.colophon-stack .colophon-title {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8pt;
+  font-weight: 500;
+}
+.colophon-stack p {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 10pt;
+  margin-bottom: 4pt;
+}
+.colophon-stack p.spacer { height: 4pt; margin: 0; }
+
+/* === PAGE-SPECIFIC: HERO INTRO (pp 4-5) === */
+.intro-spread {
+  position: relative;
+  height: 100%;
+}
+.intro-prologue-tag {
+  position: absolute;
+  top: 4mm;
+  left: 0;
+}
+.intro-prologue-tag .red-rule {
+  display: block;
+  width: 30mm;
+  height: 0.55pt;
+  background: var(--red);
+  margin-top: 4pt;
+}
+.intro-question {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 72pt;
+  line-height: 70pt;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* === PAGE-SPECIFIC: TOC (pp 6-7) === */
+.toc-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14mm;
+}
+.toc-entry {
+  display: grid;
+  grid-template-columns: 24mm 1fr 14mm;
+  align-items: baseline;
+  gap: 4mm;
+  padding: 8mm 0;
+  border-top: 0.5pt solid var(--ink);
+}
+.toc-entry:last-child { border-bottom: 0.5pt solid var(--ink); }
+.toc-entry .ch-mark {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  color: var(--red);
+  letter-spacing: 0.16em;
+}
+.toc-entry .ch-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16pt;
+  letter-spacing: -0.01em;
+}
+.toc-entry .ch-page {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  text-align: right;
+  color: var(--gray);
+}
+.toc-entry .ch-blurb {
+  grid-column: 2 / 3;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  margin-top: 4pt;
+  color: var(--ink);
+}
+
+/* === PAGE-SPECIFIC: CHAPTER OPENER (pp 9, 19, 27, 37, 45) === */
+.opener {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+}
+.opener-tag {
+  position: absolute;
+  top: 16mm;
+  left: 18mm;
+}
+.opener-title {
+  position: absolute;
+  bottom: 24mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.page.ink-ground .opener-title { color: var(--paper); }
+.opener-subtitle {
+  position: absolute;
+  bottom: 12mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 14pt;
+  color: var(--ink);
+}
+.page.ink-ground .opener-subtitle { color: var(--paper); }
+
+/* Ghost background for opener */
+.opener-ghost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.08;
+}
+.page.ink-ground .opener-ghost { opacity: 0.18; }
+
+/* === DATAVIZ === */
+.dataviz-tag {
+  position: absolute;
+  top: 10mm;
+  left: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* === BODY SPREAD LAYOUTS === */
+.three-col-body {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.three-col-body p { margin-bottom: 0; }
+.three-col-body p + p { text-indent: 4mm; }
+.three-col-body .col-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14pt;
+  line-height: 16pt;
+  letter-spacing: -0.005em;
+  margin-bottom: 8pt;
+  margin-top: 0;
+  text-indent: 0 !important;
+}
+.three-col-body .col-h2 + p { text-indent: 0; }
+
+.two-col-body {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 6mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.two-col-body p { margin-bottom: 0; }
+.two-col-body p + p { text-indent: 4mm; }
+.two-col-body .col-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14pt;
+  line-height: 16pt;
+  margin-bottom: 8pt;
+  text-indent: 0 !important;
+}
+.two-col-body .col-h2 + p { text-indent: 0; }
+.two-col-body .col-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 9pt;
+  line-height: 13pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 13pt;
+  margin-bottom: 4pt;
+}
+.two-col-body .col-h3 + p { text-indent: 0; }
+
+/* === SIDEBAR (chapter 01 noise taxonomy) === */
+.sidebar-noise {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-noise-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 9pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12mm;
+}
+.sidebar-noise-item {
+  margin-bottom: 8mm;
+}
+.sidebar-noise-item .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  color: var(--red);
+  letter-spacing: 0.16em;
+  margin-bottom: 2pt;
+}
+.sidebar-noise-item .body-text {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  color: var(--gray);
+}
+.sidebar-noise-item .body-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* === SECTION BREAK === */
+.section-break {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20mm;
+}
+.section-break .label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* === FULL-BLEED TYPE PAGE === */
+.type-overload {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  padding: 14mm;
+  position: relative;
+  overflow: hidden;
+}
+.type-overload .word {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  display: inline-block;
+  margin: 0 6px 4px 0;
+  line-height: 1;
+}
+
+/* === DATAVIZ-SPECIFIC === */
+/* Broken Channel diagram */
+.broken-channel {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.broken-channel-noise-types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin-top: 14mm;
+}
+.broken-channel-noise-types .nt {
+  border-top: 0.5pt solid var(--ink);
+  padding-top: 4pt;
+}
+.broken-channel-noise-types .nt .label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: block;
+  margin-bottom: 3pt;
+}
+.broken-channel-noise-types .nt p {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+}
+
+/* === ILLUSTRATION PLACEHOLDERS === */
+.illustration-zone {
+  position: relative;
+  border: 1.5px dashed var(--gray-soft);
+  background: rgba(255,255,255,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--gray);
+}
+.illustration-zone::before {
+  content: "✎";
+  display: block;
+  font-size: 28pt;
+  color: var(--gray-soft);
+  margin-bottom: 4pt;
+  line-height: 1;
+}
+.illustration-zone .label {
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  margin-bottom: 4pt;
+  font-weight: 500;
+}
+.illustration-zone .desc {
+  font-size: 7pt;
+  line-height: 10pt;
+  letter-spacing: 0.04em;
+  max-width: 70%;
+  color: var(--gray);
+}
+.illustration-zone.dark {
+  background: rgba(0,0,0,0.4);
+  border-color: rgba(237,234,227,0.3);
+}
+.illustration-zone.dark::before { color: rgba(237,234,227,0.4); }
+.illustration-zone.dark .label { color: var(--red); }
+.illustration-zone.dark .desc { color: rgba(237,234,227,0.7); }
+.illustration-zone.tiny {
+  padding: 4mm;
+}
+.illustration-zone.tiny::before { font-size: 14pt; margin-bottom: 2pt; }
+.illustration-zone.tiny .label { font-size: 6pt; margin-bottom: 2pt; }
+.illustration-zone.tiny .desc { font-size: 6pt; line-height: 8pt; }
+
+/* === DROP CAP === */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 70pt;
+  line-height: 0.85;
+  float: left;
+  margin: 4pt 4mm 0 -2mm;
+  color: var(--ink);
+}
+
+/* === DECAY TYPOGRAPHY (page 14-15 quote spread) === */
+.decay-text {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 22pt;
+  line-height: 30pt;
+}
+.decay-text span {
+  display: inline-block;
+}
+.decay-text .level-0 { color: var(--ink); }
+.decay-text .level-1 { color: rgba(10,10,10,0.85); transform: translateY(0.3px); }
+.decay-text .level-2 { color: rgba(10,10,10,0.6); transform: translateY(-0.5px) rotate(-0.6deg); letter-spacing: 0.05em; }
+.decay-text .level-3 { color: rgba(10,10,10,0.4); transform: translateY(0.8px) rotate(0.8deg); letter-spacing: 0.12em; filter: blur(0.4px); }
+.decay-text .level-4 { color: rgba(10,10,10,0.22); transform: translateY(-1.2px) rotate(-1.2deg); letter-spacing: 0.2em; filter: blur(0.8px); }
+
+/* === OVERPRINT MULTILINGUAL TITLE === */
+.overprint-title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 240pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.overprint-title .lang-en {
+  color: inherit;
+  position: relative;
+  z-index: 2;
+}
+.overprint-title .lang-nl {
+  position: absolute;
+  top: 4mm;
+  left: 4mm;
+  color: inherit;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+/* === INFORMATION OVERLOAD GRID (page 24) === */
+.overload {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.overload .word {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  white-space: nowrap;
+  user-select: none;
+}
+.overload .word.red { color: var(--red); }
+
+/* === PYRAMID OF KNOWING === */
+.pyramid {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+.pyramid .layer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5pt solid var(--ink);
+  padding: 6mm 0;
+  position: relative;
+}
+.pyramid .layer:last-child { border-bottom: none; }
+.pyramid .layer .label {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.pyramid .layer.l1 { width: 100%; }
+.pyramid .layer.l1 .label { font-size: 28pt; }
+.pyramid .layer.l2 { width: 75%; }
+.pyramid .layer.l2 .label { font-size: 24pt; }
+.pyramid .layer.l3 { width: 52%; }
+.pyramid .layer.l3 .label { font-size: 20pt; }
+.pyramid .layer.l4 { width: 32%; }
+.pyramid .layer.l4 .label { font-size: 16pt; color: var(--red); }
+.pyramid .layer .ill {
+  position: absolute;
+  right: 8mm;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18mm;
+  height: 18mm;
+}
+
+/* === PRINCIPLES GRID (16 cells) === */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 1mm;
+  height: 100%;
+  width: 100%;
+}
+.principles-grid .cell {
+  background: var(--paper);
+  border: 0.5pt solid var(--ink);
+  padding: 6mm 5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.principles-grid .cell.dark { background: var(--ink); color: var(--paper); border-color: var(--paper); }
+.principles-grid .cell.red { background: var(--red); color: var(--paper); border-color: var(--red); }
+.principles-grid .cell .num {
+  font-family: var(--font-mono);
+  font-size: 20pt;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.principles-grid .cell .name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 11pt;
+  line-height: 12pt;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.principles-grid .cell .def {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 8pt;
+  line-height: 10pt;
+}
+.principles-grid .cell .lang {
+  position: absolute;
+  top: 3mm;
+  right: 3mm;
+  font-family: var(--font-mono);
+  font-size: 5pt;
+  letter-spacing: 0.16em;
+  opacity: 0.6;
+}
+
+/* === TOOLS MATRIX === */
+.tools-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 9pt;
+}
+.tools-matrix th, .tools-matrix td {
+  padding: 6mm 4mm;
+  border-bottom: 0.5pt solid var(--ink);
+  text-align: left;
+}
+.tools-matrix th {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1pt solid var(--ink);
+  font-weight: 500;
+}
+.tools-matrix td.tool-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14pt;
+  letter-spacing: -0.01em;
+  width: 30mm;
+}
+.tools-matrix .dot-scale {
+  letter-spacing: 0.4em;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  font-size: 12pt;
+}
+.tools-matrix .tool-icon {
+  width: 14mm;
+  height: 14mm;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* === FOUR READINGS === */
+.four-readings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6mm;
+  height: 100%;
+}
+.four-readings .reading {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+.four-readings .reading-image {
+  flex: 1;
+  border: 0.5pt solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.four-readings .reading-label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.four-readings .reading-caption {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+}
+
+/* === CHAPTER OPENER VARIANTS === */
+.opener-massive-number {
+  position: absolute;
+  top: 14mm;
+  right: 14mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 220pt;
+  line-height: 0.85;
+  color: var(--red);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.opener-cropped-letters {
+  font-size: 320pt;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  position: absolute;
+  bottom: 0;
+  left: -10mm;
+  right: -10mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+/* === CLOSING STATEMENT === */
+.closing-statement {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 36pt;
+  line-height: 42pt;
+  letter-spacing: -0.02em;
+  text-align: left;
+  max-width: 160mm;
+}
+.closing-statement em {
+  font-family: var(--font-italic);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--red);
+}
+
+/* === FRAGMENTED LETTERS (Slanted touch on chapter 02 opener) === */
+.fragmented {
+  position: relative;
+}
+.fragmented .frag {
+  display: inline-block;
+}
+.fragmented .frag.tilt-1 { transform: rotate(-3deg) translateY(2mm); }
+.fragmented .frag.tilt-2 { transform: rotate(2deg) translateY(-1mm); }
+.fragmented .frag.tilt-3 { transform: rotate(-1.5deg) translateY(0.5mm); }
+.fragmented .frag.gap { margin-left: 4mm; }
+
+/* === ASIDE FRAME RULES === */
+.thin-rule-red { border-top: 0.55pt solid var(--red); padding-top: 4pt; }
+.thin-rule-ink { border-top: 0.5pt solid var(--ink); padding-top: 4pt; }
+
+/* === COVER NAV (on-screen only, helps navigate) === */
+.cover-nav {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,0.95);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+@media print { .cover-nav { display: none; } }
+.cover-nav strong { color: var(--red); }
+.cover-nav button {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   === ADDITIONS — Slanted-grade revision · v2
+   Append to existing style.css. New utility classes only — nothing existing
+   is changed. Ordered roughly by where each is used in the document.
+   ========================================================================== */
+
+/* === SLANTED ORNAMENTS (the / and //// signature) === */
+.slash-mark {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--red);
+  display: inline-block;
+}
+.slash-row {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.04em;
+  color: var(--red);
+  line-height: 1;
+}
+.slash-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5pt;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  color: var(--red);
+  line-height: 1;
+}
+.slash-stack span { display: block; }
+
+/* Section head with Slanted slash separator under it */
+.h2-slash {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14pt;
+  line-height: 16pt;
+  letter-spacing: -0.005em;
+  margin: 0 0 4pt 0;
+}
+.h2-slash + .slash-mark { display: block; font-size: 8pt; margin-bottom: 8pt; }
+
+/* Section attribution strip (//// AUTHOR // YEAR ////) */
+.attribution-strip {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  margin: 6pt 0 14pt 0;
+  display: block;
+}
+
+/* === RUNNING HEADER VARIANTS (back-matter) === */
+.page-header.bib { color: var(--ink); }
+.page-header.bib .ch-num { color: var(--red); }
+
+/* === FRONT MATTER UPGRADES === */
+.intro-question .accent {
+  color: var(--red);
+  font-style: italic;
+  font-family: var(--font-italic);
+  font-weight: 400;
+}
+
+/* TOC Publication Map (Slanted-style) */
+.pub-map {
+  position: absolute;
+  top: 32mm;
+  left: 14mm;
+  right: 14mm;
+  bottom: 18mm;
+  display: flex;
+  flex-direction: column;
+}
+.pub-map-block {
+  position: relative;
+  z-index: 1;
+  border-top: 0.5pt solid var(--ink);
+  padding: 4mm 0 4mm 0;
+  display: grid;
+  grid-template-columns: 22mm 1fr 18mm;
+  align-items: baseline;
+  gap: 4mm;
+}
+.pub-map-block:last-of-type { border-bottom: 0.5pt solid var(--ink); }
+.pub-map-block .num {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.pub-map-block .name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+}
+.pub-map-block .pages {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  text-align: right;
+  color: var(--gray);
+}
+.pub-map-block .blurb {
+  grid-column: 2 / 3;
+  font-family: var(--font-body);
+  font-size: 7pt;
+  line-height: 10pt;
+  color: var(--ink);
+  margin-top: 3pt;
+  max-width: 90%;
+}
+/* Sized blocks — bigger chapter, bigger letter (proportional) */
+.pub-map-block.size-10 .name { font-size: 32pt; }
+.pub-map-block.size-8 .name { font-size: 26pt; }
+.pub-map-block.size-7 .name { font-size: 22pt; }
+
+/* The red signal-path running through the TOC */
+.pub-map-signal {
+  position: absolute;
+  left: 36mm;
+  top: 0;
+  bottom: 0;
+  width: 0.6pt;
+  background: var(--red);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* === CHAPTER OPENER 01 — TYPOGRAPHIC EXPLOSION (SIGNAL) === */
+.opener-explosion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  overflow: hidden;
+}
+.opener-explosion .letter {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.opener-explosion .signal-path {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.opener-explosion .meta {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  opacity: 0.75;
+}
+.opener-explosion .subtitle {
+  position: absolute;
+  bottom: 14mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--paper);
+  opacity: 0.7;
+  max-width: 130mm;
+}
+
+/* === CHAPTER OPENER 02 — DIAGONAL NOISE BAND (NOISE) === */
+.opener-band {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  overflow: hidden;
+}
+.opener-band .band {
+  position: absolute;
+  top: -20mm;
+  left: -40mm;
+  width: 120mm;
+  height: 320mm;
+  background: var(--paper);
+  transform: rotate(28deg);
+  transform-origin: 50% 50%;
+  z-index: 1;
+}
+.opener-band .title-stack {
+  position: absolute;
+  bottom: 24mm;
+  left: 14mm;
+  right: 14mm;
+  z-index: 2;
+}
+.opener-band .title-stack .title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--paper);
+  /* This text gets clipped by the band visually because the band is z-1
+     and the title is z-2 — but where they overlap the band reads black */
+  mix-blend-mode: difference;
+}
+.opener-band .title-stack .ruis {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--paper);
+  opacity: 0.18;
+  position: absolute;
+  bottom: 4mm;
+  left: 4mm;
+  pointer-events: none;
+}
+.opener-band .meta {
+  position: absolute;
+  top: 14mm;
+  left: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 3;
+}
+.opener-band .meta-right {
+  position: absolute;
+  top: 14mm;
+  right: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  opacity: 0.45;
+  z-index: 3;
+  text-align: right;
+}
+.opener-band .subtitle {
+  position: absolute;
+  bottom: 12mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 12pt;
+  color: var(--paper);
+  opacity: 0.7;
+  z-index: 3;
+  text-align: right;
+}
+
+/* === CHAPTER OPENER 03 — BLEEDING FRAME (FRAME) === */
+.opener-bleed-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  overflow: hidden;
+}
+.opener-bleed-frame .frame-line {
+  position: absolute;
+  top: 14mm;
+  left: 14mm;
+  right: 14mm;
+  bottom: 14mm;
+  border: 0.6pt solid var(--ink);
+  pointer-events: none;
+}
+.opener-bleed-frame .word-bleed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 380pt;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.opener-bleed-frame .meta {
+  position: absolute;
+  top: 22mm;
+  left: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 2;
+}
+.opener-bleed-frame .meta-right {
+  position: absolute;
+  top: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+  z-index: 2;
+  text-align: right;
+}
+.opener-bleed-frame .subtitle {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  right: 22mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--ink);
+  z-index: 2;
+  max-width: 90mm;
+}
+
+/* === CHAPTER OPENER 04 — NEGATIVE SPACE (TOOLS) === */
+.opener-empty {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  padding: 14mm;
+}
+.opener-empty .meta {
+  position: absolute;
+  top: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.opener-empty .word-quiet {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 64pt;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.opener-empty .word-quiet sub {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  vertical-align: super;
+  margin-left: 2mm;
+  color: var(--red);
+}
+.opener-empty .legend {
+  position: absolute;
+  bottom: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  text-align: right;
+  line-height: 12pt;
+}
+.opener-empty .center-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* === CHAPTER OPENER 05 — MIRRORED MEANING (MEANING) === */
+.opener-mirror {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+}
+.opener-mirror .meta {
+  position: absolute;
+  top: 22mm;
+  left: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.opener-mirror .word-half {
+  position: absolute;
+  top: 50%;
+  left: 14mm;
+  right: 14mm;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 130pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5mm;
+}
+.opener-mirror .word-half .left-half {
+  display: inline-block;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+.opener-mirror .word-half .right-half-flipped {
+  display: inline-block;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  transform: scaleX(-1);
+  color: var(--red);
+}
+.opener-mirror .subtitle {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  right: 22mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--ink);
+  text-align: center;
+  max-width: 130mm;
+  margin: 0 auto;
+}
+
+/* === DECAY SPREAD — PHYSICAL LETTERFORM BREAKAGE === */
+.decay-broken {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 22pt;
+  line-height: 32pt;
+  position: relative;
+}
+.decay-broken .word {
+  display: inline-block;
+  position: relative;
+  margin-right: 0.25em;
+}
+.decay-broken .word.struck::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  right: -2px;
+  height: 0.6pt;
+  background: var(--red);
+  transform: rotate(-2deg);
+}
+.decay-broken .word.cut-right {
+  clip-path: polygon(0 0, 70% 0, 70% 100%, 0 100%);
+  margin-right: 1em;
+}
+.decay-broken .word.cut-left {
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 30% 100%);
+  margin-left: -0.5em;
+}
+.decay-broken .word.cut-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 55%);
+  vertical-align: top;
+}
+.decay-broken .word.cut-top {
+  clip-path: polygon(0 45%, 100% 45%, 100% 100%, 0 100%);
+}
+.decay-broken .word.fade-1 { opacity: 0.55; filter: blur(0.4px); }
+.decay-broken .word.fade-2 { opacity: 0.32; filter: blur(0.7px); letter-spacing: 0.06em; }
+.decay-broken .word.fade-3 { opacity: 0.18; filter: blur(1px); letter-spacing: 0.12em; transform: rotate(-1deg) translateY(1px); }
+.decay-broken .word.scattered {
+  display: inline-block;
+  letter-spacing: 0.6em;
+  opacity: 0.4;
+}
+.decay-broken .word.tilt-l { transform: rotate(-3deg); }
+.decay-broken .word.tilt-r { transform: rotate(2deg); }
+.decay-broken .word.gone {
+  color: transparent;
+  background: linear-gradient(to right, var(--red) 0 30%, transparent 30% 70%, var(--red) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+/* === PULL QUOTE VARIANTS === */
+.pull-quote-giant {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56pt;
+  line-height: 60pt;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  border: none;
+  padding: 0;
+  max-width: 100%;
+}
+.pull-quote-giant em { color: var(--red); font-style: italic; font-weight: 500; }
+
+.pull-quote-box {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 16pt;
+  line-height: 22pt;
+  border: 2pt solid var(--red);
+  padding: 8mm 10mm;
+  position: relative;
+}
+.pull-quote-box::before {
+  content: "//";
+  position: absolute;
+  top: -3mm;
+  left: 6mm;
+  background: var(--paper);
+  padding: 0 2mm;
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9pt;
+  letter-spacing: 0.16em;
+}
+
+.pull-quote-redacted {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 18pt;
+  line-height: 26pt;
+  position: relative;
+}
+.pull-quote-redacted .redact {
+  display: inline-block;
+  background: var(--red);
+  color: var(--red);
+  padding: 0 2mm;
+  user-select: none;
+  border-radius: 0;
+}
+
+.pull-quote-rotated {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 16pt;
+  line-height: 22pt;
+  transform-origin: top left;
+  transform: rotate(-90deg) translateY(-100%);
+  width: 180mm;
+  border-top: 2pt solid var(--red);
+  padding-top: 4mm;
+}
+
+/* === DROP CAP THAT BLEEDS THREE COLUMNS === */
+.drop-cap-bleed::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 180pt;
+  line-height: 0.78;
+  float: left;
+  margin: -2pt 4mm -10pt -3mm;
+  color: var(--red);
+  letter-spacing: -0.06em;
+}
+
+/* === MARGINAL VERTICAL NOTES === */
+.marginal-vertical {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+.marginal-vertical-r {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+/* === DATAVIZ HAND-BUILT FEEL === */
+.dataviz-annotation {
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+.fig-tape {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  background: var(--red);
+  padding: 1pt 6pt;
+  text-transform: uppercase;
+  margin-bottom: 8mm;
+}
+.dataviz-spec-block {
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  line-height: 9pt;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  text-transform: uppercase;
+  border-left: 0.5pt solid var(--red);
+  padding-left: 4mm;
+  margin-top: 8mm;
+  max-width: 70mm;
+}
+
+/* === SECTION BREAK — SLANTED REDESIGN === */
+.section-break-slanted {
+  height: 100%;
+  position: relative;
+  padding: 14mm;
+}
+.section-break-slanted .ghost-quote {
+  position: absolute;
+  top: 30mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 36pt;
+  line-height: 42pt;
+  color: var(--ink);
+  opacity: 0.1;
+  letter-spacing: -0.01em;
+}
+.section-break-slanted .big-slash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 220pt;
+  line-height: 0.85;
+  color: var(--red);
+}
+.section-break-slanted .recap {
+  position: absolute;
+  bottom: 30mm;
+  left: 14mm;
+  right: 14mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.section-break-slanted .next {
+  position: absolute;
+  bottom: 14mm;
+  left: 14mm;
+  right: 14mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+}
+
+/* === OVERLOAD EXTREME (page 24) === */
+.overload-extreme {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  overflow: hidden;
+}
+.overload-extreme .w {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  user-select: none;
+}
+.overload-extreme .w.r { color: var(--red); }
+.overload-extreme .w.thin { font-weight: 400; }
+.overload-extreme .w.flip { transform: scale(-1, -1); }
+.overload-extreme .w.rot90 { transform: rotate(90deg); transform-origin: 0 0; }
+.overload-extreme .w.rot270 { transform: rotate(-90deg); transform-origin: 0 100%; }
+.overload-extreme .signature {
+  position: absolute;
+  top: 8mm;
+  right: 8mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 100;
+  background: var(--paper);
+  padding: 1pt 3pt;
+}
+.overload-extreme .footer-spec {
+  position: absolute;
+  bottom: 6mm;
+  left: 8mm;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  z-index: 100;
+  background: var(--paper);
+  padding: 1pt 3pt;
+}
+
+/* === BIBLIOGRAPHY GROUPS === */
+.bib-group { break-inside: avoid; margin-bottom: 8mm; }
+.bib-group .group-head {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.5pt solid var(--red);
+}
+.bib-group p {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 11pt;
+  margin-bottom: 4pt;
+}
+
+/* === INDEX LETTER SECTIONS === */
+.index-letter {
+  break-inside: avoid;
+  margin-bottom: 6mm;
+}
+.index-letter .letter-head {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14pt;
+  letter-spacing: 0.04em;
+  color: var(--red);
+  margin-bottom: 3pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.5pt solid var(--red);
+  line-height: 1;
+}
+.index-letter p {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 12pt;
+  margin-bottom: 2pt;
+}
+
+/* === FRAME-CONTAINED BODY (rule-breaking moment) === */
+.body-vertical-edge {
+  position: absolute;
+  top: 16mm;
+  bottom: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+.body-vertical-edge.left { left: 4mm; }
+.body-vertical-edge.right { right: 4mm; transform: rotate(180deg); }
+
+/* === GIANT-QUOTE FULL PAGE === */
+.full-page-quote {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.full-page-quote .marker-top {
+  position: absolute;
+  top: 14mm;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.full-page-quote .marker-bottom {
+  position: absolute;
+  bottom: 14mm;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+}
+
+/* === BACK COVER VARIATIONS === */
+/* (no change to existing back cover) */
