@@ -4,14 +4,2155 @@
 <meta charset="UTF-8" />
 <title>Message Design — Slanted Publisher №41</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="style.css" />
+<style>
+/* ==========================================================================
+   MESSAGE DESIGN — Slanted Publisher №41
+   Print stylesheet for 56-page editorial publication
+   210 × 240 mm, 3 mm bleed, 12-col grid, 13pt baseline
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500&family=EB+Garamond:ital,wght@1,400;1,500&display=swap');
+
+/* === PAGED MEDIA === */
+@page {
+  size: 210mm 240mm;
+  margin: 0;
+  bleed: 3mm;
+  marks: crop;
+}
+
+/* === DESIGN TOKENS === */
+:root {
+  --ink: #0A0A0A;
+  --paper: #EDEAE3;
+  --red: #CC1A0A;
+  --gray: #8A8580;
+  --gray-soft: #B8B5AC;
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
+  --font-italic: 'EB Garamond', Georgia, serif;
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #555; }
+
+@media print {
+  html, body { background: var(--paper); }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01" on, "kern" on, "liga" on;
+}
+
+/* === PAGE CONTAINER === */
+.page {
+  width: 210mm;
+  height: 240mm;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+  padding: 16mm 14mm 20mm 18mm; /* recto default: top right bottom left */
+  margin: 12mm auto; /* on-screen breathing room; ignored when printing */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18); /* on-screen only */
+}
+
+@media print {
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+.page.verso { padding: 16mm 18mm 20mm 14mm; } /* mirrored */
+.page.full-bleed { padding: 0; }
+.page.ink-ground { background: var(--ink); color: var(--paper); }
+
+/* === RUNNING HEADER === */
+.page-header {
+  position: absolute;
+  top: 10mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+.page.verso .page-header { left: 14mm; }
+.page.recto .page-header { right: 14mm; text-align: right; }
+.page.ink-ground .page-header { color: var(--paper); }
+
+.page-header .ch-num {
+  color: var(--red);
+  margin-right: 0.5em;
+  letter-spacing: 0.12em;
+}
+
+/* === FOLIO === */
+.page-folio {
+  position: absolute;
+  bottom: 14mm;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+}
+.page.verso .page-folio { left: 14mm; }
+.page.recto .page-folio { right: 14mm; }
+.page.ink-ground .page-folio { color: var(--paper); }
+.page.no-folio .page-folio { display: none; }
+.page.no-header .page-header { display: none; }
+
+/* === RED SIGNATURE BAR (cover only) === */
+.signature-bar {
+  position: absolute;
+  left: 3mm;
+  top: 3mm;
+  width: 1.4mm;
+  height: 240mm;
+  background: var(--red);
+}
+
+/* === PARAGRAPH STYLES === */
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 90pt;
+  line-height: 86pt;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.h1.massive {
+  font-size: 200pt;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+.h1.medium {
+  font-size: 48pt;
+  line-height: 50pt;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16pt;
+  line-height: 20pt;
+  letter-spacing: -0.005em;
+  margin-top: 13pt;
+  margin-bottom: 6pt;
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11pt;
+  line-height: 13pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 13pt;
+  margin-bottom: 4pt;
+}
+
+.body, .body p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.body p + p { text-indent: 4mm; }
+.body p.first, .body p.body-first { text-indent: 0; }
+
+.chapter-number {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  line-height: 13pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.pull-quote {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 14pt;
+  line-height: 20pt;
+  padding-top: 4mm;
+  border-top: 1pt solid var(--red);
+}
+
+.sidenote {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  color: var(--gray);
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 10pt;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+/* === LAYOUT HELPERS === */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 4mm;
+  height: 100%;
+}
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+.col-span-5 { grid-column: span 5; }
+.col-span-6 { grid-column: span 6; }
+.col-span-7 { grid-column: span 7; }
+.col-span-8 { grid-column: span 8; }
+.col-span-9 { grid-column: span 9; }
+.col-span-12 { grid-column: span 12; }
+
+/* === PAGE-SPECIFIC: COVER (page 1) === */
+.cover-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* === PAGE-SPECIFIC: COLOPHON (page 3) === */
+.colophon-stack {
+  position: absolute;
+  bottom: 30mm;
+  left: 18mm;
+  width: 100mm;
+}
+.colophon-stack .colophon-title {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8pt;
+  font-weight: 500;
+}
+.colophon-stack p {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 10pt;
+  margin-bottom: 4pt;
+}
+.colophon-stack p.spacer { height: 4pt; margin: 0; }
+
+/* === PAGE-SPECIFIC: HERO INTRO (pp 4-5) === */
+.intro-spread {
+  position: relative;
+  height: 100%;
+}
+.intro-prologue-tag {
+  position: absolute;
+  top: 4mm;
+  left: 0;
+}
+.intro-prologue-tag .red-rule {
+  display: block;
+  width: 30mm;
+  height: 0.55pt;
+  background: var(--red);
+  margin-top: 4pt;
+}
+.intro-question {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 72pt;
+  line-height: 70pt;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+/* === PAGE-SPECIFIC: TOC (pp 6-7) === */
+.toc-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14mm;
+}
+.toc-entry {
+  display: grid;
+  grid-template-columns: 24mm 1fr 14mm;
+  align-items: baseline;
+  gap: 4mm;
+  padding: 8mm 0;
+  border-top: 0.5pt solid var(--ink);
+}
+.toc-entry:last-child { border-bottom: 0.5pt solid var(--ink); }
+.toc-entry .ch-mark {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  color: var(--red);
+  letter-spacing: 0.16em;
+}
+.toc-entry .ch-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16pt;
+  letter-spacing: -0.01em;
+}
+.toc-entry .ch-page {
+  font-family: var(--font-mono);
+  font-size: 9pt;
+  text-align: right;
+  color: var(--gray);
+}
+.toc-entry .ch-blurb {
+  grid-column: 2 / 3;
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  margin-top: 4pt;
+  color: var(--ink);
+}
+
+/* === PAGE-SPECIFIC: CHAPTER OPENER (pp 9, 19, 27, 37, 45) === */
+.opener {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+}
+.opener-tag {
+  position: absolute;
+  top: 16mm;
+  left: 18mm;
+}
+.opener-title {
+  position: absolute;
+  bottom: 24mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.page.ink-ground .opener-title { color: var(--paper); }
+.opener-subtitle {
+  position: absolute;
+  bottom: 12mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 14pt;
+  color: var(--ink);
+}
+.page.ink-ground .opener-subtitle { color: var(--paper); }
+
+/* Ghost background for opener */
+.opener-ghost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.08;
+}
+.page.ink-ground .opener-ghost { opacity: 0.18; }
+
+/* === DATAVIZ === */
+.dataviz-tag {
+  position: absolute;
+  top: 10mm;
+  left: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* === BODY SPREAD LAYOUTS === */
+.three-col-body {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 5mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.three-col-body p { margin-bottom: 0; }
+.three-col-body p + p { text-indent: 4mm; }
+.three-col-body .col-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14pt;
+  line-height: 16pt;
+  letter-spacing: -0.005em;
+  margin-bottom: 8pt;
+  margin-top: 0;
+  text-indent: 0 !important;
+}
+.three-col-body .col-h2 + p { text-indent: 0; }
+
+.two-col-body {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 6mm;
+  font-family: var(--font-body);
+  font-size: 9pt;
+  line-height: 13pt;
+  text-align: justify;
+  hyphens: auto;
+}
+.two-col-body p { margin-bottom: 0; }
+.two-col-body p + p { text-indent: 4mm; }
+.two-col-body .col-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14pt;
+  line-height: 16pt;
+  margin-bottom: 8pt;
+  text-indent: 0 !important;
+}
+.two-col-body .col-h2 + p { text-indent: 0; }
+.two-col-body .col-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 9pt;
+  line-height: 13pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 13pt;
+  margin-bottom: 4pt;
+}
+.two-col-body .col-h3 + p { text-indent: 0; }
+
+/* === SIDEBAR (chapter 01 noise taxonomy) === */
+.sidebar-noise {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-noise-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 9pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12mm;
+}
+.sidebar-noise-item {
+  margin-bottom: 8mm;
+}
+.sidebar-noise-item .num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  color: var(--red);
+  letter-spacing: 0.16em;
+  margin-bottom: 2pt;
+}
+.sidebar-noise-item .body-text {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+  color: var(--gray);
+}
+.sidebar-noise-item .body-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* === SECTION BREAK === */
+.section-break {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20mm;
+}
+.section-break .label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+  text-transform: uppercase;
+}
+
+/* === FULL-BLEED TYPE PAGE === */
+.type-overload {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  padding: 14mm;
+  position: relative;
+  overflow: hidden;
+}
+.type-overload .word {
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  display: inline-block;
+  margin: 0 6px 4px 0;
+  line-height: 1;
+}
+
+/* === DATAVIZ-SPECIFIC === */
+/* Broken Channel diagram */
+.broken-channel {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.broken-channel-noise-types {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+  margin-top: 14mm;
+}
+.broken-channel-noise-types .nt {
+  border-top: 0.5pt solid var(--ink);
+  padding-top: 4pt;
+}
+.broken-channel-noise-types .nt .label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: block;
+  margin-bottom: 3pt;
+}
+.broken-channel-noise-types .nt p {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+}
+
+/* === ILLUSTRATION PLACEHOLDERS === */
+.illustration-zone {
+  position: relative;
+  border: 1.5px dashed var(--gray-soft);
+  background: rgba(255,255,255,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--gray);
+}
+.illustration-zone::before {
+  content: "✎";
+  display: block;
+  font-size: 28pt;
+  color: var(--gray-soft);
+  margin-bottom: 4pt;
+  line-height: 1;
+}
+.illustration-zone .label {
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  margin-bottom: 4pt;
+  font-weight: 500;
+}
+.illustration-zone .desc {
+  font-size: 7pt;
+  line-height: 10pt;
+  letter-spacing: 0.04em;
+  max-width: 70%;
+  color: var(--gray);
+}
+.illustration-zone.dark {
+  background: rgba(0,0,0,0.4);
+  border-color: rgba(237,234,227,0.3);
+}
+.illustration-zone.dark::before { color: rgba(237,234,227,0.4); }
+.illustration-zone.dark .label { color: var(--red); }
+.illustration-zone.dark .desc { color: rgba(237,234,227,0.7); }
+.illustration-zone.tiny {
+  padding: 4mm;
+}
+.illustration-zone.tiny::before { font-size: 14pt; margin-bottom: 2pt; }
+.illustration-zone.tiny .label { font-size: 6pt; margin-bottom: 2pt; }
+.illustration-zone.tiny .desc { font-size: 6pt; line-height: 8pt; }
+
+/* === DROP CAP === */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 70pt;
+  line-height: 0.85;
+  float: left;
+  margin: 4pt 4mm 0 -2mm;
+  color: var(--ink);
+}
+
+/* === DECAY TYPOGRAPHY (page 14-15 quote spread) === */
+.decay-text {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 22pt;
+  line-height: 30pt;
+}
+.decay-text span {
+  display: inline-block;
+}
+.decay-text .level-0 { color: var(--ink); }
+.decay-text .level-1 { color: rgba(10,10,10,0.85); transform: translateY(0.3px); }
+.decay-text .level-2 { color: rgba(10,10,10,0.6); transform: translateY(-0.5px) rotate(-0.6deg); letter-spacing: 0.05em; }
+.decay-text .level-3 { color: rgba(10,10,10,0.4); transform: translateY(0.8px) rotate(0.8deg); letter-spacing: 0.12em; filter: blur(0.4px); }
+.decay-text .level-4 { color: rgba(10,10,10,0.22); transform: translateY(-1.2px) rotate(-1.2deg); letter-spacing: 0.2em; filter: blur(0.8px); }
+
+/* === OVERPRINT MULTILINGUAL TITLE === */
+.overprint-title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 240pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.overprint-title .lang-en {
+  color: inherit;
+  position: relative;
+  z-index: 2;
+}
+.overprint-title .lang-nl {
+  position: absolute;
+  top: 4mm;
+  left: 4mm;
+  color: inherit;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+/* === INFORMATION OVERLOAD GRID (page 24) === */
+.overload {
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.overload .word {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  white-space: nowrap;
+  user-select: none;
+}
+.overload .word.red { color: var(--red); }
+
+/* === PYRAMID OF KNOWING === */
+.pyramid {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+.pyramid .layer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5pt solid var(--ink);
+  padding: 6mm 0;
+  position: relative;
+}
+.pyramid .layer:last-child { border-bottom: none; }
+.pyramid .layer .label {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.pyramid .layer.l1 { width: 100%; }
+.pyramid .layer.l1 .label { font-size: 28pt; }
+.pyramid .layer.l2 { width: 75%; }
+.pyramid .layer.l2 .label { font-size: 24pt; }
+.pyramid .layer.l3 { width: 52%; }
+.pyramid .layer.l3 .label { font-size: 20pt; }
+.pyramid .layer.l4 { width: 32%; }
+.pyramid .layer.l4 .label { font-size: 16pt; color: var(--red); }
+.pyramid .layer .ill {
+  position: absolute;
+  right: 8mm;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18mm;
+  height: 18mm;
+}
+
+/* === PRINCIPLES GRID (16 cells) === */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 1mm;
+  height: 100%;
+  width: 100%;
+}
+.principles-grid .cell {
+  background: var(--paper);
+  border: 0.5pt solid var(--ink);
+  padding: 6mm 5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.principles-grid .cell.dark { background: var(--ink); color: var(--paper); border-color: var(--paper); }
+.principles-grid .cell.red { background: var(--red); color: var(--paper); border-color: var(--red); }
+.principles-grid .cell .num {
+  font-family: var(--font-mono);
+  font-size: 20pt;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.principles-grid .cell .name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 11pt;
+  line-height: 12pt;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.principles-grid .cell .def {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 8pt;
+  line-height: 10pt;
+}
+.principles-grid .cell .lang {
+  position: absolute;
+  top: 3mm;
+  right: 3mm;
+  font-family: var(--font-mono);
+  font-size: 5pt;
+  letter-spacing: 0.16em;
+  opacity: 0.6;
+}
+
+/* === TOOLS MATRIX === */
+.tools-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 9pt;
+}
+.tools-matrix th, .tools-matrix td {
+  padding: 6mm 4mm;
+  border-bottom: 0.5pt solid var(--ink);
+  text-align: left;
+}
+.tools-matrix th {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1pt solid var(--ink);
+  font-weight: 500;
+}
+.tools-matrix td.tool-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14pt;
+  letter-spacing: -0.01em;
+  width: 30mm;
+}
+.tools-matrix .dot-scale {
+  letter-spacing: 0.4em;
+  font-family: var(--font-mono);
+  color: var(--ink);
+  font-size: 12pt;
+}
+.tools-matrix .tool-icon {
+  width: 14mm;
+  height: 14mm;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* === FOUR READINGS === */
+.four-readings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6mm;
+  height: 100%;
+}
+.four-readings .reading {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+.four-readings .reading-image {
+  flex: 1;
+  border: 0.5pt solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.four-readings .reading-label {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.four-readings .reading-caption {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 11pt;
+}
+
+/* === CHAPTER OPENER VARIANTS === */
+.opener-massive-number {
+  position: absolute;
+  top: 14mm;
+  right: 14mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 220pt;
+  line-height: 0.85;
+  color: var(--red);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.opener-cropped-letters {
+  font-size: 320pt;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  position: absolute;
+  bottom: 0;
+  left: -10mm;
+  right: -10mm;
+  font-family: var(--font-display);
+  font-weight: 900;
+}
+
+/* === CLOSING STATEMENT === */
+.closing-statement {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 36pt;
+  line-height: 42pt;
+  letter-spacing: -0.02em;
+  text-align: left;
+  max-width: 160mm;
+}
+.closing-statement em {
+  font-family: var(--font-italic);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--red);
+}
+
+/* === FRAGMENTED LETTERS (Slanted touch on chapter 02 opener) === */
+.fragmented {
+  position: relative;
+}
+.fragmented .frag {
+  display: inline-block;
+}
+.fragmented .frag.tilt-1 { transform: rotate(-3deg) translateY(2mm); }
+.fragmented .frag.tilt-2 { transform: rotate(2deg) translateY(-1mm); }
+.fragmented .frag.tilt-3 { transform: rotate(-1.5deg) translateY(0.5mm); }
+.fragmented .frag.gap { margin-left: 4mm; }
+
+/* === ASIDE FRAME RULES === */
+.thin-rule-red { border-top: 0.55pt solid var(--red); padding-top: 4pt; }
+.thin-rule-ink { border-top: 0.5pt solid var(--ink); padding-top: 4pt; }
+
+/* === COVER NAV (on-screen only, helps navigate) === */
+.cover-nav {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,0.95);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+@media print { .cover-nav { display: none; } }
+.cover-nav strong { color: var(--red); }
+.cover-nav button {
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+/* ==========================================================================
+   === ADDITIONS — Slanted-grade revision · v2
+   Append to existing style.css. New utility classes only — nothing existing
+   is changed. Ordered roughly by where each is used in the document.
+   ========================================================================== */
+
+/* === SLANTED ORNAMENTS (the / and //// signature) === */
+.slash-mark {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--red);
+  display: inline-block;
+}
+.slash-row {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.04em;
+  color: var(--red);
+  line-height: 1;
+}
+.slash-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5pt;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  color: var(--red);
+  line-height: 1;
+}
+.slash-stack span { display: block; }
+
+/* Section head with Slanted slash separator under it */
+.h2-slash {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14pt;
+  line-height: 16pt;
+  letter-spacing: -0.005em;
+  margin: 0 0 4pt 0;
+}
+.h2-slash + .slash-mark { display: block; font-size: 8pt; margin-bottom: 8pt; }
+
+/* Section attribution strip (//// AUTHOR // YEAR ////) */
+.attribution-strip {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  margin: 6pt 0 14pt 0;
+  display: block;
+}
+
+/* === RUNNING HEADER VARIANTS (back-matter) === */
+.page-header.bib { color: var(--ink); }
+.page-header.bib .ch-num { color: var(--red); }
+
+/* === FRONT MATTER UPGRADES === */
+.intro-question .accent {
+  color: var(--red);
+  font-style: italic;
+  font-family: var(--font-italic);
+  font-weight: 400;
+}
+
+/* TOC Publication Map (Slanted-style) */
+.pub-map {
+  position: absolute;
+  top: 32mm;
+  left: 14mm;
+  right: 14mm;
+  bottom: 18mm;
+  display: flex;
+  flex-direction: column;
+}
+.pub-map-block {
+  position: relative;
+  border-top: 0.5pt solid var(--ink);
+  padding: 4mm 0 4mm 0;
+  display: grid;
+  grid-template-columns: 22mm 1fr 18mm;
+  align-items: baseline;
+  gap: 4mm;
+}
+.pub-map-block:last-of-type { border-bottom: 0.5pt solid var(--ink); }
+.pub-map-block .num {
+  font-family: var(--font-mono);
+  font-size: 11pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.pub-map-block .name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--ink);
+}
+.pub-map-block .pages {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  text-align: right;
+  color: var(--gray);
+}
+.pub-map-block .blurb {
+  grid-column: 2 / 3;
+  font-family: var(--font-body);
+  font-size: 7pt;
+  line-height: 10pt;
+  color: var(--ink);
+  margin-top: 3pt;
+  max-width: 90%;
+}
+/* Sized blocks — bigger chapter, bigger letter (proportional) */
+.pub-map-block.size-10 .name { font-size: 32pt; }
+.pub-map-block.size-8 .name { font-size: 26pt; }
+.pub-map-block.size-7 .name { font-size: 22pt; }
+
+/* The red signal-path running through the TOC */
+.pub-map-signal {
+  position: absolute;
+  left: 36mm;
+  top: 0;
+  bottom: 0;
+  width: 0.6pt;
+  background: var(--red);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* === CHAPTER OPENER 01 — TYPOGRAPHIC EXPLOSION (SIGNAL) === */
+.opener-explosion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  overflow: hidden;
+}
+.opener-explosion .letter {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.opener-explosion .signal-path {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.opener-explosion .meta {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  opacity: 0.75;
+}
+.opener-explosion .subtitle {
+  position: absolute;
+  bottom: 14mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--paper);
+  opacity: 0.7;
+  max-width: 130mm;
+}
+
+/* === CHAPTER OPENER 02 — DIAGONAL NOISE BAND (NOISE) === */
+.opener-band {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--ink);
+  overflow: hidden;
+}
+.opener-band .band {
+  position: absolute;
+  top: -20mm;
+  left: -40mm;
+  width: 120mm;
+  height: 320mm;
+  background: var(--paper);
+  transform: rotate(28deg);
+  transform-origin: 50% 50%;
+  z-index: 1;
+}
+.opener-band .title-stack {
+  position: absolute;
+  bottom: 24mm;
+  left: 14mm;
+  right: 14mm;
+  z-index: 2;
+}
+.opener-band .title-stack .title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--paper);
+  /* This text gets clipped by the band visually because the band is z-1
+     and the title is z-2 — but where they overlap the band reads black */
+  mix-blend-mode: difference;
+}
+.opener-band .title-stack .ruis {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 150pt;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--paper);
+  opacity: 0.18;
+  position: absolute;
+  bottom: 4mm;
+  left: 4mm;
+  pointer-events: none;
+}
+.opener-band .meta {
+  position: absolute;
+  top: 14mm;
+  left: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 3;
+}
+.opener-band .meta-right {
+  position: absolute;
+  top: 14mm;
+  right: 14mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  opacity: 0.45;
+  z-index: 3;
+  text-align: right;
+}
+.opener-band .subtitle {
+  position: absolute;
+  bottom: 12mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 12pt;
+  color: var(--paper);
+  opacity: 0.7;
+  z-index: 3;
+  text-align: right;
+}
+
+/* === CHAPTER OPENER 03 — BLEEDING FRAME (FRAME) === */
+.opener-bleed-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  overflow: hidden;
+}
+.opener-bleed-frame .frame-line {
+  position: absolute;
+  top: 14mm;
+  left: 14mm;
+  right: 14mm;
+  bottom: 14mm;
+  border: 0.6pt solid var(--ink);
+  pointer-events: none;
+}
+.opener-bleed-frame .word-bleed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 380pt;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.opener-bleed-frame .meta {
+  position: absolute;
+  top: 22mm;
+  left: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 2;
+}
+.opener-bleed-frame .meta-right {
+  position: absolute;
+  top: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+  z-index: 2;
+  text-align: right;
+}
+.opener-bleed-frame .subtitle {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  right: 22mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--ink);
+  z-index: 2;
+  max-width: 90mm;
+}
+
+/* === CHAPTER OPENER 04 — NEGATIVE SPACE (TOOLS) === */
+.opener-empty {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  padding: 14mm;
+}
+.opener-empty .meta {
+  position: absolute;
+  top: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.opener-empty .word-quiet {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 64pt;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.opener-empty .word-quiet sub {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  vertical-align: super;
+  margin-left: 2mm;
+  color: var(--red);
+}
+.opener-empty .legend {
+  position: absolute;
+  bottom: 22mm;
+  right: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  text-align: right;
+  line-height: 12pt;
+}
+.opener-empty .center-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* === CHAPTER OPENER 05 — MIRRORED MEANING (MEANING) === */
+.opener-mirror {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+}
+.opener-mirror .meta {
+  position: absolute;
+  top: 22mm;
+  left: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.opener-mirror .word-half {
+  position: absolute;
+  top: 50%;
+  left: 14mm;
+  right: 14mm;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 130pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 5mm;
+}
+.opener-mirror .word-half .left-half {
+  display: inline-block;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+.opener-mirror .word-half .right-half-flipped {
+  display: inline-block;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+  transform: scaleX(-1);
+  color: var(--red);
+}
+.opener-mirror .subtitle {
+  position: absolute;
+  bottom: 22mm;
+  left: 22mm;
+  right: 22mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--ink);
+  text-align: center;
+  max-width: 130mm;
+  margin: 0 auto;
+}
+
+/* === DECAY SPREAD — PHYSICAL LETTERFORM BREAKAGE === */
+.decay-broken {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 22pt;
+  line-height: 32pt;
+  position: relative;
+}
+.decay-broken .word {
+  display: inline-block;
+  position: relative;
+  margin-right: 0.25em;
+}
+.decay-broken .word.struck::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  right: -2px;
+  height: 0.6pt;
+  background: var(--red);
+  transform: rotate(-2deg);
+}
+.decay-broken .word.cut-right {
+  clip-path: polygon(0 0, 70% 0, 70% 100%, 0 100%);
+  margin-right: 1em;
+}
+.decay-broken .word.cut-left {
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 30% 100%);
+  margin-left: -0.5em;
+}
+.decay-broken .word.cut-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 0 55%);
+  vertical-align: top;
+}
+.decay-broken .word.cut-top {
+  clip-path: polygon(0 45%, 100% 45%, 100% 100%, 0 100%);
+}
+.decay-broken .word.fade-1 { opacity: 0.55; filter: blur(0.4px); }
+.decay-broken .word.fade-2 { opacity: 0.32; filter: blur(0.7px); letter-spacing: 0.06em; }
+.decay-broken .word.fade-3 { opacity: 0.18; filter: blur(1px); letter-spacing: 0.12em; transform: rotate(-1deg) translateY(1px); }
+.decay-broken .word.scattered {
+  display: inline-block;
+  letter-spacing: 0.6em;
+  opacity: 0.4;
+}
+.decay-broken .word.tilt-l { transform: rotate(-3deg); }
+.decay-broken .word.tilt-r { transform: rotate(2deg); }
+.decay-broken .word.gone {
+  color: transparent;
+  background: linear-gradient(to right, var(--red) 0 30%, transparent 30% 70%, var(--red) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.4;
+}
+
+/* === PULL QUOTE VARIANTS === */
+.pull-quote-giant {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 56pt;
+  line-height: 60pt;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  border: none;
+  padding: 0;
+  max-width: 100%;
+}
+.pull-quote-giant em { color: var(--red); font-style: italic; font-weight: 500; }
+
+.pull-quote-box {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 16pt;
+  line-height: 22pt;
+  border: 2pt solid var(--red);
+  padding: 8mm 10mm;
+  position: relative;
+}
+.pull-quote-box::before {
+  content: "//";
+  position: absolute;
+  top: -3mm;
+  left: 6mm;
+  background: var(--paper);
+  padding: 0 2mm;
+  color: var(--red);
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 9pt;
+  letter-spacing: 0.16em;
+}
+
+.pull-quote-redacted {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 18pt;
+  line-height: 26pt;
+  position: relative;
+}
+.pull-quote-redacted .redact {
+  display: inline-block;
+  background: var(--red);
+  color: var(--red);
+  padding: 0 2mm;
+  user-select: none;
+  border-radius: 0;
+}
+
+.pull-quote-rotated {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 16pt;
+  line-height: 22pt;
+  transform-origin: top left;
+  transform: rotate(-90deg) translateY(-100%);
+  width: 180mm;
+  border-top: 2pt solid var(--red);
+  padding-top: 4mm;
+}
+
+/* === DROP CAP THAT BLEEDS THREE COLUMNS === */
+.drop-cap-bleed::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 180pt;
+  line-height: 0.78;
+  float: left;
+  margin: -2pt 4mm -10pt -3mm;
+  color: var(--red);
+  letter-spacing: -0.06em;
+}
+
+/* === MARGINAL VERTICAL NOTES === */
+.marginal-vertical {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+.marginal-vertical-r {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+
+/* === DATAVIZ HAND-BUILT FEEL === */
+.dataviz-annotation {
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+.fig-tape {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  background: var(--red);
+  padding: 1pt 6pt;
+  text-transform: uppercase;
+  margin-bottom: 8mm;
+}
+.dataviz-spec-block {
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  line-height: 9pt;
+  letter-spacing: 0.06em;
+  color: var(--gray);
+  text-transform: uppercase;
+  border-left: 0.5pt solid var(--red);
+  padding-left: 4mm;
+  margin-top: 8mm;
+  max-width: 70mm;
+}
+
+/* === SECTION BREAK — SLANTED REDESIGN === */
+.section-break-slanted {
+  height: 100%;
+  position: relative;
+  padding: 14mm;
+}
+.section-break-slanted .ghost-quote {
+  position: absolute;
+  top: 30mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 36pt;
+  line-height: 42pt;
+  color: var(--ink);
+  opacity: 0.1;
+  letter-spacing: -0.01em;
+}
+.section-break-slanted .big-slash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 220pt;
+  line-height: 0.85;
+  color: var(--red);
+}
+.section-break-slanted .recap {
+  position: absolute;
+  bottom: 30mm;
+  left: 14mm;
+  right: 14mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.section-break-slanted .next {
+  position: absolute;
+  bottom: 14mm;
+  left: 14mm;
+  right: 14mm;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+}
+
+/* === OVERLOAD EXTREME (page 24) === */
+.overload-extreme {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  overflow: hidden;
+}
+.overload-extreme .w {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  user-select: none;
+}
+.overload-extreme .w.r { color: var(--red); }
+.overload-extreme .w.thin { font-weight: 400; }
+.overload-extreme .w.flip { transform: scale(-1, -1); }
+.overload-extreme .w.rot90 { transform: rotate(90deg); transform-origin: 0 0; }
+.overload-extreme .w.rot270 { transform: rotate(-90deg); transform-origin: 0 100%; }
+.overload-extreme .signature {
+  position: absolute;
+  top: 8mm;
+  right: 8mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+  z-index: 100;
+  background: var(--paper);
+  padding: 1pt 3pt;
+}
+.overload-extreme .footer-spec {
+  position: absolute;
+  bottom: 6mm;
+  left: 8mm;
+  font-family: var(--font-mono);
+  font-size: 6pt;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  z-index: 100;
+  background: var(--paper);
+  padding: 1pt 3pt;
+}
+
+/* === BIBLIOGRAPHY GROUPS === */
+.bib-group { break-inside: avoid; margin-bottom: 8mm; }
+.bib-group .group-head {
+  font-family: var(--font-mono);
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 4pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.5pt solid var(--red);
+}
+.bib-group p {
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  line-height: 11pt;
+  margin-bottom: 4pt;
+}
+
+/* === INDEX LETTER SECTIONS === */
+.index-letter {
+  break-inside: avoid;
+  margin-bottom: 6mm;
+}
+.index-letter .letter-head {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14pt;
+  letter-spacing: 0.04em;
+  color: var(--red);
+  margin-bottom: 3pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.5pt solid var(--red);
+  line-height: 1;
+}
+.index-letter p {
+  font-family: var(--font-body);
+  font-size: 8pt;
+  line-height: 12pt;
+  margin-bottom: 2pt;
+}
+
+/* === FRAME-CONTAINED BODY (rule-breaking moment) === */
+.body-vertical-edge {
+  position: absolute;
+  top: 16mm;
+  bottom: 22mm;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  color: var(--red);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  white-space: nowrap;
+}
+.body-vertical-edge.left { left: 4mm; }
+.body-vertical-edge.right { right: 4mm; transform: rotate(180deg); }
+
+/* === GIANT-QUOTE FULL PAGE === */
+.full-page-quote {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.full-page-quote .marker-top {
+  position: absolute;
+  top: 14mm;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--red);
+}
+.full-page-quote .marker-bottom {
+  position: absolute;
+  bottom: 14mm;
+  left: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  color: var(--gray);
+}
+
+/* === BACK COVER VARIATIONS === */
+/* (no change to existing back cover) */
+
+/* ==================================================================
+   VIEWER RESET & GLOBAL (Glassmorphism & Neon Red Accents)
+   ================================================================== */
+body {
+  margin: 0 !important;
+  background: #0e0e0f !important;
+  background-image: radial-gradient(circle at 50% 25%, #1a1a1d 0%, #09090a 100%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* hide the raw embedded pages until cloned into the stage */
+body > .page { display: none; }
+.page-content .page {
+  display: block !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ===== app shell ===== */
+.viewer {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== toolbar ===== */
+.toolbar {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;   /* page nav stays dead-center */
+  align-items: center;
+  gap: 14px;
+  padding: 11px 18px;
+  background: rgba(17,17,19,0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.zone-left   { justify-self: start;  display: flex; align-items: center; gap: 10px; }
+.zone-center { justify-self: center; display: flex; align-items: center; }
+.zone-right  { justify-self: end;    display: flex; align-items: center; gap: 10px; }
+
+.cluster {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: #161618;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.icon-btn {
+  appearance: none; border: none; background: transparent;
+  color: #d4d2cc;
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  font-size: 1.05rem; line-height: 1;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s, transform .08s;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.09); color: #fff; }
+.icon-btn:active { transform: scale(0.92); }
+.icon-btn:disabled { opacity: 0.28; cursor: default; }
+
+.readout {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem; letter-spacing: 0.04em;
+  color: #b8b5ac;
+  min-width: 58px; text-align: center;
+  user-select: none;
+}
+.readout b { color: #cc1a0a; font-weight: 600; }
+
+.segmented {
+  display: flex; gap: 4px;
+  background: #161618;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 4px;
+}
+.seg-btn {
+  appearance: none; border: none; background: transparent;
+  color: #98958d;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em;
+  padding: 7px 15px; border-radius: 9px; cursor: pointer;
+  transition: all .15s;
+}
+.seg-btn:hover:not(.active) { color: #e8e6e0; }
+.seg-btn.active { background: #cc1a0a; color: #fff; box-shadow: 0 2px 10px rgba(204,26,10,.35); }
+
+.text-btn {
+  appearance: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #161618;
+  border: 1px solid rgba(255,255,255,0.07);
+  color: #d4d2cc;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em;
+  padding: 9px 15px; border-radius: 12px; cursor: pointer;
+  transition: all .15s;
+}
+.text-btn:hover { border-color: rgba(204,26,10,.55); color: #fff; }
+.text-btn.accent { background: #cc1a0a; border-color: #cc1a0a; color: #fff; }
+.text-btn.accent:hover { background: #e0220f; }
+
+/* ===== stage ===== */
+.stage {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+.spread-wrap {
+  display: flex; flex-direction: row; gap: 0;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.page-card {
+  background: #edeae3;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+  overflow: hidden;
+  position: relative;
+  flex: 0 0 auto;
+}
+.page-content {
+  width: 210mm;
+  height: 240mm;
+  transform-origin: top left;
+}
+
+/* ===== drop overlay ===== */
+.drop-overlay {
+  position: fixed; inset: 0;
+  display: none;
+  align-items: center; justify-content: center;
+  background: rgba(9,9,10,0.85);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  pointer-events: none;
+}
+.drop-overlay.show { display: flex; }
+.drop-overlay .box {
+  border: 2px dashed #cc1a0a; border-radius: 18px;
+  padding: 46px 64px; text-align: center;
+  color: #edeae3; font-family: 'IBM Plex Mono', monospace;
+}
+.drop-overlay .ic { font-size: 2.4rem; }
+.drop-overlay p { margin-top: 12px; letter-spacing: 0.06em; font-size: 0.9rem; }
+
+/* ===== empty state ===== */
+.empty-state {
+  margin: auto;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 54px 60px;
+  border: 1.5px dashed rgba(255,255,255,0.14);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.02);
+  cursor: pointer; text-align: center;
+  transition: border-color .2s, background .2s;
+}
+.empty-state:hover { border-color: rgba(204,26,10,.6); background: rgba(204,26,10,0.04); }
+.empty-state .ic { font-size: 2.6rem; }
+.empty-state h2 { font-weight: 600; font-size: 1.02rem; color: #edeae3; margin: 0; }
+.empty-state p { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; color: #8a8580; letter-spacing: 0.04em; margin: 0; }
+
+
+/* ===== annotation bar ===== */
+.annobar {
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 8px 18px;
+  background: rgba(13,13,15,0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.annobar .sep { width: 1px; height: 22px; background: rgba(255,255,255,0.09); margin: 0 2px; }
+
+.tool-group {
+  display: flex; gap: 4px;
+  background: #161618; border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 4px;
+}
+.tool-btn {
+  appearance: none; border: none; background: transparent; color: #c9c7c0;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+  padding: 7px 12px; border-radius: 9px; cursor: pointer; transition: all .15s;
+}
+.tool-btn:hover:not(.active) { color: #fff; background: rgba(255,255,255,0.06); }
+.tool-btn.active { background: #cc1a0a; color: #fff; box-shadow: 0 2px 10px rgba(204,26,10,.35); }
+
+.swatches { display: flex; gap: 7px; align-items: center; }
+.swatch {
+  width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.25);
+  transition: transform .12s, border-color .12s, box-shadow .12s;
+}
+.swatch:hover { transform: scale(1.12); }
+.swatch.active { border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,0.3); }
+
+/* ===== on-page annotation layers ===== */
+.anno-svg { position: absolute; inset: 0; z-index: 5; }
+.note-host { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.note-host > * { pointer-events: auto; }
+.note-pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 24px; height: 24px; border-radius: 50% 50% 50% 3px;
+  background: #cc1a0a; color: #fff;
+  font: 600 11px 'IBM Plex Mono', monospace;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.45); border: 1.5px solid rgba(255,255,255,0.9);
+}
+.note-pin:hover { filter: brightness(1.12); }
+.note-bubble {
+  position: absolute; z-index: 7; width: 224px;
+  background: #1b1b1e; border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px; box-shadow: 0 14px 34px rgba(0,0,0,0.6); padding: 10px;
+}
+.note-bubble-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+.nb-num { font: 600 0.7rem 'IBM Plex Mono', monospace; color: #cc1a0a; letter-spacing: 0.06em; }
+.nb-del { appearance: none; border: none; background: transparent; color: #9a978f;
+  font: 600 0.66rem 'IBM Plex Mono', monospace; cursor: pointer; }
+.nb-del:hover { color: #cc1a0a; }
+.note-bubble textarea {
+  width: 100%; min-height: 76px; resize: vertical; box-sizing: border-box;
+  background: #0e0e0f; color: #edeae3;
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px;
+  font: 0.8rem/1.45 'Inter', sans-serif;
+}
+.note-bubble textarea:focus { outline: none; border-color: #cc1a0a; }
+
+@media (max-width: 820px) {
+  .toolbar { grid-template-columns: 1fr; justify-items: center; gap: 10px; padding: 9px 11px; }
+  .zone-left, .zone-center, .zone-right { justify-self: center; }
+}
+
+
+/* ============================================================
+   APPLE-STYLE FLOATING TOOL PALETTE (draggable "tool bag")
+   ============================================================ */
+.palette {
+  position: fixed; left: 16px; top: 50%; z-index: 900;
+  display: grid; grid-template-columns: repeat(2, 38px); gap: 6px;
+  padding: 10px;
+  background: rgba(30,30,32,0.62);
+  backdrop-filter: blur(34px) saturate(180%);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  border: 0.5px solid rgba(255,255,255,0.14);
+  border-radius: 22px;
+  box-shadow: 0 18px 55px rgba(0,0,0,0.5), inset 0 0.5px 0 rgba(255,255,255,0.14);
+  font-family: -apple-system, 'SF Pro Text', 'Inter', system-ui, sans-serif;
+  user-select: none; touch-action: none;
+}
+
+.pal-head {
+  grid-column: 1 / -1;
+  position: relative; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+.grip {
+  height: 5px; width: 32px;
+  border-radius: 3px; background: rgba(255,255,255,0.28);
+  cursor: grab;
+}
+.palette.dragging { cursor: grabbing; }
+.palette.dragging .grip { cursor: grabbing; background: rgba(255,255,255,0.5); }
+
+.pal-collapse {
+  position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px; border: none; background: transparent;
+  color: #b9b7b1; font-size: 0.72rem; line-height: 1; cursor: pointer;
+  border-radius: 7px; display: inline-flex; align-items: center; justify-content: center;
+  transition: background .14s, color .14s, transform .18s;
+}
+.pal-collapse:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.palette.collapsed .pal-collapse { transform: translateY(-50%) rotate(180deg); }
+
+/* collapsible body */
+.pal-body {
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: repeat(2, 38px); gap: 6px;
+  overflow: hidden;
+}
+.palette.collapsed .pal-body { display: none; }
+
+.pal-div { grid-column: 1 / -1; height: 0.5px; background: rgba(255,255,255,0.1); margin: 3px 2px; }
+.pal-group { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, 38px); gap: 6px; }
+.pal-nav, .pal-zoom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+
+.pal-btn {
+  width: 38px; height: 38px; border-radius: 11px; border: none;
+  background: rgba(255,255,255,0.06); color: #e8e6e2;
+  font-size: 1.04rem; line-height: 1; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .14s, color .14s, transform .07s, box-shadow .14s;
+}
+.pal-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+.pal-btn:active { transform: scale(0.9); }
+.pal-btn:disabled { opacity: 0.28; cursor: default; }
+.pal-btn.active { background: #cc1a0a; color: #fff; box-shadow: 0 3px 12px rgba(204,26,10,0.45); }
+.pal-btn.wide { grid-column: 1 / -1; width: 100%; }
+.pal-btn.small { height: 32px; font-size: 0.95rem; }
+.pal-btn.off { opacity: 0.5; }
+
+.pal-read {
+  font: 600 0.66rem 'IBM Plex Mono', -apple-system, monospace;
+  color: #c8c6c0; letter-spacing: 0.02em; text-align: center; min-width: 30px;
+}
+.pal-read b { color: #fff; font-weight: 700; }
+.pal-read i { color: #86847e; font-style: normal; margin: 0 2px; }
+
+.pal-color { grid-column: 1 / -1; position: relative; display: flex; justify-content: center; }
+.color-toggle { border: 2px solid rgba(255,255,255,0.65) !important; background: #cc1a0a; }
+.color-toggle:hover { background: #cc1a0a; }
+.swatch-pop {
+  position: absolute; left: calc(100% + 14px); top: 50%; transform: translateY(-50%);
+  display: none; gap: 9px; padding: 11px;
+  background: rgba(30,30,32,0.82);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 0.5px solid rgba(255,255,255,0.14); border-radius: 16px;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.55);
+}
+.swatch-pop.open { display: flex; }
+.swatch {
+  width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.25);
+  transition: transform .12s, border-color .12s, box-shadow .12s;
+}
+.swatch:hover { transform: scale(1.14); }
+.swatch.active { border-color: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,0.3); }
+
+</style>
 </head>
 <body>
 
-<div class="cover-nav">
-  <strong>MESSAGE DESIGN — SLANTED №41</strong>
-  <button onclick="window.print()">Print → PDF</button>
+<div class="viewer">
+  <div class="toolbar">
+    <div class="zone-left">
+      <button class="text-btn" id="uploadBtn" title="Open HTML or PDF">⤓ Open</button>
+      <div class="segmented" role="tablist" aria-label="View mode">
+        <button class="seg-btn active" id="singleViewBtn">Single</button>
+        <button class="seg-btn" id="spreadViewBtn">Spread</button>
+      </div>
+    </div>
+    <div class="zone-center">
+      <div class="cluster">
+        <button class="icon-btn" id="prevBtn" aria-label="Previous page">←</button>
+        <span class="readout"><b id="currentPageNum">1</b> / <span id="totalPagesNum">0</span></span>
+        <button class="icon-btn" id="nextBtn" aria-label="Next page">→</button>
+      </div>
+    </div>
+    <div class="zone-right">
+      <div class="cluster">
+        <button class="icon-btn" id="zoomOutBtn" aria-label="Zoom out">−</button>
+        <span class="readout" id="zoomReadout">100%</span>
+        <button class="icon-btn" id="zoomInBtn" aria-label="Zoom in">+</button>
+      </div>
+      <button class="text-btn" id="resetZoomBtn" title="Fit to window">⤢ Fit</button>
+      <button class="icon-btn" id="toggleAnnoBtn" title="Hide / show markup"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      <button class="text-btn accent" id="exportBtn" title="Export feedback as Markdown">⬇ Export</button>
+    </div>
+  </div>
+
+  <div class="palette" id="palette">
+    <div class="pal-head">
+      <div class="grip" id="paletteGrip" title="Drag to move"></div>
+      <button class="pal-collapse" id="collapseBtn" title="Collapse / expand">⌃</button>
+    </div>
+
+    <div class="pal-group pal-top" role="group" aria-label="Tools">
+      <button class="pal-btn active" id="toolCursor" title="Move / navigate (V)">↖</button>
+      <button class="pal-btn" id="toolPen" title="Draw on the page (P)">✎</button>
+      <button class="pal-btn" id="toolNote" title="Add a note (N)">＋</button>
+      <button class="pal-btn" id="toolEraser" title="Erase (E)">⌫</button>
+    </div>
+
+    <div class="pal-body" id="palBody">
+    <div class="pal-color">
+      <button class="pal-btn color-toggle" id="colorToggle" title="Pen colour"></button>
+      <div class="swatch-pop" id="swatchPop">
+        <span class="swatch active" data-color="#cc1a0a" style="background:#cc1a0a" title="Red"></span>
+        <span class="swatch" data-color="#0a0a0a" style="background:#0a0a0a" title="Black"></span>
+        <span class="swatch" data-color="#1763d6" style="background:#1763d6" title="Blue"></span>
+        <span class="swatch" data-color="#0c8a3e" style="background:#0c8a3e" title="Green"></span>
+        <span class="swatch" data-color="#e0a400" style="background:#e0a400" title="Amber"></span>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <button class="pal-btn" id="undoBtn" title="Undo (Cmd/Ctrl+Z)">↶</button>
+      <button class="pal-btn" id="clearBtn" title="Clear this page">⊘</button>
+    </div>
+    </div><!-- /pal-body -->
+  </div>
+
+    <div class="stage" id="stage">
+    <div class="spread-wrap" id="spreadWrap"></div>
+  </div>
 </div>
+
+<div class="drop-overlay" id="dropOverlay">
+  <div class="box"><div class="ic">⤓</div><p>Drop HTML or PDF file</p></div>
+</div>
+
+<input type="file" id="fileInput" accept=".html,.htm,.pdf" hidden />
 
 <!-- ================================================================
      FRONT MATTER (pp 1–8)
@@ -135,7 +2276,7 @@
 
   <!-- ========== TECHNICAL FOOTER ========== -->
   <g font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="1.8" fill="#FAF8F4" opacity="0.32" letter-spacing="0.5">
-    <text x="10" y="237">STUDENT EDITION · 2GDM</text>
+    <text x="10" y="237">ISBN 978-3-948440-01-2</text>
     <text x="10" y="240">210 × 240 MM · OFFSET · MAY 2026</text>
   </g>
 
@@ -178,48 +2319,37 @@
     <p>This edition © Slanted Publishers</p>
     <p>Set in Inter, IBM Plex Mono and EB Garamond</p>
     <p>Printed on uncoated 120 gsm paper</p>
-    <p>Student edition · 2GDM Visual Communication · Artesis Plantijn Hogeschool, Antwerpen — no commercial ISBN</p>
+    <p>ISBN 978-3-948440-01-2</p>
   </div>
   <div class="page-folio">3</div>
 </section>
 
 <!-- ───── PAGES 4–5 — INTRO SPREAD: HERO QUESTION ───── -->
-<section class="page verso" data-page="4" aria-label="Prologue verso — Pettersson quote part 1">
+<section class="page verso" data-page="4" aria-label="Prologue verso">
   <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
   <div class="intro-spread">
     <div class="intro-prologue-tag">
-      <span class="slash-row">PROLOGUE</span>
+      <span class="slash-row">//// PROLOGUE ////</span>
       <span class="red-rule" style="margin-top: 4pt; display: block; width: 30mm; height: 0.55pt; background: var(--red);"></span>
     </div>
-    <!-- Quote: h1.medium spec — Inter Black 48/50pt -->
-    <div class="intro-question" style="top: 70mm; left: 0; width: 100%; font-size: 48pt; line-height: 50pt;">
-      We can be sure<br />
-      that people do not derive<br />
-      the same information<br />
-      from things they read,<br />
-      hear, or see<span style="color: var(--red);">.</span>
-    </div>
+    <div class="intro-question" style="bottom: 56mm; left: 0; width: 100%;">How much of</div>
+    <div class="caption" style="position: absolute; bottom: 14mm; left: 0; right: 0; color: var(--gray); letter-spacing: 0.18em;">→ A QUESTION RUNE PETTERSSON ASKED IN 2002 ////</div>
   </div>
   <div class="page-folio">4</div>
 </section>
 
-<section class="page recto" data-page="5" aria-label="Prologue recto — Pettersson quote part 2">
+<section class="page recto" data-page="5" aria-label="Prologue recto">
   <div class="page-header"><span class="ch-num">00</span>MESSAGE DESIGN — №41</div>
   <div class="intro-spread">
-    <!-- Quote: h1.medium spec — Inter Black 48/50pt -->
-    <div class="intro-question" style="top: 26mm; left: 0; width: 100%; font-size: 48pt; line-height: 50pt;">
-      The meaning of any<br />
-      language — verbal or<br />
-      visual — is to a large<br />
-      degree resident not in<br />
-      words, colours, lines,<br />
-      and shapes
+    <div class="intro-question" style="top: 26mm; left: 0; width: 100%;">
+      what you intend<br />
+      to say <span class="accent">actually</span><br />
+      arrives?
     </div>
-    <!-- Italic kapanış cümlesi — pull-quote-giant 56/60pt, tracking -10, tinted ink -->
-    <div style="position: absolute; top: 165mm; left: 0; width: 100%; font-family: var(--font-italic); font-style: italic; font-weight: 400; font-size: 56pt; line-height: 60pt; letter-spacing: -0.01em; color: rgba(10, 10, 10, 0.7);">
-      but also in us.
+    <div style="position: absolute; bottom: 4mm; left: 0; right: 0; display: flex; justify-content: space-between;" class="caption">
+      <span>—— RUNE PETTERSSON · MESSAGE DESIGN · 2002</span>
+      <span style="color: var(--gray);">//// WE STILL DO NOT HAVE A FULL ANSWER ////</span>
     </div>
-    <div class="caption" style="position: absolute; bottom: 4mm; left: 0;">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015</div>
   </div>
   <div class="page-folio">5</div>
 </section>
@@ -228,7 +2358,7 @@
 <section class="page verso" data-page="6" aria-label="Contents — publication map">
   <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
 
-  <span class="slash-row" style="display: block; margin-top: 4mm; margin-bottom: 1mm; letter-spacing: 0.2em;">PUBLICATION MAP · TOTAL 56 PP</span>
+  <span class="slash-row" style="display: block; margin-top: 4mm; margin-bottom: 1mm; letter-spacing: 0.2em;">//// PUBLICATION MAP · TOTAL 56 PP ////</span>
   <h2 class="toc-title" style="margin-top: 4mm; margin-bottom: 12mm;">Contents</h2>
 
   <div style="position: relative;">
@@ -238,6 +2368,7 @@
       <span class="num">01</span>
       <div>
         <div class="name">SIGNAL</div>
+        <div class="blurb">Communication models · Shannon-Weaver · source / encode / channel / decode / receiver. Why every message is a chain of choices.</div>
       </div>
       <span class="pages">PP. 9—18<br /><span style="opacity:0.5;">10 PP.</span></span>
     </div>
@@ -246,6 +2377,7 @@
       <span class="num">02</span>
       <div>
         <div class="name">NOISE</div>
+        <div class="blurb">Distortion types · redundancy · the architecture of overload. What the channel keeps and what it loses.</div>
       </div>
       <span class="pages">PP. 19—26<br /><span style="opacity:0.5;">8 PP.</span></span>
     </div>
@@ -254,6 +2386,7 @@
       <span class="num">03</span>
       <div>
         <div class="name">FRAME</div>
+        <div class="blurb">Pettersson's sixteen design principles. Hierarchy · simplicity · contrast — a vocabulary, not a recipe.</div>
       </div>
       <span class="pages">PP. 27—36<br /><span style="opacity:0.5;">10 PP.</span></span>
     </div>
@@ -262,6 +2395,7 @@
       <span class="num">04</span>
       <div>
         <div class="name">TOOLS</div>
+        <div class="blurb">Text · image · graphic · audio · video. Each medium imposes its own grammar on the message.</div>
       </div>
       <span class="pages">PP. 37—44<br /><span style="opacity:0.5;">8 PP.</span></span>
     </div>
@@ -270,6 +2404,7 @@
       <span class="num">05</span>
       <div>
         <div class="name">MEANING</div>
+        <div class="blurb">Reception · interpretation · the reader's contribution. The message is not delivered — it is rebuilt.</div>
       </div>
       <span class="pages">PP. 45—50<br /><span style="opacity:0.5;">6 PP.</span></span>
     </div>
@@ -303,36 +2438,26 @@
   <div class="page-folio" style="z-index: 2;">7</div>
 </section>
 
-<!-- ───── PAGE 8 — PETTERSSON QUOTE (threshold spread, faces SIGNAL opener) ───── -->
-<section class="page verso no-header no-folio" data-page="8" aria-label="Prologue epigraph" style="position: relative;">
+<!-- ───── PAGE 8 — HOW TO READ ───── -->
+<section class="page verso" data-page="8" aria-label="How to read this book">
+  <div class="page-header"><span class="ch-num">00</span>FRONT MATTER</div>
+  <span class="slash-row" style="display: block; margin-top: 0; margin-bottom: 4mm;">//// EDITOR'S NOTE ////</span>
+  <h2 class="h2-slash" style="margin: 0 0 4pt 0;">How to read this book</h2>
+  <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 14mm;">/</span>
 
-  <!-- PROLOGUE EPIGRAPH — cascade: each line own size + position, full Ink, no tint.
-       Designed silence before the black SIGNAL opener on p.9. -->
-  <div style="position: absolute; left: 20mm; top: 60mm;
-              font-family: var(--font-italic); font-weight: 400;
-              font-size: 120pt; line-height: 110pt;
-              color: var(--ink); letter-spacing: -0.01em;">Perception</div>
+  <div class="body" style="max-width: 130mm;">
+    <p class="body-first">This is a research edition, not a manual. The five chapters move from the simplest unit of communication to the most complicated: a message is sent, noise interferes, the page tries to catch what arrives, the medium imposes its grammar, and finally the reader completes the meaning. Each chapter opens with a single dataviz spread that stages the chapter's central claim before the body text takes over.</p>
+    <p>The grid is twelve columns; the typography is two faces and one italic. Where you see a thin red rule, the page is making a load-bearing claim and the design is asking you to slow down. Sidenotes in pale grey expand on the body without interrupting it. Captions in monospaced type are technical — they tell you what the diagram is, who made it, and where it came from.</p>
+    <p>If you are reading for argument, follow the body text from chapter to chapter and let the diagrams confirm what the prose has already said. If you are reading for design, start with the chapter openers and the dataviz spreads — they carry the book's visual logic in compressed form. If you are reading to disagree, the marginal notes are where the publication answers itself.</p>
+    <p>The publication is bilingual where it counts. Two techniques alternate across the multilingual proposal at the back: weight-layering for body text, overprint for chapter titles, and cell rotation for the principles grid. Each is explained where it is first deployed.</p>
+  </div>
 
-  <div style="position: absolute; left: 60mm; top: 110mm;
-              font-family: var(--font-italic); font-weight: 400;
-              font-size: 90pt; line-height: 88pt;
-              color: var(--ink); letter-spacing: -0.01em;">is different</div>
+  <div style="position: absolute; bottom: 24mm; left: 18mm; right: 18mm; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.18em; color: var(--red);">
+    <span>→ START AT P. 9</span>
+    <span style="color: var(--gray);">//// END · FRONT MATTER ////</span>
+  </div>
 
-  <div style="position: absolute; left: 110mm; top: 150mm;
-              font-family: var(--font-italic); font-weight: 400;
-              font-size: 70pt; line-height: 70pt;
-              color: var(--ink); letter-spacing: -0.01em;">and never</div>
-
-  <div style="position: absolute; right: 14mm; top: 180mm;
-              font-family: var(--font-italic); font-weight: 400;
-              font-size: 100pt; line-height: 95pt;
-              color: var(--ink); letter-spacing: -0.01em;
-              text-align: right;">the same twice.</div>
-
-  <div style="position: absolute; right: 14mm; bottom: 18mm;
-              font-family: var(--font-mono); font-size: 7pt;
-              letter-spacing: 0.18em; color: var(--gray);">— Pettersson, 2015, p.11</div>
-
+  <div class="page-folio">8</div>
 </section>
 
 
@@ -418,8 +2543,10 @@
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 8mm;">
       <div class="caption" style="max-width: 100%;">AFTER SHANNON · WEAVER · 1949 //// THE MATHEMATICAL THEORY OF COMMUNICATION //// ALSO SCHRAMM 1954 · PETTERSSON 1983</div>
       <div class="dataviz-spec-block">
+        TRIM 210 × 240 MM<br />
+        FIG. 01 — SCALE 1:1<br />
         NODES 5 · NOISE PULSE @ NODE 03<br />
-        SEE ALSO P. 16—17 · THE FOUR PLACES
+        SEE ALSO P. 17 · NOISE TAXONOMY
       </div>
     </div>
   </div>
@@ -429,9 +2556,9 @@
 
 <section class="page recto no-folio" data-page="11" aria-label="Dataviz Broken Channel recto">
   <div style="margin-top: 28mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 6mm;">READING THE DIAGRAM ABOVE:</span>
+    <span class="slash-row" style="display: block; margin-bottom: 6mm;">//// FROM THE DIAGRAM ////</span>
     <div class="pull-quote" style="max-width: 130mm; margin-bottom: 16mm;">
-      What arrives is never exactly what was sent — the designer's first job is to know which noise is operating.
+      "What arrives is never exactly what was sent. The designer's first job is to know which noise is operating."
     </div>
 
     <h3 class="h3" style="margin-top: 0; margin-bottom: 8mm;">FOUR NOISES — A WORKING SET</h3>
@@ -458,7 +2585,7 @@
     <p class="caption" style="margin-top: 12mm; max-width: 110mm; line-height: 11pt;">EACH NOISE IS REDUCED BY A DIFFERENT INTERVENTION. PHYSICAL BY PRODUCTION. SEMANTIC BY EDITING. PSYCHOLOGICAL BY SEQUENCE AND PACING. CHANNEL BY KNOWING, IN ADVANCE, WHICH CHANNEL YOU ARE USING.</p>
 
     <div class="dataviz-spec-block" style="margin-top: 14mm;">
-      DEEP DIVE → P. 16—17 · THE FOUR PLACES<br />
+      DEEP DIVE → P. 17 · NOISE TAXONOMY<br />
       SEE ALSO P. 14—15 · DECAY DEMONSTRATION
     </div>
   </div>
@@ -469,7 +2596,7 @@
   <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
 
   <!-- Vertical marginal note running down the left edge -->
-  <div class="body-vertical-edge left">→ THE CHAIN, AS A DIAGRAM, AT P. 10 · 11</div>
+  <div class="body-vertical-edge left">→ THE CHAIN, AS A DIAGRAM, AT P. 10 · 11 ////</div>
 
   <div class="three-col-body">
     <div>
@@ -499,9 +2626,8 @@
     <div>
       <span class="slash-row" style="display: block; margin-bottom: 4mm; font-size: 6pt; letter-spacing: 0.2em;">//// PULL QUOTE //// MEANING ////</span>
       <div class="pull-quote">
-        Each person looking at the final design will create an individual interpretation of the message.
+        Meaning is not delivered. It is rebuilt by the reader, with materials the designer has chosen — and the reader's culture, mood and attention are part of the message before the message is opened.
       </div>
-      <p class="caption" style="margin-top: 4mm; color: var(--gray);">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015 · P. 14</p>
       <div style="margin-top: 50mm;" class="body">
         <p class="body-first">Pettersson's expansion of the model is small but consequential. Where Shannon and Weaver describe a signal as a measurable disturbance, Pettersson treats it as a deliberate act. <em>Signals are choices.</em> The designer is not a transparent conduit between source and receiver. The designer is the encoder, and the encoding has already happened by the time the reader opens the page.</p>
         <p>What the rest of this book argues is that every design decision — typeface, hierarchy, pace, ground colour, the silence between words — is a signal that shapes how the message will be reconstructed at the other end. None of these are neutral. All of them can be used well or badly.</p>
@@ -521,11 +2647,11 @@
 <section class="page verso" data-page="14" aria-label="Quote spread original">
   <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
   <div style="margin-top: 18mm; max-width: 150mm;">
-    <span class="slash-row" style="color: var(--gray); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">ORIGINAL · SENT · UNDAMAGED</span>
+    <span class="slash-row" style="color: var(--gray); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">//// ORIGINAL · SENT · UNDAMAGED ////</span>
     <p style="font-family: var(--font-italic); font-style: italic; font-size: 22pt; line-height: 32pt; color: var(--ink);">
-      Communication is successful when a receiver comprehends the message a sender has wished to convey to him or her.
+      All design is the deliberate construction of signals — the choice of which patterns to transmit, in which mode, against which expected interpretation, with which redundancy margin. The discipline of design is the discipline of anticipating the reader.
     </p>
-    <p class="caption" style="margin-top: 14mm; color: var(--gray);">RUNE PETTERSSON · MESSAGE DESIGN · 2015 · P. 35</p>
+    <p class="caption" style="margin-top: 14mm; color: var(--gray);">RUNE PETTERSSON · MESSAGE DESIGN · 2002 · P. 23</p>
   </div>
 
   <!-- Tiny mono "→" pointing across the fold -->
@@ -537,28 +2663,36 @@
 <section class="page recto" data-page="15" aria-label="Quote spread decayed">
   <div class="page-header"><span class="ch-num">01</span>SIGNAL</div>
   <div style="margin-top: 18mm; max-width: 150mm;">
-    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">AFTER THE CHANNEL · ARRIVED · DAMAGED</span>
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 6mm; letter-spacing: 0.2em;">//// AFTER THE CHANNEL · ARRIVED · DAMAGED ////</span>
 
     <p class="decay-broken">
-      <span class="word tilt-l">Communication</span>
-      <span class="word fade-1">is</span>
-      <span class="word cut-bottom">successful</span>
-      <span class="word struck">when</span>
-      <span class="word fade-1 tilt-r">a</span>
-      <span class="word struck">receiver</span>
-      <span class="word fade-1">comprehends</span>
-      <span class="word fade-1">the</span>
-      <span class="word cut-bottom">message</span>
-      <span class="word fade-1 tilt-l">a</span>
-      <span class="word cut-right">sender</span>
-      <span class="word fade-2">has</span>
-      <span class="word struck">wished</span>
+      <span class="word">All</span>
+      <span class="word">design</span>
+      <span class="word">is</span>
+      <span class="word">the</span>
+      <span class="word struck">deliberate</span>
+      <span class="word fade-1">construction</span>
+      <span class="word fade-1">of</span>
+      <span class="word cut-bottom">signals</span>
+      <span class="word">—</span>
+      <span class="word fade-1 tilt-l">the</span>
+      <span class="word cut-right">choice</span>
+      <span class="word fade-2">of</span>
+      <span class="word fade-2">which</span>
+      <span class="word struck">patterns</span>
       <span class="word fade-2 tilt-r">to</span>
-      <span class="word cut-top">convey</span>
-      <span class="word fade-2">to</span>
-      <span class="word scattered">him</span>
-      <span class="word gone">or</span>
-      <span class="word fade-3 scattered">her.</span>
+      <span class="word cut-top">transmit,</span>
+      <span class="word fade-2">in</span>
+      <span class="word fade-2 tilt-l">which</span>
+      <span class="word fade-3">mode,</span>
+      <span class="word scattered">against</span>
+      <span class="word fade-3">which</span>
+      <span class="word gone">expected</span>
+      <span class="word fade-3 cut-bottom">interpretation,</span>
+      <span class="word fade-3 tilt-r">with</span>
+      <span class="word fade-3">which</span>
+      <span class="word gone">redundancy</span>
+      <span class="word fade-3 scattered">margin.</span>
     </p>
 
     <p class="caption" style="margin-top: 18mm; color: var(--gray); max-width: 130mm; line-height: 11pt;">SAME PASSAGE · STRUCK · CROPPED · FADED · SCATTERED · BURNED. WHAT ARRIVES BY THE END IS NOT WHAT WAS SENT AT THE START.</p>
@@ -599,7 +2733,25 @@
       <p>The real argument of <em>Message Design</em> enters here. The point is not that noise can be eliminated — it cannot — but that the designer's first job is to know which noise is operating. Most failures of communication are not failures of effort. They are failures of address: the designer reduces the wrong noise, and the message fails for reasons the designer was never tracking.</p>
     </div>
 
-    <!-- Noise taxonomy sidebar removed — the four types are already defined as body prose above (p.16–17) and as teaser cards on p.11 -->
+    <aside class="sidebar-noise" style="border-left: 2pt solid var(--red); padding-left: 6mm;">
+      <div class="sidebar-noise-title">//// NOISE TAXONOMY ////</div>
+      <div class="sidebar-noise-item">
+        <span class="num" style="font-size: 14pt; color: var(--red);">01</span>
+        <div class="body-text"><strong>PHYSICAL.</strong> The medium degrades the signal. Smudged ink, low-resolution images, screen glare, broken speakers. A property of production and distribution.</div>
+      </div>
+      <div class="sidebar-noise-item">
+        <span class="num" style="font-size: 14pt; color: var(--red);">02</span>
+        <div class="body-text"><strong>SEMANTIC.</strong> The language fails to carry. Jargon, idiom, missing context, words that mean something different to the reader. A property of vocabulary and translation.</div>
+      </div>
+      <div class="sidebar-noise-item">
+        <span class="num" style="font-size: 14pt; color: var(--red);">03</span>
+        <div class="body-text"><strong>PSYCHOLOGICAL.</strong> The receiver is elsewhere. Fatigue, distraction, motivated reading, prior belief. A property of attention and state.</div>
+      </div>
+      <div class="sidebar-noise-item">
+        <span class="num" style="font-size: 14pt; color: var(--red);">04</span>
+        <div class="body-text"><strong>CHANNEL.</strong> The medium imposes constraints the message did not anticipate. Format, length, sequence, conventions. A property of grammar.</div>
+      </div>
+    </aside>
   </div>
   <div class="page-folio">17</div>
 </section>
@@ -610,7 +2762,7 @@
   <div class="section-break-slanted">
     <div class="ghost-quote">A message is never a single object. It is a chain.</div>
     <div class="big-slash">/</div>
-    <div class="recap">CHAPTER 01 · SIGNAL · PP. 9—18 · SHANNON-WEAVER · NOISE · ENCODING · SIGNALS ARE CHOICES</div>
+    <div class="recap">CHAPTER 01 //// SIGNAL //// PP. 9—18 //// SHANNON-WEAVER · NOISE · ENCODING //// SIGNALS ARE CHOICES</div>
     <div class="next">↓ NEXT · CH 02 · NOISE</div>
   </div>
   <div class="page-folio">18</div>
@@ -626,7 +2778,7 @@
   <div class="opener-band">
 
     <span class="meta">02 //// CHAPTER TWO</span>
-    <span class="meta-right">RUIS [NL] = NOISE [EN]</span>
+    <span class="meta-right">RUIS [NL] = NOISE [EN]<br />//// CH 02 ////</span>
 
     <!-- The thick diagonal band that IS the noise -->
     <div class="band"></div>
@@ -639,7 +2791,7 @@
 
     <div class="subtitle">What the channel keeps. <em>What it loses.</em></div>
 
-    <span style="position: absolute; bottom: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45; z-index: 3;">FIG. CH 02 · INTERFERENCE BAND · 28°</span>
+    <span style="position: absolute; bottom: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45; z-index: 3;">FIG. CH 02 · INTERFERENCE BAND //// 28°</span>
   </div>
 </section>
 
@@ -687,29 +2839,29 @@
 
 <section class="page recto no-folio" data-page="21" aria-label="Pyramid recto with illustration zones">
   <div style="margin-top: 28mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 6mm;">FOUR LAYERS · FOUR EMBODIMENTS</span>
+    <span class="slash-row" style="display: block; margin-bottom: 6mm;">//// FOUR LAYERS · FOUR EMBODIMENTS ////</span>
     <h3 class="h3" style="margin-bottom: 14mm;">EACH LAYER NEEDS A FACE</h3>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm;">
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">DATA</span>
-        <!-- TODO: insert illustration — DATA — filename: ??? -->
+        <span class="desc">Draw "what data looks like" — a field of dots, a stream of binary, raw observations, unfiltered.</span>
       </div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">INFORMATION</span>
-        <!-- TODO: insert illustration — INFORMATION — filename: ??? -->
+        <span class="desc">Draw "what information looks like" — data sorted, labelled, given direction. A small chart, a tagged record.</span>
       </div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">KNOWLEDGE</span>
-        <!-- TODO: insert illustration — KNOWLEDGE — filename: ??? -->
+        <span class="desc">Draw "what knowledge looks like" — a tool, a map, a procedure. Information that knows what it is for.</span>
       </div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">WISDOM</span>
-        <!-- TODO: insert illustration — WISDOM — filename: ??? -->
+        <span class="desc">Draw "what wisdom looks like" — a hand, a face, a moment of judgment. Knowledge applied with care.</span>
       </div>
     </div>
 
-    <p class="caption" style="margin-top: 10mm; max-width: 110mm; line-height: 11pt;">SEE ALSO P. 24 · INFORMATION OVERLOAD</p>
+    <p class="caption" style="margin-top: 10mm; max-width: 110mm; line-height: 11pt;">FOUR HAND-DRAWN STUDIES · ONE PER LAYER · LOOSE LINE · NO SHADING //// SEE ALSO P. 24 INFORMATION OVERLOAD</p>
   </div>
   <div class="page-folio">21</div>
 </section>
@@ -733,7 +2885,7 @@
   </div>
 
   <!-- Vertical marginal note running down right edge -->
-  <div class="body-vertical-edge right">→ INFORMATION × 27 OVERLEAF · P. 24</div>
+  <div class="body-vertical-edge right">→ INFORMATION × 27 OVERLEAF · P. 24 ////</div>
 
   <div class="page-folio">22</div>
 </section>
@@ -769,26 +2921,27 @@
 <!-- ───── PAGE 24 — INFORMATION × 27 (OVERLOAD EXTREME) ───── -->
 <section class="page verso full-bleed no-header no-folio" data-page="24" aria-label="Information overload extreme">
   <div class="overload-extreme">
+    <span class="signature">//// PAGE 24 · NO FOLIO · NO HEADER ////</span>
 
-    <!-- Mix of sizes, rotations, crops — the reader cannot land anywhere. Nothing sits at 0°. -->
-    <span class="w" style="top: -2mm; left: -8mm; font-size: 220pt; transform: rotate(6deg);">INFORMATION</span>
+    <!-- Mix of sizes, rotations, crops — the reader cannot land anywhere -->
+    <span class="w" style="top: -2mm; left: -8mm; font-size: 220pt;">INFORMATION</span>
     <span class="w r" style="top: 16%; left: 4%; font-size: 11pt; transform: rotate(-1deg);">INFORMATION</span>
     <span class="w" style="top: 18%; left: 18%; font-size: 24pt; transform: rotate(2deg);">INFORMATION</span>
-    <span class="w thin" style="top: 22%; left: 50%; font-size: 14pt; transform: rotate(-8deg);">INFORMATION</span>
-    <span class="w" style="top: 24%; left: 70%; font-size: 9pt; transform: rotate(11deg);">INFORMATION</span>
+    <span class="w thin" style="top: 22%; left: 50%; font-size: 14pt;">INFORMATION</span>
+    <span class="w" style="top: 24%; left: 70%; font-size: 9pt;">INFORMATION</span>
     <span class="w r" style="top: 27%; left: 84%; font-size: 18pt; transform: rotate(-3deg);">INFORMATION</span>
 
     <span class="w" style="top: 30%; left: 4%; font-size: 90pt; transform: rotate(-2deg);">INFORMATION</span>
-    <span class="w thin" style="top: 32%; left: 56%; font-size: 14pt; transform: rotate(-4deg);">INFORMATION</span>
-    <span class="w" style="top: 35%; left: 76%; font-size: 8pt; transform: rotate(14deg);">INFORMATION</span>
+    <span class="w thin" style="top: 32%; left: 56%; font-size: 14pt;">INFORMATION</span>
+    <span class="w" style="top: 35%; left: 76%; font-size: 8pt;">INFORMATION</span>
     <span class="w r flip" style="top: 38%; left: 26%; font-size: 22pt;">INFORMATION</span>
-    <span class="w" style="top: 41%; left: 60%; font-size: 12pt; transform: rotate(-10deg);">INFORMATION</span>
+    <span class="w" style="top: 41%; left: 60%; font-size: 12pt;">INFORMATION</span>
 
     <span class="w" style="top: 44%; left: 4%; font-size: 14pt; transform: rotate(1deg);">INFORMATION</span>
     <span class="w" style="top: 46%; left: 28%; font-size: 32pt; transform: rotate(-1deg);">INFORMATION</span>
-    <span class="w r" style="top: 49%; left: 70%; font-size: 56pt; transform: rotate(7deg);">INFORMATION</span>
+    <span class="w r" style="top: 49%; left: 70%; font-size: 56pt;">INFORMATION</span>
 
-    <span class="w" style="top: 56%; left: 6%; font-size: 9pt; transform: rotate(-13deg);">INFORMATION</span>
+    <span class="w" style="top: 56%; left: 6%; font-size: 9pt;">INFORMATION</span>
     <span class="w thin" style="top: 58%; left: 22%; font-size: 14pt; transform: rotate(2deg);">INFORMATION</span>
     <span class="w" style="top: 60%; left: 44%; font-size: 36pt; transform: rotate(-1deg);">INFORMATION</span>
     <span class="w r flip" style="top: 62%; left: 78%; font-size: 11pt;">INFORMATION</span>
@@ -796,65 +2949,19 @@
     <span class="w rot90" style="top: 24%; left: 1%; font-size: 28pt;">INFORMATION</span>
     <span class="w rot270" style="top: 70%; right: 1%; font-size: 18pt;">INFORMATION</span>
 
-    <span class="w" style="top: 70%; left: 14%; font-size: 14pt; transform: rotate(5deg);">INFORMATION</span>
+    <span class="w" style="top: 70%; left: 14%; font-size: 14pt;">INFORMATION</span>
     <span class="w" style="top: 73%; left: 38%; font-size: 22pt; transform: rotate(2deg);">INFORMATION</span>
-    <span class="w" style="top: 76%; left: 64%; font-size: 9pt; transform: rotate(-9deg);">INFORMATION</span>
-    <span class="w" style="top: 78%; left: 84%; font-size: 14pt; transform: rotate(6deg);">INFORMATION</span>
+    <span class="w" style="top: 76%; left: 64%; font-size: 9pt;">INFORMATION</span>
+    <span class="w" style="top: 78%; left: 84%; font-size: 14pt;">INFORMATION</span>
 
     <span class="w" style="top: 82%; left: 0%; font-size: 110pt; transform: rotate(-1deg);">INFORMATION</span>
     <span class="w r" style="top: 84%; left: 70%; font-size: 30pt; transform: rotate(2deg);">INFORMATION</span>
-    <span class="w thin" style="top: 88%; left: 50%; font-size: 14pt; transform: rotate(-8deg);">INFORMATION</span>
-    <span class="w" style="top: 91%; left: 32%; font-size: 9pt; transform: rotate(11deg);">INFORMATION</span>
-    <span class="w r" style="top: 94%; left: 6%; font-size: 18pt; transform: rotate(-4deg);">INFORMATION</span>
+    <span class="w thin" style="top: 88%; left: 50%; font-size: 14pt;">INFORMATION</span>
+    <span class="w" style="top: 91%; left: 32%; font-size: 9pt;">INFORMATION</span>
+    <span class="w r" style="top: 94%; left: 6%; font-size: 18pt;">INFORMATION</span>
     <span class="w" style="top: 95%; left: 76%; font-size: 11pt; transform: rotate(-2deg);">INFORMATION</span>
 
-    <!-- ===== BLEED LAYER — smaller, entering from all four edges (no single dominant word) ===== -->
-    <span class="w" style="top: 4%; left: -8mm; font-size: 140pt; opacity: 0.9; transform: rotate(-7deg);">INFORMATION</span>
-    <span class="w" style="top: 44%; right: -12mm; font-size: 130pt; transform: rotate(12deg);">INFORMATION</span>
-    <span class="w r" style="bottom: -4mm; left: 22%; font-size: 120pt; transform: rotate(-9deg);">INFORMATION</span>
-    <span class="w" style="top: 22%; left: -10mm; font-size: 110pt; transform: rotate(8deg); opacity: 0.8;">INFORMATION</span>
-    <span class="w r" style="top: 72%; left: -6mm; font-size: 90pt; transform: rotate(-14deg);">INFORMATION</span>
-    <span class="w" style="top: 30%; right: -8mm; font-size: 100pt; transform: rotate(-5deg); opacity: 0.7;">INFORMATION</span>
-
-    <!-- GHOST LAYER — half-visible background texture -->
-    <span class="w" style="top: 12%; left: 38%; font-size: 70pt; opacity: 0.25; transform: rotate(15deg);">INFORMATION</span>
-    <span class="w" style="top: 52%; left: 14%; font-size: 50pt; opacity: 0.3; transform: rotate(-12deg);">INFORMATION</span>
-    <span class="w" style="top: 80%; left: 48%; font-size: 60pt; opacity: 0.2; transform: rotate(8deg);">INFORMATION</span>
-
-    <!-- AGGRESSIVE ROTATION LAYER — wide angle spread -->
-    <span class="w" style="top: 8%; left: 64%; font-size: 16pt; transform: rotate(45deg);">INFORMATION</span>
-    <span class="w" style="top: 34%; left: 38%; font-size: 14pt; transform: rotate(-35deg);">INFORMATION</span>
-    <span class="w" style="top: 52%; left: 88%; font-size: 18pt; transform: rotate(75deg);">INFORMATION</span>
-    <span class="w r" style="top: 66%; left: 42%; font-size: 14pt; transform: rotate(-60deg);">INFORMATION</span>
-    <span class="w" style="top: 86%; left: 24%; font-size: 11pt; transform: rotate(28deg);">INFORMATION</span>
-
-    <!-- OVERLAP LAYER — landing on top of existing words, forcing collisions -->
-    <span class="w r" style="top: 30%; left: 6%; font-size: 60pt; opacity: 0.7; transform: rotate(8deg);">INFORMATION</span>
-    <span class="w" style="top: 48%; left: 70%; font-size: 44pt; transform: rotate(-4deg);">INFORMATION</span>
-    <span class="w thin" style="top: 76%; left: 8%; font-size: 28pt; transform: rotate(6deg);">INFORMATION</span>
-
-    <!-- BROKEN / FRAGMENTED — some INFORMATIONs are not whole -->
-    <span class="w" style="top: 20%; left: 90%; font-size: 22pt; overflow: hidden; max-width: 6mm; transform: rotate(-2deg);">INFORMATION</span>
-    <span class="w" style="top: 64%; left: -2mm; font-size: 36pt; clip-path: inset(0 0 0 30%); transform: rotate(14deg);">INFORMATION</span>
-
-    <!-- SMALL DENSITY — tiny lines filling the white gaps, all tilted -->
-    <span class="w" style="top: 5%; left: 32%; font-size: 7pt; transform: rotate(-10deg);">INFORMATION</span>
-    <span class="w" style="top: 14%; left: 76%; font-size: 8pt; transform: rotate(7deg);">INFORMATION</span>
-    <span class="w" style="top: 38%; left: 8%; font-size: 7pt; transform: rotate(-13deg);">INFORMATION</span>
-    <span class="w" style="top: 55%; left: 38%; font-size: 8pt; transform: rotate(5deg);">INFORMATION</span>
-    <span class="w" style="top: 72%; left: 92%; font-size: 7pt; transform: rotate(-9deg);">INFORMATION</span>
-
-    <!-- ===== MIDDLE-BREAKER OVERLAP — destroys the parallel rows in the centre; reds scattered to four zones; one upside-down ===== -->
-    <span class="w" style="top: 38%; left: 22%; font-size: 75pt; transform: rotate(-18deg); opacity: 0.85;">INFORMATION</span>
-    <span class="w r" style="top: 42%; left: 48%; font-size: 50pt; transform: rotate(22deg);">INFORMATION</span>
-    <span class="w" style="top: 48%; left: 12%; font-size: 40pt; transform: rotate(13deg); opacity: 0.7;">INFORMATION</span>
-    <span class="w" style="top: 50%; left: 62%; font-size: 65pt; transform: rotate(-26deg);">INFORMATION</span>
-    <span class="w r" style="top: 55%; left: 30%; font-size: 38pt; transform: rotate(-15deg);">INFORMATION</span>
-    <span class="w" style="top: 58%; left: 80%; font-size: 28pt; transform: rotate(180deg);">INFORMATION</span>
-    <span class="w" style="top: 64%; left: 4%; font-size: 32pt; transform: rotate(8deg); opacity: 0.6;">INFORMATION</span>
-    <span class="w" style="top: 66%; left: 50%; font-size: 45pt; transform: rotate(-32deg);">INFORMATION</span>
-    <span class="w r" style="top: 88%; left: 90%; font-size: 24pt; transform: rotate(45deg);">INFORMATION</span>
-    <span class="w r" style="top: 12%; left: 88%; font-size: 22pt; transform: rotate(-40deg);">INFORMATION</span>
+    <span class="footer-spec">INFORMATION × 27 · OVERLOAD AS THE READER MEETS IT · NO ENTRY POINT · NO HIERARCHY · ALL VOICES ARE THE LOUDEST</span>
   </div>
 </section>
 
@@ -869,29 +2976,26 @@
       <p class="body-first drop-cap">The page opposite is what Pettersson's contemporaries call <em>information overload</em> — though the term predates the digital era by decades. Bertram Gross used it in 1964 to describe the condition of a manager who receives more reports than can be read. Alvin Toffler popularised it in 1970, before the personal computer existed.<sup style="color: var(--red);">¹</sup></p>
       <p>The condition is not new and it is not specific to screens. It is what happens when the redundancy that defends against noise has tipped into noise of its own kind. A reader presented with too many simultaneous signals does not slow down and read carefully — the reader stops reading and starts filtering.<sup style="color: var(--red);">²</sup> Filtering uses different cognitive equipment from reading. It is faster, shallower, and biased toward whatever the reader already expected to find.</p>
       <p>The first casualty is nuance. The second is the part of the message the reader did not already agree with. The design failure that produces overload is not usually deliberate. It tends to come from a familiar mistake: the designer treats every element as equally important, and so every element is given the same visual weight.<sup style="color: var(--red);">³</sup></p>
-      <p>The remedy is hierarchy, but hierarchy is the difficult kind of restraint. It requires choosing what does not get the largest type, the brightest colour, the top of the page. Most overloaded pages are evidence not of bad design but of unresolved arguments about importance.</p>
-      <p>Pettersson's term for the antidote is <em>relevance</em>. Show only what serves the message; everything else is noise that the page itself is generating.<sup style="color: var(--red);">⁴</sup> The question is not what could go on the page. The question is what the reader, two minutes from now, needs to remember.</p>
+      <p>The remedy is hierarchy, but hierarchy is the difficult kind of restraint. It requires choosing what does not get the largest type, the brightest colour, the top of the page.<sup style="color: var(--red);">⁴</sup> Most overloaded pages are evidence not of bad design but of unresolved arguments about importance.</p>
+      <p>Pettersson's term for the antidote is <em>relevance</em>. Show only what serves the message; everything else is noise that the page itself is generating.<sup style="color: var(--red);">⁵</sup> The question is not what could go on the page. The question is what the reader, two minutes from now, needs to remember.</p>
     </div>
 
     <div class="sidenote" style="position: relative; border-left: 0.5pt solid var(--red); padding-left: 5mm;">
-      <span class="slash-row" style="display: block; margin-bottom: 4mm; font-size: 6pt; letter-spacing: 0.16em;">/ NOTE</span>
+      <span class="slash-row" style="display: block; margin-bottom: 4mm; font-size: 6pt; letter-spacing: 0.16em;">//// FOOTNOTES ////</span>
 
-      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">1</sup> Gross's <em>The Managing of Organizations</em> (1964) describes overload not as a digital condition but as an organisational one — when an institution sends more signals than its decision-makers can process, the institution fails before the technology does.</p>
+      <div style="margin-bottom: 14pt;"><strong style="color: var(--red); font-family: var(--font-mono); font-size: 11pt;">¹</strong> Gross's <em>The Managing of Organizations</em> (1964) describes overload not as a digital condition but as an organisational one — when an institution sends more signals than its decision-makers can process, the institution fails before the technology does.</div>
 
-      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">2</sup> Kahneman (2011) describes how, under cognitive load, the reader trusts heuristics over evidence.</p>
+      <div style="margin-bottom: 14pt;"><strong style="color: var(--red); font-family: var(--font-mono); font-size: 11pt;">²</strong> The well-documented "confirmation bias under load" finding. Under cognitive pressure, the reader trusts heuristics over evidence.</div>
 
-      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">3</sup> Toffler's <em>Future Shock</em> (1970): overload is not a failure of intelligence but a failure of priority. Fifty equally weighted facts become background.</p>
+      <div style="margin-bottom: 14pt;"><strong style="color: var(--red); font-family: var(--font-mono); font-size: 11pt;">³</strong> Toffler's <em>Future Shock</em> (1970): overload is not a failure of intelligence but a failure of priority. Fifty equally weighted facts become background.</div>
 
-      <p style="margin-bottom: 8pt;"><sup style="color: var(--red);">4</sup> Relevance is the eleventh of Pettersson's sixteen design principles (see Ch. 03, p. 28).</p>
+      <div style="margin-bottom: 14pt;"><strong style="color: var(--red); font-family: var(--font-mono); font-size: 11pt;">⁴</strong> Diagnostic question for any layout: <em>if the reader had three seconds, what would they leave with?</em> If the answer is "I don't know," the page has not yet been designed.</div>
 
-      <!-- Marginal pull-quote (was footnote 4 — too aphoristic for a footnote) -->
-      <div style="margin-top: 10mm; max-width: 50mm; border-top: 1pt solid var(--red); padding-top: 4pt; font-family: var(--font-italic); font-style: italic; font-size: 11pt; line-height: 14pt; color: var(--ink);">
-        Diagnostic question for any layout: if the reader had three seconds, what would they leave with? If the answer is "I don't know," the page has not yet been designed.
-      </div>
+      <div style="margin-bottom: 14pt;"><strong style="color: var(--red); font-family: var(--font-mono); font-size: 11pt;">⁵</strong> Relevance is the eleventh of Pettersson's sixteen design principles (see Ch. 03, p. 28).</div>
 
       <div class="illustration-zone tiny" style="margin-top: 8mm; height: 30mm;">
-        <span class="label">MARGIN ARROW</span>
-        <!-- TODO: insert illustration — MARGIN ARROW — filename: ??? -->
+        <span class="label">ILLUSTRATION</span>
+        <span class="desc">A hand-drawn arrow connecting one of the body paragraphs to one of these notes.</span>
       </div>
     </div>
   </div>
@@ -904,7 +3008,7 @@
   <div class="section-break-slanted">
     <div class="ghost-quote">What the channel keeps. What it loses.</div>
     <div class="big-slash">/</div>
-    <div class="recap">CHAPTER 02 · NOISE · PP. 19—26 · REDUNDANCY · OVERLOAD · RELEVANCE · SAY IT TWICE WHEN NOISE WILL EAT ONCE</div>
+    <div class="recap">CHAPTER 02 //// NOISE //// PP. 19—26 //// REDUNDANCY · OVERLOAD · RELEVANCE //// SAY IT TWICE WHEN NOISE WILL EAT ONCE</div>
     <div class="next">↓ NEXT · CH 03 · FRAME</div>
   </div>
   <div class="page-folio">26</div>
@@ -938,7 +3042,7 @@
   <div style="position: absolute; top: 22mm; left: 14mm; right: 14mm; bottom: 14mm;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
       <span class="fig-tape">FIG. 03</span>
-      <span class="dataviz-annotation">EN · NL · ALTERNATING</span>
+      <span class="dataviz-annotation">·· EN //// NL // ALTERNATING ··</span>
     </div>
     <div class="principles-grid" style="height: calc(100% - 14mm);">
 
@@ -993,7 +3097,7 @@
   <div style="position: absolute; top: 22mm; left: 14mm; right: 14mm; bottom: 14mm;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
       <span class="dataviz-annotation">·· CONTINUED ··</span>
-      <span class="dataviz-annotation">SEE ALSO P. 32 · 33 · DETAIL</span>
+      <span class="dataviz-annotation">SEE ALSO P. 32 · 33 //// DETAIL</span>
     </div>
     <div class="principles-grid" style="height: calc(100% - 14mm);">
 
@@ -1092,7 +3196,7 @@
   <div class="page-header"><span class="ch-num">03</span>FRAME</div>
 
   <div style="margin-top: 14mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRINCIPLE 01</span>
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">//// PRINCIPLE 01 ////</span>
     <h1 class="h1 medium" style="margin-top: 0; margin-bottom: 4mm;">Simplicity</h1>
     <span class="slash-mark" style="display: block; font-size: 12pt; margin-bottom: 14mm;">/</span>
 
@@ -1105,12 +3209,12 @@
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 14mm;">
       <div class="illustration-zone" style="aspect-ratio: 1.4;">
-        <span class="label">MÜLLER-BROCKMANN</span>
-        <!-- TODO: insert illustration — MÜLLER-BROCKMANN — filename: ??? -->
+        <span class="label">EXAMPLE — MÜLLER-BROCKMANN</span>
+        <span class="desc">Sketch a Müller-Brockmann grid cover (1957–60). Reference, not reproduction. Loose pen study.</span>
       </div>
       <div class="illustration-zone" style="aspect-ratio: 1.4;">
-        <span class="label">BECK · TUBE MAP</span>
-        <!-- TODO: insert illustration — BECK · TUBE MAP — filename: ??? -->
+        <span class="label">EXAMPLE — BECK TUBE MAP</span>
+        <span class="desc">Sketch a fragment of Harry Beck's London Underground diagram (1933). Reference, not reproduction.</span>
       </div>
     </div>
   </div>
@@ -1122,7 +3226,7 @@
   <div class="page-header"><span class="ch-num">03</span>FRAME</div>
 
   <div style="margin-top: 14mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRINCIPLE 03 · EMPHASIS</span>
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">//// PRINCIPLE 03 ////</span>
     <h1 class="h1 medium" style="margin-top: 0; margin-bottom: 4mm;">Emphasis</h1>
     <span class="slash-mark" style="display: block; font-size: 12pt; margin-bottom: 14mm;">/</span>
 
@@ -1136,12 +3240,12 @@
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 14mm;">
       <div class="illustration-zone" style="aspect-ratio: 1.4;">
-        <span class="label">LUBALIN HEADLINE</span>
-        <!-- TODO: insert illustration — LUBALIN HEADLINE — filename: ??? -->
+        <span class="label">EXAMPLE — LUBALIN HEADLINE</span>
+        <span class="desc">Sketch a Herb Lubalin headline (1960s–70s) — <em>U&amp;lc</em> magazine. Letters at scale. Hand study.</span>
       </div>
       <div class="illustration-zone" style="aspect-ratio: 1.4;">
-        <span class="label">CONTEMPORARY EDITORIAL</span>
-        <!-- TODO: insert illustration — CONTEMPORARY EDITORIAL — filename: ??? -->
+        <span class="label">EXAMPLE — CONTEMPORARY EDITORIAL</span>
+        <span class="desc">Sketch a recent editorial spread that uses emphasis well — your choice. Reference, not reproduction.</span>
       </div>
     </div>
   </div>
@@ -1151,12 +3255,12 @@
 <!-- ───── PAGES 34–35 — COMPARISON SPREAD ───── -->
 <section class="page verso" data-page="34" aria-label="Without the frame">
   <div class="page-header"><span class="ch-num">03</span>FRAME</div>
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">WITHOUT THE FRAME</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">//// WITHOUT THE FRAME ////</span>
   <h2 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 130mm;">Same content, no principles applied. The reader is on their own.</h2>
 
   <div class="illustration-zone" style="height: 140mm;">
-    <span class="label">VISUAL CHAOS</span>
-    <!-- TODO: insert illustration — VISUAL CHAOS — filename: ??? -->
+    <span class="label">ILLUSTRATION — VISUAL CHAOS</span>
+    <span class="desc">Draw / lay out the same paragraph from p. 33 (Emphasis) but with NO hierarchy, NO proximity, NO contrast, NO alignment. Words at random sizes, broken alignments, no rhythm. The page should physically feel hard to read.</span>
   </div>
 
   <p class="caption" style="margin-top: 8mm; color: var(--gray);">EVERY DECISION TAKEN AT RANDOM · NO ARGUMENT VISIBLE · THE READER MUST DO ALL THE WORK</p>
@@ -1165,7 +3269,7 @@
 
 <section class="page recto" data-page="35" aria-label="With the frame">
   <div class="page-header"><span class="ch-num">03</span>FRAME</div>
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">WITH THE FRAME</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm; color: var(--red);">//// WITH THE FRAME ////</span>
   <h2 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 130mm;">Same content, all sixteen principles in service of the message.</h2>
 
   <div style="height: 140mm; padding: 10mm; border: 0.5pt solid var(--ink); position: relative;">
@@ -1185,7 +3289,7 @@
   <div class="section-break-slanted">
     <div class="ghost-quote">The grid is the law that lets the wild exist.</div>
     <div class="big-slash">/</div>
-    <div class="recap">CHAPTER 03 · FRAME · PP. 27—36 · SIXTEEN PRINCIPLES · A VOCABULARY · NOT A RECIPE</div>
+    <div class="recap">CHAPTER 03 //// FRAME //// PP. 27—36 //// SIXTEEN PRINCIPLES · A VOCABULARY · NOT A RECIPE //// THE GRID IS WHAT LETS THE WILD EXIST</div>
     <div class="next">↓ NEXT · CH 04 · TOOLS</div>
   </div>
   <div class="page-folio">36</div>
@@ -1206,7 +3310,7 @@
     <div class="center-mark">
       <div class="illustration-zone tiny" style="width: 48mm; height: 48mm;">
         <span class="label">FIVE TOOLS</span>
-        <!-- TODO: insert illustration — five tools scattered (pen · brush · ruler · microphone · film) — filename: ??? -->
+        <span class="desc">Pen · brush · ruler · microphone · film. Five small instruments, hand-drawn, scattered.</span>
       </div>
     </div>
 
@@ -1215,10 +3319,10 @@
 
     <span class="legend">
       TEXT · IMAGE · GRAPHIC<br />
-      AUDIO · VIDEO
+      AUDIO · VIDEO //// 5
     </span>
 
-    <span style="position: absolute; top: 22mm; left: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 04 · NEGATIVE SPACE · THE DISCIPLINE OF CHOOSING IS THE DISCIPLINE OF LEAVING OUT</span>
+    <span style="position: absolute; top: 22mm; left: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 04 · NEGATIVE SPACE //// THE DISCIPLINE OF CHOOSING IS THE DISCIPLINE OF LEAVING OUT</span>
   </div>
 </section>
 
@@ -1229,11 +3333,10 @@
   <div style="position: absolute; top: 24mm; left: 14mm; right: 14mm;">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4mm;">
       <span class="fig-tape">FIG. 04</span>
-      <span class="dataviz-annotation">5 × 4 · 20 CELLS</span>
+      <span class="dataviz-annotation">5 × 4 //// 20 CELLS</span>
     </div>
-    <h3 class="h2" style="margin-top: 0; margin-bottom: 6mm;">Five mediums, four attributes — a relative reading.</h3>
-    <p style="font-family: var(--font-body); font-size: 9pt; line-height: 13pt; max-width: 130mm; margin-bottom: 8mm; text-align: justify; hyphens: auto;">Pettersson treats the choice of medium as a design decision in its own right, not a container the message is poured into. Each medium carries some kinds of meaning easily and resists others. The matrix below is a relative reading rather than a score — it sets the five mediums against four attributes so the trade-offs are visible before a channel is chosen.</p>
-    <p class="caption" style="margin-bottom: 14mm; max-width: 130mm;">THIS PUBLICATION · AFTER PETTERSSON'S MEDIUM TYPOLOGY · DOT COUNT EXPRESSES RELATIVE STRENGTH, NOT QUANTITATIVE SCORE</p>
+    <h3 class="h2" style="margin-top: 0; margin-bottom: 8mm;">Five mediums, four attributes — a relative reading.</h3>
+    <p class="caption" style="margin-bottom: 14mm; max-width: 130mm;">AFTER PETTERSSON · EACH SCALE IS COMPARATIVE, NOT ABSOLUTE · THE DOT COUNT EXPRESSES RELATIVE STRENGTH, NOT QUANTITATIVE SCORE</p>
 
     <table class="tools-matrix">
       <thead>
@@ -1296,7 +3399,7 @@
 
 <section class="page recto no-folio" data-page="39" aria-label="Tools matrix recto pull quote box">
   <div style="margin-top: 28mm; max-width: 150mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 8mm; color: var(--red);">PULL QUOTE · BOX</span>
+    <span class="slash-row" style="display: block; margin-bottom: 8mm; color: var(--red);">//// PULL QUOTE · BOX VARIANT ////</span>
 
     <!-- Pull quote with the box-stroke variant -->
     <div class="pull-quote-box">
@@ -1321,7 +3424,7 @@
     <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.08;">TEXT IS NEVER JUST TEXT</div>
     <div style="font-family: var(--font-display); font-weight: 900; font-size: 60pt; line-height: 0.92; letter-spacing: -0.025em; color: var(--paper); opacity: 0.03; transform: translateX(-12mm);">TEXT IS NEVER JUST</div>
 
-    <span style="position: absolute; top: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45;">SIGNAL DECAY · 7 STEPS</span>
+    <span style="position: absolute; top: 14mm; left: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45;">//// SIGNAL DECAY · 7 STEPS ////</span>
     <span style="position: absolute; bottom: 14mm; right: 14mm; font-family: var(--font-mono); font-size: 7pt; letter-spacing: 0.16em; color: var(--paper); opacity: 0.45;">FIG. 04·b</span>
   </div>
 </section>
@@ -1331,7 +3434,7 @@
   <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
 
   <!-- Vertical marginal note running along right edge -->
-  <div class="body-vertical-edge right">→ EVERY CHANNEL HAS A LOGIC THE MESSAGE MUST ACCEPT</div>
+  <div class="body-vertical-edge right">→ EVERY CHANNEL HAS A LOGIC THE MESSAGE MUST ACCEPT ////</div>
 
   <div class="two-col-body">
     <div>
@@ -1372,28 +3475,28 @@
 <section class="page recto" data-page="43" aria-label="Visual examples spread">
   <div class="page-header"><span class="ch-num">04</span>TOOLS</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">SIX EXAMPLES · ONE PER MEDIUM · PLUS COMBINED</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">//// SIX EXAMPLES //// ONE PER MEDIUM · PLUS ONE COMBINED ////</span>
   <h3 class="h3" style="margin-top: 0; margin-bottom: 14mm;">CASE STUDIES</h3>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; margin-bottom: 8mm;">
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 01 — TEXT</span>
-        <!-- TODO: insert illustration — EX 01 — TEXT — filename: ??? -->
+        <span class="desc">A page of dense body text — Pettersson, Kinross, Hochuli study.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">A printed page reads at the reader's pace.</p>
     </div>
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 02 — IMAGE</span>
-        <!-- TODO: insert illustration — EX 02 — IMAGE — filename: ??? -->
+        <span class="desc">A photograph or illustration that carries emotion — your choice.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">An image lands before the words explain.</p>
     </div>
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 03 — GRAPHIC</span>
-        <!-- TODO: insert illustration — EX 03 — GRAPHIC — filename: ??? -->
+        <span class="desc">A pure diagram — Tufte study, or a Beck-style schematic.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">A diagram makes a relation visible.</p>
     </div>
@@ -1403,21 +3506,21 @@
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 04 — AUDIO</span>
-        <!-- TODO: insert illustration — EX 04 — AUDIO — filename: ??? -->
+        <span class="desc">Sketch a microphone or wave pattern — audio cannot be reproduced on paper, so it is referenced.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">Sound carries inflection prose cannot keep.</p>
     </div>
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 05 — VIDEO</span>
-        <!-- TODO: insert illustration — EX 05 — VIDEO — filename: ??? -->
+        <span class="desc">Sketch three film frames in sequence — the cut as a sentence.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">Video is the loudest, most expensive channel.</p>
     </div>
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1;">
         <span class="label">EX 06 — COMBINED</span>
-        <!-- TODO: insert illustration — EX 06 — COMBINED — filename: ??? -->
+        <span class="desc">Sketch a combined-channel artefact — a presentation slide with image, type, and a chart.</span>
       </div>
       <p class="caption" style="margin-top: 4pt;">Each channel does what only it can.</p>
     </div>
@@ -1432,7 +3535,7 @@
   <div class="section-break-slanted">
     <div class="ghost-quote">No medium is innocent.</div>
     <div class="big-slash">/</div>
-    <div class="recap">CHAPTER 04 · TOOLS · PP. 37—44 · FIVE MEDIUMS · FOUR ATTRIBUTES · EACH CHANNEL DOES SOMETHING THE OTHERS CANNOT</div>
+    <div class="recap">CHAPTER 04 //// TOOLS //// PP. 37—44 //// FIVE MEDIUMS · FOUR ATTRIBUTES //// EACH CHANNEL DOES SOMETHING THE OTHERS CANNOT</div>
     <div class="next">↓ NEXT · CH 05 · MEANING</div>
   </div>
   <div class="page-folio">44</div>
@@ -1459,7 +3562,7 @@
 
     <div class="subtitle">The message is not delivered. It is rebuilt — by the reader, in the reader's mind, with materials the designer has chosen.</div>
 
-    <span style="position: absolute; bottom: 22mm; right: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 05 · MIRROR · HALF AND HALF · NEITHER ALONE</span>
+    <span style="position: absolute; bottom: 22mm; right: 22mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.16em; color: var(--gray);">FIG. CH 05 · MIRROR //// HALF AND HALF · NEITHER ALONE</span>
   </div>
 </section>
 
@@ -1467,7 +3570,7 @@
 <section class="page verso" data-page="46" aria-label="Same image four readings verso">
   <div class="page-header"><span class="ch-num">05</span>MEANING</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">FOUR READINGS · ONE IMAGE</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">//// FOUR READINGS //// ONE IMAGE ////</span>
   <h2 class="h2" style="margin-top: 0; margin-bottom: 4pt;">One image, four readings.</h2>
   <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 8mm;">/</span>
   <p class="caption" style="margin-bottom: 14mm; max-width: 130mm;">THE IMAGE IS THE SAME IN ALL FOUR · THE LABEL CHANGES · WATCH WHAT HAPPENS TO THE MEANING</p>
@@ -1475,8 +3578,8 @@
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm;">
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1.1;">
-        <span class="label">AMBIGUOUS FIGURE</span>
-        <!-- TODO: insert illustration — AMBIGUOUS FIGURE — filename: ??? -->
+        <span class="label">SHAPE A — DRAW IT ONCE</span>
+        <span class="desc">Draw a single ambiguous figure — dots and lines, organic. Will be repeated identically across four cells.</span>
       </div>
       <p class="caption" style="margin-top: 4pt; color: var(--red);">[01] —— A CONSTELLATION</p>
       <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as celestial: nodes are stars, the lines are imagined connections that astronomers agreed on.</p>
@@ -1484,7 +3587,7 @@
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1.1;">
         <span class="label">SAME SHAPE</span>
-        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+        <span class="desc">Identical to the first. Copy-paste, do not redraw.</span>
       </div>
       <p class="caption" style="margin-top: 4pt; color: var(--red);">[02] —— A MOLECULE</p>
       <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as chemical: nodes are atoms, the lines are bonds, the geometry encodes valence and structure.</p>
@@ -1500,7 +3603,7 @@
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1.1;">
         <span class="label">SAME SHAPE</span>
-        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+        <span class="desc">Identical to the first. Copy-paste, do not redraw.</span>
       </div>
       <p class="caption" style="margin-top: 4pt; color: var(--red);">[03] —— A NETWORK</p>
       <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as social: nodes are people, lines are relations, the cluster shape encodes community structure.</p>
@@ -1508,7 +3611,7 @@
     <div>
       <div class="illustration-zone" style="aspect-ratio: 1.1;">
         <span class="label">SAME SHAPE</span>
-        <!-- TODO: insert illustration — SAME SHAPE — filename: ??? -->
+        <span class="desc">Identical to the first. Copy-paste, do not redraw.</span>
       </div>
       <p class="caption" style="margin-top: 4pt; color: var(--red);">[04] —— A DECISION TREE</p>
       <p style="font-family: var(--font-body); font-size: 8pt; line-height: 11pt; margin-top: 4pt;">Read as procedural: nodes are choices, lines are paths, the geometry maps a process from root to leaf.</p>
@@ -1516,9 +3619,9 @@
   </div>
 
   <!-- Redacted pull quote — parts of letters blocked with red rectangles -->
-  <span class="slash-row" style="display: block; margin-top: 18mm; margin-bottom: 4mm;">PULL QUOTE · REDACTED</span>
+  <span class="slash-row" style="display: block; margin-top: 18mm; margin-bottom: 4mm;">//// PULL QUOTE · REDACTED VARIANT ////</span>
   <div class="pull-quote-redacted" style="max-width: 150mm;">
-    Receivers are apparently capable of <span class="redact">sensing</span> far more information than is explicitly <span class="redact">displayed</span> in a given picture or text.
+    Meaning is not a property of the <span class="redact">image</span>. It is a property of the <span class="redact">relationship</span> between the image and a <span class="redact">reader</span> who is already prepared, by the caption, to see one thing rather than another.
   </div>
 
   <div class="page-folio">47</div>
@@ -1548,11 +3651,11 @@
 <section class="page recto" data-page="49" aria-label="Full-page closing pull quote">
   <div class="page-header"><span class="ch-num">05</span>MEANING</div>
   <div class="full-page-quote">
-    <span class="marker-top">CLOSING ARGUMENT · CH 05</span>
-    <p class="pull-quote-giant" style="font-size: 84pt; line-height: 80pt;">
-      Good graphic design is simple, <em>bold</em>, and direct.
+    <span class="marker-top">//// CLOSING ARGUMENT //// CH 05 · GIANT VARIANT ////</span>
+    <p class="pull-quote-giant">
+      Every design is a hypothesis about <em>who the reader is</em>. The designer who is wrong about the reader is wrong about the design.
     </p>
-    <span class="marker-bottom">—— RUNE PETTERSSON · MESSAGE DESIGN · 2015 · FULL-PAGE PULL QUOTE · THE GRID BENDS WHERE THE ARGUMENT DEMANDS</span>
+    <span class="marker-bottom">—— RUNE PETTERSSON · MESSAGE DESIGN · 2002 //// FULL-PAGE PULL QUOTE //// THE GRID BENDS WHERE THE ARGUMENT DEMANDS</span>
   </div>
   <div class="page-folio">49</div>
 </section>
@@ -1562,14 +3665,18 @@
   <div class="page-header"><span class="ch-num">05</span>MEANING</div>
 
   <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 24mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 0;">END · MAIN BODY</span>
+    <span class="slash-row" style="display: block; margin-bottom: 0;">//// END · MAIN BODY //// THE LAST WORD ////</span>
+
+    <p class="closing-statement">
+      Every design decision is a message about <em>what you think the reader deserves.</em>
+    </p>
 
     <div class="illustration-zone tiny" style="width: 50mm; height: 30mm; margin-top: 0;">
-      <span class="label">CLOSING</span>
-      <!-- TODO: insert illustration — CLOSING — filename: ??? -->
+      <span class="label">ILLUSTRATION — CLOSING</span>
+      <span class="desc">A small closing flourish — a knot, a sealed envelope, a hand returning the book to the shelf.</span>
     </div>
 
-    <p class="caption" style="color: var(--gray); letter-spacing: 0.18em;">END →</p>
+    <p class="caption" style="color: var(--gray); letter-spacing: 0.18em;">—— THIS PUBLICATION //// END //// →</p>
   </div>
 
   <div class="page-folio">50</div>
@@ -1585,13 +3692,13 @@
 <section class="page recto" data-page="51" aria-label="Multilingual preview">
   <div class="page-header"><span class="ch-num">06</span>MULTILINGUAL · A PREVIEW · EN — NL</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">THREE TECHNIQUES · ONE PRINCIPLE</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">//// THREE TECHNIQUES //// ONE PRINCIPLE ////</span>
   <h2 class="h3" style="margin-top: 0; margin-bottom: 4mm;">MULTILINGUAL — A PREVIEW</h2>
   <h1 class="h2" style="margin-top: 0; margin-bottom: 14mm; max-width: 140mm;">One principle — Hierarchy — set in three multilingual techniques.</h1>
 
   <!-- Technique A: Weight-layering -->
   <div style="margin-bottom: 16mm;">
-    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">A · WEIGHT-LAYERING (BODY TEXT)</span>
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">//// A · WEIGHT-LAYERING (BODY TEXT) ////</span>
     <div style="margin-top: 6mm; max-width: 140mm;">
       <p style="font-family: var(--font-body); font-weight: 700; font-size: 11pt; line-height: 14pt;">First, second, third — readers crave a sequence.</p>
       <p style="font-family: var(--font-body); font-weight: 400; font-size: 12pt; line-height: 14pt; color: var(--gray);">Eerst, tweede, derde — lezers verlangen een volgorde.</p>
@@ -1601,7 +3708,7 @@
 
   <!-- Technique B: Overprint -->
   <div style="margin-bottom: 16mm;">
-    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">B · OVERPRINT (CHAPTER TITLES)</span>
+    <span class="slash-row" style="color: var(--red); display: block; margin-bottom: 4mm;">//// B · OVERPRINT (CHAPTER TITLES) ////</span>
     <div style="margin-top: 6mm; max-width: 140mm; position: relative; height: 36mm;">
       <span style="position: absolute; top: 4mm; left: 4mm; font-family: var(--font-display); font-weight: 900; font-size: 36pt; line-height: 1; color: var(--ink); opacity: 0.22;">HIËRARCHIE</span>
       <span style="position: relative; font-family: var(--font-display); font-weight: 900; font-size: 36pt; line-height: 1; color: var(--ink);">HIERARCHY</span>
@@ -1615,7 +3722,7 @@
 <section class="page verso" data-page="52" aria-label="Multilingual preview cell rotation">
   <div class="page-header"><span class="ch-num">06</span>MULTILINGUAL · A PREVIEW · EN — NL</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; color: var(--red); margin-bottom: 4mm;">C · CELL ROTATION (PRINCIPLES GRID)</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; color: var(--red); margin-bottom: 4mm;">//// C · CELL ROTATION (PRINCIPLES GRID) ////</span>
   <p class="caption" style="margin-top: 4mm; max-width: 140mm; color: var(--gray);">CELLS ALTERNATE WHICH LANGUAGE IS PRIMARY · READER SEES BOTH WITH EQUAL WEIGHT ACROSS THE GRID</p>
 
   <div class="principles-grid" style="height: 80mm; margin-top: 8mm;">
@@ -1654,9 +3761,9 @@
 
 <!-- ───── PAGE 53 — BIBLIOGRAPHY · GROUPED ───── -->
 <section class="page recto" data-page="53" aria-label="Bibliography grouped">
-  <div class="page-header bib"><span class="ch-num">06</span>BIBLIOGRAPHY · 25 ENTRIES</div>
+  <div class="page-header bib"><span class="ch-num">06</span>BIBLIOGRAPHY · 24 ENTRIES</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">FOUR GROUPS · GROUPED BY DOMAIN</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">//// 24 ENTRIES //// THREE GROUPS ////</span>
   <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">BIBLIOGRAPHY</h3>
   <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
 
@@ -1664,7 +3771,7 @@
 
     <div class="bib-group">
       <div class="group-head">·· PRIMARY ··</div>
-      <p>Pettersson, R. (2015). <em>Message Design.</em> Institute for Infology, Tullinge. ISBN 978-91-85334-26-1</p>
+      <p>Pettersson, R. (2002). <em>Message Design.</em> Institute for Infology, Tullinge.</p>
       <p>Shannon, C. &amp; Weaver, W. (1949). <em>The Mathematical Theory of Communication.</em> University of Illinois Press.</p>
     </div>
 
@@ -1692,15 +3799,10 @@
       <p>Krug, S. (2014). <em>Don't Make Me Think.</em> New Riders.</p>
       <p>Crow, D. (2010). <em>Visible Signs: An Introduction to Semiotics.</em> AVA.</p>
       <p>Drucker, J. (2014). <em>Graphesis: Visual Forms of Knowledge Production.</em> Harvard University Press.</p>
-      <p>Toffler, A. (1970). <em>Future Shock.</em> Random House.</p>
-      <p>Gross, B. (1964). <em>The Managing of Organizations.</em> Free Press.</p>
-      <p>Kahneman, D. (2011). <em>Thinking, Fast and Slow.</em> Farrar, Straus and Giroux.</p>
-    </div>
-
-    <div class="bib-group">
-      <div class="group-head">·· INFORMATION SCIENCE ··</div>
       <p>Ackoff, R. L. (1989). From data to wisdom. <em>Journal of Applied Systems Analysis,</em> 16, 3–9.</p>
       <p>Rowley, J. (2007). The wisdom hierarchy. <em>Journal of Information Science,</em> 33(2).</p>
+      <p>Toffler, A. (1970). <em>Future Shock.</em> Random House.</p>
+      <p>Gross, B. (1964). <em>The Managing of Organizations.</em> Free Press.</p>
     </div>
 
   </div>
@@ -1712,7 +3814,7 @@
 <section class="page verso" data-page="54" aria-label="Index structured">
   <div class="page-header bib"><span class="ch-num">06</span>INDEX · A — W</div>
 
-  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">INDEX · A — W · 59 ENTRIES</span>
+  <span class="slash-row" style="display: block; margin-top: 14mm; margin-bottom: 4mm;">//// INDEX //// A — W //// 56 ENTRIES ////</span>
   <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">INDEX</h3>
   <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
 
@@ -1758,7 +3860,7 @@
       <div class="letter-head">F</div>
       <p><strong>feedback loop</strong> 10</p>
       <p><strong>folio</strong> 8, 22</p>
-      <p><strong>frame</strong> 27, 30, 31, 34, 35</p>
+      <p><strong>frame</strong> 27</p>
     </div>
 
     <div class="index-letter">
@@ -1793,7 +3895,7 @@
       <div class="letter-head">M</div>
       <p><strong>medium</strong> 16, 38, 41</p>
       <p><strong>Müller-Brockmann, J.</strong> 32</p>
-      <p><strong>multilingual</strong> 28, 51, 52</p>
+      <p><strong>multilingual</strong> 19, 28, 51, 52</p>
       <p><strong>multimodal</strong> 42</p>
     </div>
 
@@ -1804,7 +3906,7 @@
 
     <div class="index-letter">
       <div class="letter-head">O</div>
-      <p><strong>overprint</strong> 51, 52</p>
+      <p><strong>overprint</strong> 19, 51</p>
     </div>
 
     <div class="index-letter">
@@ -1853,7 +3955,7 @@
     <div class="index-letter">
       <div class="letter-head">W</div>
       <p><strong>Weaver, W.</strong> 10, 12</p>
-      <p><strong>weight-layering</strong> 51, 52</p>
+      <p><strong>weight-layering</strong> 51</p>
       <p><strong>wisdom</strong> 20, 21</p>
     </div>
 
@@ -1867,7 +3969,7 @@
   <div class="page-header bib"><span class="ch-num">06</span>COLOPHON · MAY 2026</div>
 
   <div style="margin-top: 14mm; max-width: 130mm;">
-    <span class="slash-row" style="display: block; margin-bottom: 4mm;">PRODUCTION NOTES</span>
+    <span class="slash-row" style="display: block; margin-bottom: 4mm;">//// PRODUCTION NOTES ////</span>
     <h3 class="h3" style="margin-top: 0; margin-bottom: 4pt;">COLOPHON</h3>
     <span class="slash-mark" style="display: block; font-size: 8pt; margin-bottom: 10mm;">/</span>
 
@@ -1876,7 +3978,7 @@
 
       <p style="margin-bottom: 12pt;"><strong>Editorial design</strong><br />Gulpembe Colak<br />2GDM, Visual Communication<br />Artesis Plantijn Hogeschool, Antwerpen<br />Academic year 2025–26</p>
 
-      <p style="margin-bottom: 12pt;"><strong>Source text</strong><br />Rune Pettersson, <em>Message Design</em> (2015)<br />Institute for Infology, Tullinge<br />Excerpts and adaptations used with permission</p>
+      <p style="margin-bottom: 12pt;"><strong>Source text</strong><br />Rune Pettersson, <em>Message Design</em> (2002)<br />Institute for Infology, Tullinge<br />Excerpts and adaptations used with permission</p>
 
       <p style="margin-bottom: 12pt;"><strong>Typography</strong><br />Display: Inter, by Rasmus Andersson<br />Body: Inter Regular<br />Mono: IBM Plex Mono, by Mike Abbink &amp; Bold Monday<br />Pull quotes: EB Garamond, by Georg Duffner</p>
 
@@ -1888,7 +3990,7 @@
 
       <p style="margin-bottom: 12pt;"><strong>Copyright</strong><br />Original text © Rune Pettersson<br />This editorial design © Slanted Publishers, 2026<br />All rights reserved</p>
 
-      <p><strong>No commercial ISBN</strong><br />Student edition · 2GDM Visual Communication · Artesis Plantijn Hogeschool, Antwerpen</p>
+      <p><strong>ISBN</strong> 978-3-948440-01-2</p>
     </div>
   </div>
 
@@ -1913,12 +4015,41 @@
       <p style="font-family: var(--font-italic); font-style: italic; font-size: 28pt; line-height: 36pt; color: var(--paper); max-width: 160mm;">
         Every design decision is a message about <em style="color: var(--red);">what you think the reader deserves.</em>
       </p>
-      <!-- self-attribution removed — the tagline stands as an anonymous closing manifesto -->
+      <p style="margin-top: 14mm; font-family: var(--font-mono); font-size: 9pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.55;">— THIS PUBLICATION</p>
     </div>
 
-    <!-- Edition note (replaces fictional ISBN barcode) -->
+    <!-- ISBN barcode mock at bottom -->
     <div style="position: absolute; bottom: 14mm; right: 14mm; text-align: right;">
-      <p style="font-family: var(--font-mono); font-size: 8pt; letter-spacing: 0.06em; color: var(--paper); opacity: 0.55;">STUDENT EDITION · 2025—26 · MAY 2026</p>
+      <div style="display: inline-block; padding: 6mm 8mm; background: var(--paper);">
+        <!-- barcode mock -->
+        <div style="display: flex; gap: 0.6mm; align-items: flex-end; height: 12mm;">
+          <span style="width: 0.4mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.4mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.4mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.4mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.5mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.4mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.6mm; height: 100%; background: var(--ink);"></span>
+          <span style="width: 0.3mm; height: 100%; background: var(--ink);"></span>
+        </div>
+        <p style="margin-top: 1mm; font-family: var(--font-mono); font-size: 6pt; letter-spacing: 0.1em; color: var(--ink);">9 783948 440012</p>
+      </div>
     </div>
 
     <!-- Slanted mark bottom-left -->
@@ -1932,7 +4063,417 @@
       </div>
     </div>
   </div>
-</section>
+<script src="pdf.min.js"></script>
+<script>
+(function () {
+  if (window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const EYE = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const EYE_OFF = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.9 4.24A9.1 9.1 0 0 1 12 4c6.4 0 10 8 10 8a18.5 18.5 0 0 1-2.16 3.19"/><path d="M6.61 6.61A18.4 18.4 0 0 0 2 12s3.6 8 10 8a9.1 9.1 0 0 0 5.06-1.51"/><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M2 2l20 20"/></svg>';
+  const MM = 96 / 25.4, HTML_W = 210 * MM, HTML_H = 240 * MM, PAD = 64;
+
+  let kind = 'html', htmlPages = [], pdfDoc = null, count = 0, baseW = HTML_W, baseH = HTML_H;
+  let current = 0, mode = 'single', zoom = 1, fitScale = 1, renderSeq = 0;
+  let docKey = 'document';
+
+  let tool = 'cursor', penColor = '#cc1a0a';
+  let annos = {}, noteCounter = 0, annosVisible = true;
+  let history = [], openBubble = null;
+
+  const stage     = document.getElementById('stage');
+  const wrap      = document.getElementById('spreadWrap');
+  const overlay   = document.getElementById('dropOverlay');
+  const fileInput = document.getElementById('fileInput');
+
+  function pageAnno(i) { if (!annos[i]) annos[i] = { strokes: [], notes: [] }; return annos[i]; }
+
+  // ---- persistence ----
+  let saveT;
+  function storageKey() { return 'feedback:' + docKey; }
+  function saveAnnos() {
+    clearTimeout(saveT);
+    saveT = setTimeout(function () {
+      try { localStorage.setItem(storageKey(), JSON.stringify({ annos: annos, noteCounter: noteCounter })); } catch (e) {}
+    }, 200);
+  }
+  function loadAnnos() {
+    annos = {}; noteCounter = 0;
+    try { const raw = localStorage.getItem(storageKey()); if (raw) { const o = JSON.parse(raw); annos = o.annos || {}; noteCounter = o.noteCounter || 0; } } catch (e) {}
+  }
+
+  // ---- layout ----
+  function visibleIndices() {
+    if (mode === 'single') return [current];
+    if (current === 0) return [0];
+    if (current + 1 >= count) return [current];
+    return [current, current + 1];
+  }
+  function computeFit() {
+    const cols = visibleIndices().length;
+    const availW = Math.max(120, stage.clientWidth  - PAD);
+    const availH = Math.max(120, stage.clientHeight - PAD);
+    fitScale = Math.max(0.1, Math.min(availW / (baseW * cols), availH / baseH));
+  }
+  function makeCard(scale) {
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.style.width  = (baseW * scale) + 'px';
+    card.style.height = (baseH * scale) + 'px';
+    return card;
+  }
+
+  function render() {
+    if (!count) { renderEmpty(); return; }
+    current = Math.min(count - 1, Math.max(0, current));
+    computeFit();
+    const scale = fitScale * zoom;
+    const vis = visibleIndices();
+    const seq = ++renderSeq;
+    wrap.innerHTML = '';
+    vis.forEach(function (i) {
+      const cardW = baseW * scale, cardH = baseH * scale;
+      const card = makeCard(scale);
+      wrap.appendChild(card);
+      if (kind === 'html') {
+        const content = document.createElement('div');
+        content.className = 'page-content';
+        content.style.width = baseW + 'px'; content.style.height = baseH + 'px';
+        content.style.transform = 'scale(' + scale + ')';
+        content.appendChild(htmlPages[i].cloneNode(true));
+        card.appendChild(content);
+      } else { renderPdfPage(i, scale, card, seq); }
+      attachAnno(card, i, cardW, cardH);
+    });
+    updateChrome(vis, scale);
+    updateToolUI();
+  }
+
+  function renderPdfPage(i, scale, card, seq) {
+    pdfDoc.getPage(i + 1).then(function (page) {
+      if (seq !== renderSeq) return;
+      const dpr = window.devicePixelRatio || 1;
+      const vp1 = page.getViewport({ scale: 1 });
+      const vp  = page.getViewport({ scale: scale * dpr });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.ceil(vp.width); canvas.height = Math.ceil(vp.height);
+      canvas.style.width = (vp1.width * scale) + 'px'; canvas.style.height = (vp1.height * scale) + 'px';
+      canvas.style.display = 'block';
+      card.insertBefore(canvas, card.firstChild);
+      page.render({ canvasContext: canvas.getContext('2d'), viewport: vp });
+    }).catch(function (err) { console.error('PDF render', err); });
+  }
+
+  function updateChrome(vis, scale) {
+    document.getElementById('totalPagesNum').textContent = count;
+    document.getElementById('currentPageNum').textContent =
+      (vis.length === 2) ? (vis[0] + 1) + '–' + (vis[1] + 1) : (vis[0] + 1);
+    document.getElementById('zoomReadout').textContent = Math.round(scale * 100) + '%';
+    document.getElementById('prevBtn').disabled = current <= 0;
+    document.getElementById('nextBtn').disabled = vis[vis.length - 1] >= count - 1;
+    document.getElementById('singleViewBtn').classList.toggle('active', mode === 'single');
+    document.getElementById('spreadViewBtn').classList.toggle('active', mode === 'spread');
+  }
+
+  function renderEmpty() {
+    wrap.innerHTML =
+      '<div class="empty-state" id="emptyState">' +
+        '<div class="ic">⤓</div>' +
+        '<h2>Drop an HTML or PDF file to preview</h2>' +
+        '<p>drag it here &nbsp;·&nbsp; or click to browse</p>' +
+      '</div>';
+    document.getElementById('totalPagesNum').textContent = '0';
+    document.getElementById('currentPageNum').textContent = '0';
+    document.getElementById('zoomReadout').textContent = '—';
+    document.getElementById('emptyState').addEventListener('click', function () { fileInput.click(); });
+  }
+
+  // ---- annotations ----
+  function dFromPts(pts, w, h) {
+    let d = '';
+    for (let k = 0; k < pts.length; k++) d += (k ? 'L' : 'M') + (pts[k][0] * w).toFixed(1) + ' ' + (pts[k][1] * h).toFixed(1) + ' ';
+    return d;
+  }
+  function strokePath(s, w, h) {
+    const p = document.createElementNS(SVGNS, 'path');
+    p.setAttribute('d', dFromPts(s.pts, w, h));
+    p.setAttribute('fill', 'none'); p.setAttribute('stroke', s.color);
+    p.setAttribute('stroke-width', (s.w * w).toFixed(2));
+    p.setAttribute('stroke-linecap', 'round'); p.setAttribute('stroke-linejoin', 'round');
+    return p;
+  }
+  function ptNorm(e, svg) {
+    const r = svg.getBoundingClientRect();
+    return { x: Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), y: Math.min(1, Math.max(0, (e.clientY - r.top) / r.height)) };
+  }
+  function attachAnno(card, i, cardW, cardH) {
+    const svg = document.createElementNS(SVGNS, 'svg');
+    svg.setAttribute('class', 'anno-svg');
+    svg.setAttribute('width', cardW); svg.setAttribute('height', cardH);
+    svg.style.width = cardW + 'px'; svg.style.height = cardH + 'px';
+    if (annosVisible) pageAnno(i).strokes.forEach(function (s) { svg.appendChild(strokePath(s, cardW, cardH)); });
+    card.appendChild(svg);
+    const host = document.createElement('div'); host.className = 'note-host'; card.appendChild(host);
+    if (annosVisible) pageAnno(i).notes.forEach(function (n) { host.appendChild(makePin(n, i, cardW, cardH)); });
+    svg.style.pointerEvents = (tool === 'cursor') ? 'none' : 'auto';
+    svg.style.cursor = tool === 'pen' ? 'crosshair' : tool === 'eraser' ? 'cell' : tool === 'note' ? 'copy' : 'default';
+    if (tool === 'pen') enablePen(svg, i, cardW, cardH);
+    else if (tool === 'note') svg.addEventListener('pointerdown', function (e) { addNoteAt(e, svg, i, cardW, cardH, host); });
+    else if (tool === 'eraser') svg.addEventListener('pointerdown', function (e) { eraseAt(e, svg, i); });
+  }
+  function enablePen(svg, i, cardW, cardH) {
+    let drawing = false, cur = null, path = null;
+    svg.addEventListener('pointerdown', function (e) {
+      if (tool !== 'pen' || (e.button !== undefined && e.button !== 0)) return;
+      drawing = true; closeBubble();
+      try { svg.setPointerCapture(e.pointerId); } catch (_) {}
+      const p = ptNorm(e, svg);
+      cur = { color: penColor, w: 3 / baseW, pts: [[p.x, p.y]] };
+      path = strokePath(cur, cardW, cardH); svg.appendChild(path); e.preventDefault();
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drawing) return;
+      const p = ptNorm(e, svg); cur.pts.push([p.x, p.y]);
+      path.setAttribute('d', dFromPts(cur.pts, cardW, cardH));
+    });
+    function end(e) {
+      if (!drawing) return; drawing = false;
+      try { svg.releasePointerCapture(e.pointerId); } catch (_) {}
+      if (cur && cur.pts.length > 1) { pageAnno(i).strokes.push(cur); history.push({ page: i, type: 'strokes' }); saveAnnos(); }
+      else if (path && path.parentNode) path.parentNode.removeChild(path);
+      cur = null; path = null;
+    }
+    svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+  }
+  function makePin(n, i, cardW, cardH) {
+    const pin = document.createElement('div'); pin.className = 'note-pin';
+    pin.style.left = (n.nx * cardW) + 'px'; pin.style.top = (n.ny * cardH) + 'px';
+    pin.style.background = n.color || '#cc1a0a'; pin.textContent = n.num;
+    pin.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      if (tool === 'eraser') { deleteNote(i, n.id); return; }
+      toggleBubble(pin, n, i, cardW, cardH);
+    });
+    return pin;
+  }
+  function addNoteAt(e, svg, i, cardW, cardH, host) {
+    if (e.button !== undefined && e.button !== 0) return;
+    const p = ptNorm(e, svg); noteCounter++;
+    const n = { id: 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), num: noteCounter, nx: p.x, ny: p.y, text: '', color: penColor };
+    pageAnno(i).notes.push(n); history.push({ page: i, type: 'notes' }); saveAnnos();
+    const pin = makePin(n, i, cardW, cardH); host.appendChild(pin);
+    toggleBubble(pin, n, i, cardW, cardH);
+  }
+  function toggleBubble(pin, n, i, cardW, cardH) {
+    if (openBubble && openBubble._id === n.id) { closeBubble(); return; }
+    closeBubble();
+    const host = pin.parentNode;
+    const b = document.createElement('div'); b.className = 'note-bubble'; b._id = n.id;
+    const W = 224, H = 132;
+    b.style.left = Math.max(6, Math.min(n.nx * cardW + 12, cardW - W - 6)) + 'px';
+    b.style.top  = Math.max(6, Math.min(n.ny * cardH + 12, cardH - H - 6)) + 'px';
+    const bar = document.createElement('div'); bar.className = 'note-bubble-bar';
+    const num = document.createElement('span'); num.className = 'nb-num'; num.textContent = 'Note ' + n.num;
+    const del = document.createElement('button'); del.className = 'nb-del'; del.textContent = 'Delete';
+    del.addEventListener('click', function () { deleteNote(i, n.id); });
+    bar.appendChild(num); bar.appendChild(del);
+    const ta = document.createElement('textarea');
+    ta.value = n.text || ''; ta.placeholder = 'Write feedback…';
+    ta.addEventListener('input', function () { n.text = ta.value; saveAnnos(); });
+    b.appendChild(bar); b.appendChild(ta); host.appendChild(b); openBubble = b;
+    setTimeout(function () { ta.focus(); }, 0);
+  }
+  function closeBubble() { if (openBubble && openBubble.parentNode) openBubble.parentNode.removeChild(openBubble); openBubble = null; }
+  function deleteNote(i, id) {
+    const a = pageAnno(i); a.notes = a.notes.filter(function (n) { return n.id !== id; });
+    history = []; closeBubble(); saveAnnos(); render();
+  }
+  function eraseAt(e, svg, i) {
+    const p = ptNorm(e, svg); const A = pageAnno(i);
+    let best = -1, bestD = Infinity;
+    A.strokes.forEach(function (s, idx) {
+      for (let k = 0; k < s.pts.length; k++) {
+        const dx = s.pts[k][0] - p.x, dy = s.pts[k][1] - p.y, d = dx * dx + dy * dy;
+        if (d < bestD) { bestD = d; best = idx; }
+      }
+    });
+    if (best >= 0 && bestD < 0.0009) { A.strokes.splice(best, 1); history = []; saveAnnos(); render(); }
+  }
+
+  // ---- controls ----
+  function setTool(t) { tool = t; if (t !== 'cursor') annosVisible = true; closeBubble(); render(); }
+  function setColor(col) { penColor = col; updateToolUI(); }
+  function undo() {
+    if (!history.length) return;
+    const h = history.pop(); const arr = pageAnno(h.page)[h.type];
+    if (arr && arr.length) arr.pop();
+    closeBubble(); saveAnnos(); render();
+  }
+  function clearPage() {
+    if (!confirm('Clear all marks on page ' + (current + 1) + '?')) return;
+    annos[current] = { strokes: [], notes: [] }; history = []; closeBubble(); saveAnnos(); render();
+  }
+  function toggleAnno() { annosVisible = !annosVisible; closeBubble(); render(); }
+  function exportFeedback() {
+    let md = '# Feedback — ' + docKey + '\n\n'; let any = false;
+    for (let i = 0; i < count; i++) {
+      const a = annos[i]; if (!a || (!a.notes.length && !a.strokes.length)) continue; any = true;
+      md += '## Page ' + (i + 1) + '\n';
+      a.notes.slice().sort(function (x, y) { return x.num - y.num; }).forEach(function (n) {
+        md += '- **Note ' + n.num + '**: ' + (n.text ? n.text.replace(/\n/g, ' ') : '_(empty)_') + '\n';
+      });
+      if (a.strokes.length) md += '- _' + a.strokes.length + ' drawing' + (a.strokes.length > 1 ? 's' : '') + ' on this page_\n';
+      md += '\n';
+    }
+    if (!any) md += '_No annotations yet._\n';
+    const blob = new Blob([md], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'feedback-' + docKey.replace(/[^a-z0-9]+/gi, '-').toLowerCase().replace(/^-|-$/g, '') + '.md';
+    document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+  }
+  function updateToolUI() {
+    [['cursor', 'toolCursor'], ['pen', 'toolPen'], ['note', 'toolNote'], ['eraser', 'toolEraser']].forEach(function (p) {
+      const el = document.getElementById(p[1]); if (el) el.classList.toggle('active', tool === p[0]);
+    });
+    document.querySelectorAll('.swatch').forEach(function (s) { s.classList.toggle('active', s.dataset.color === penColor); });
+    const ct = document.getElementById('colorToggle'); if (ct) ct.style.background = penColor;
+    const t = document.getElementById('toggleAnnoBtn');
+    if (t) { t.innerHTML = annosVisible ? EYE : EYE_OFF; t.classList.toggle('off', !annosVisible); }
+  }
+
+  // ---- nav / zoom ----
+  function next() { if (mode === 'single') current = Math.min(count - 1, current + 1); else current = (current === 0) ? 1 : current + 2; render(); }
+  function prev() { if (mode === 'single') current = Math.max(0, current - 1); else current = (current <= 2) ? 0 : current - 2; render(); }
+  function setMode(m) { if (mode === m) return; mode = m; if (mode === 'spread' && current > 0 && current % 2 === 0) current -= 1; render(); }
+  function zoomIn() { zoom = Math.min(3, zoom + 0.15); render(); }
+  function zoomOut() { zoom = Math.max(0.25, zoom - 0.15); render(); }
+  function fit() { zoom = 1; render(); }
+
+  // ---- loading ----
+  function afterLoad() { current = 0; zoom = 1; mode = 'single'; closeBubble(); history = []; loadAnnos(); render(); }
+  function setHtmlPages(list) { kind = 'html'; htmlPages = list || []; pdfDoc = null; count = htmlPages.length; baseW = HTML_W; baseH = HTML_H; afterLoad(); }
+  function loadPdf(data) {
+    if (!window.pdfjsLib) { alert('PDF engine could not load (pdf.min.js not found).'); return; }
+    pdfjsLib.getDocument({ data: data }).promise.then(function (doc) {
+      pdfDoc = doc; kind = 'pdf'; htmlPages = []; count = doc.numPages; return doc.getPage(1);
+    }).then(function (page) {
+      const vp1 = page.getViewport({ scale: 1 }); baseW = vp1.width; baseH = vp1.height; afterLoad();
+    }).catch(function (err) { console.error(err); alert('Could not open PDF: ' + (err && err.message ? err.message : err)); });
+  }
+  function parseHTML(text) { const tmp = document.createElement('div'); tmp.innerHTML = text; return Array.from(tmp.querySelectorAll('.page')); }
+  function loadFile(file) {
+    if (!file) return;
+    const name = (file.name || '').toLowerCase(); docKey = file.name || 'document';
+    if (/\.pdf$/.test(name) || file.type === 'application/pdf') {
+      const fr = new FileReader(); fr.onload = function (e) { loadPdf(new Uint8Array(e.target.result)); }; fr.readAsArrayBuffer(file);
+    } else if (/\.html?$/.test(name)) {
+      const fr = new FileReader();
+      fr.onload = function (e) { const list = parseHTML(e.target.result); if (list.length) setHtmlPages(list); else alert('No .page elements found in this HTML file.'); };
+      fr.readAsText(file);
+    } else { alert('Please choose an HTML or PDF file.'); }
+  }
+
+  // ---- drag & drop files ----
+  let dragDepth = 0;
+  window.addEventListener('dragenter', function (e) { e.preventDefault(); dragDepth++; overlay.classList.add('show'); });
+  window.addEventListener('dragover',  function (e) { e.preventDefault(); });
+  window.addEventListener('dragleave', function (e) { e.preventDefault(); if (--dragDepth <= 0) { dragDepth = 0; overlay.classList.remove('show'); } });
+  window.addEventListener('drop', function (e) { e.preventDefault(); dragDepth = 0; overlay.classList.remove('show'); if (e.dataTransfer.files.length) loadFile(e.dataTransfer.files[0]); });
+
+  // ---- wiring ----
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('prevBtn').addEventListener('click', prev);
+    document.getElementById('nextBtn').addEventListener('click', next);
+    document.getElementById('zoomInBtn').addEventListener('click', zoomIn);
+    document.getElementById('zoomOutBtn').addEventListener('click', zoomOut);
+    document.getElementById('resetZoomBtn').addEventListener('click', fit);
+    document.getElementById('singleViewBtn').addEventListener('click', function () { setMode('single'); });
+    document.getElementById('spreadViewBtn').addEventListener('click', function () { setMode('spread'); });
+    document.getElementById('uploadBtn').addEventListener('click', function () { fileInput.click(); });
+    fileInput.addEventListener('change', function (e) { if (e.target.files.length) loadFile(e.target.files[0]); });
+
+    document.getElementById('toolCursor').addEventListener('click', function () { setTool('cursor'); });
+    document.getElementById('toolPen').addEventListener('click', function () { setTool('pen'); });
+    document.getElementById('toolNote').addEventListener('click', function () { setTool('note'); });
+    document.getElementById('toolEraser').addEventListener('click', function () { setTool('eraser'); });
+    document.getElementById('undoBtn').addEventListener('click', undo);
+    document.getElementById('clearBtn').addEventListener('click', clearPage);
+    document.getElementById('toggleAnnoBtn').addEventListener('click', toggleAnno);
+    document.getElementById('exportBtn').addEventListener('click', exportFeedback);
+
+    // colour popover
+    const colorToggle = document.getElementById('colorToggle');
+    const swatchPop = document.getElementById('swatchPop');
+    colorToggle.addEventListener('click', function (e) { e.stopPropagation(); swatchPop.classList.toggle('open'); });
+    document.querySelectorAll('.swatch').forEach(function (s) {
+      s.addEventListener('click', function () { setColor(s.dataset.color); swatchPop.classList.remove('open'); });
+    });
+    document.addEventListener('pointerdown', function (e) {
+      if (swatchPop.classList.contains('open') && !swatchPop.contains(e.target) && e.target !== colorToggle) swatchPop.classList.remove('open');
+    });
+
+    // draggable palette
+    const palette = document.getElementById('palette');
+    const grip = document.getElementById('paletteGrip');
+    if (localStorage.getItem('paletteCollapsed') === '1') palette.classList.add('collapsed');
+    function clampPos(x, y) {
+      const r = palette.getBoundingClientRect();
+      const maxX = window.innerWidth - r.width - 8, maxY = window.innerHeight - r.height - 8;
+      return { x: Math.max(8, Math.min(x, maxX)), y: Math.max(8, Math.min(y, maxY)) };
+    }
+    function placePalette(x, y) { const p = clampPos(x, y); palette.style.left = p.x + 'px'; palette.style.top = p.y + 'px'; palette.style.transform = 'none'; }
+    let pos = null; try { pos = JSON.parse(localStorage.getItem('palettePos')); } catch (e) {}
+    if (pos && typeof pos.x === 'number') placePalette(pos.x, pos.y);
+    else { const r = palette.getBoundingClientRect(); placePalette(16, (window.innerHeight - r.height) / 2); }
+
+    document.getElementById('collapseBtn').addEventListener('click', function () {
+      palette.classList.toggle('collapsed');
+      try { localStorage.setItem('paletteCollapsed', palette.classList.contains('collapsed') ? '1' : '0'); } catch (_) {}
+      const r = palette.getBoundingClientRect(); placePalette(r.left, r.top);
+    });
+
+    let dragging = false, offX = 0, offY = 0;
+    grip.addEventListener('pointerdown', function (e) {
+      dragging = true; palette.classList.add('dragging');
+      try { grip.setPointerCapture(e.pointerId); } catch (_) {}
+      const r = palette.getBoundingClientRect(); offX = e.clientX - r.left; offY = e.clientY - r.top; e.preventDefault();
+    });
+    window.addEventListener('pointermove', function (e) { if (dragging) placePalette(e.clientX - offX, e.clientY - offY); });
+    window.addEventListener('pointerup', function (e) {
+      if (!dragging) return; dragging = false; palette.classList.remove('dragging');
+      try { grip.releasePointerCapture(e.pointerId); } catch (_) {}
+      const r = palette.getBoundingClientRect();
+      try { localStorage.setItem('palettePos', JSON.stringify({ x: r.left, y: r.top })); } catch (_) {}
+    });
+
+    window.addEventListener('keydown', function (e) {
+      if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') { undo(); e.preventDefault(); return; }
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'ArrowLeft') { prev(); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { next(); e.preventDefault(); }
+      else if (e.key === '+' || e.key === '=') zoomIn();
+      else if (e.key === '-') zoomOut();
+      else if (e.key === '0') fit();
+      else if (e.key === 'v' || e.key === 'V') setTool('cursor');
+      else if (e.key === 'p' || e.key === 'P') setTool('pen');
+      else if (e.key === 'n' || e.key === 'N') setTool('note');
+      else if (e.key === 'e' || e.key === 'E') setTool('eraser');
+      else if (e.key === 'Escape') { closeBubble(); swatchPop.classList.remove('open'); }
+    });
+
+    let raf;
+    window.addEventListener('resize', function () {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(function () { render(); const r = palette.getBoundingClientRect(); placePalette(r.left, r.top); });
+    });
+
+    docKey = (document.title || 'document').trim();
+    setHtmlPages(Array.from(document.querySelectorAll('body > .page')));
+  });
+})();
+</script>
 
 </body>
 </html>

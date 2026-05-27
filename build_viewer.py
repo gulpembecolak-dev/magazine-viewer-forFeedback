@@ -2,7 +2,7 @@
 with open('/Users/admin/Desktop/dergi son html/viewer.html', 'r') as f:
     viewer_content = f.read()
 
-with open('/Users/admin/Desktop/dergi son html/index.html', 'r') as f:
+with open('/Users/admin/Desktop/dergi son html/magazine.html', 'r') as f:
     index_content = f.read()
 
 # Extract viewer's head (including styles)
