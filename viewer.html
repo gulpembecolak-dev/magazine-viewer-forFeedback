@@ -1899,8 +1899,8 @@ body > .page { display: none; }
 /* ===== empty state ===== */
 .empty-state {
   margin: auto;
-  display: flex; flex-direction: column; align-items: center; gap: 16px;
-  padding: 54px 60px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  padding: 64px 72px;
   border: 1.5px dashed rgba(255,255,255,0.14);
   border-radius: 20px;
   background: rgba(255,255,255,0.02);
@@ -1908,8 +1908,16 @@ body > .page { display: none; }
   transition: border-color .2s, background .2s;
 }
 .empty-state:hover { border-color: rgba(204,26,10,.6); background: rgba(204,26,10,0.04); }
-.empty-state .ic { font-size: 2.6rem; }
-.empty-state h2 { font-weight: 600; font-size: 1.02rem; color: #edeae3; margin: 0; }
+.empty-state .plus {
+  width: 92px; height: 92px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--red);
+  border: 1.6px solid rgba(204,26,10,.5);
+  background: rgba(204,26,10,0.05);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.empty-state:hover .plus { background: rgba(204,26,10,0.14); border-color: var(--red); transform: scale(1.05); }
+.empty-state h2 { font-weight: 600; font-size: 1.04rem; color: #edeae3; margin: 0; letter-spacing: .01em; }
 .empty-state p { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; color: #8a8580; letter-spacing: 0.04em; margin: 0; }
 
 
@@ -4177,9 +4185,9 @@ body > .page { display: none; }
   function renderEmpty() {
     wrap.innerHTML =
       '<div class="empty-state" id="emptyState">' +
-        '<div class="ic">⤓</div>' +
-        '<h2>Drop an HTML or PDF file to preview</h2>' +
-        '<p>drag it here &nbsp;·&nbsp; or click to browse</p>' +
+        '<div class="plus"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M24 11v26M11 24h26"/></svg></div>' +
+        '<h2>Open a file to review</h2>' +
+        '<p>drop an HTML or PDF here &nbsp;·&nbsp; or click to browse</p>' +
       '</div>';
     document.getElementById('totalPagesNum').textContent = '0';
     document.getElementById('currentPageNum').textContent = '0';
@@ -4470,7 +4478,7 @@ body > .page { display: none; }
     });
 
     docKey = (document.title || 'document').trim();
-    setHtmlPages(Array.from(document.querySelectorAll('body > .page')));
+    render(); // start on the empty "+" landing — the user opens a file to review
   });
 })();
 </script>
